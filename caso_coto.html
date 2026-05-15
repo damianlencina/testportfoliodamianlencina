@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso 02 — Cómo hacemos un curso e-learning · Damián Lencina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* === Caso 02 — Medios de Pago === */
+
+  /* ── HERO ── */
+  .case-hero {
+    padding: var(--section-pad-v-lg) var(--side-pad) var(--section-pad-v);
+    position: relative;
+    z-index: 2;
+    background: var(--light);
+  }
+  .case-meta {
+    display: flex;
+    gap: 8px;
+    margin-bottom: var(--gap-l);
+    flex-wrap: wrap;
+  }
+  .case-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: white;
+    border: 1px solid var(--line-light);
+    border-radius: 100px;
+    font-size: var(--type-caption);
+    color: var(--ink-soft);
+    transition: border-color 0.25s var(--ease-out);
+  }
+  .case-meta-item:hover { border-color: rgba(201,168,76,0.4); }
+  .case-meta-item span { color: var(--burgundy); font-weight: 500; }
+  .case-meta-item span::after { content: ' ·'; }
+
+  .case-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h1);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin-bottom: var(--gap-m);
+    color: var(--ink);
+    max-width: var(--content-width);
+    text-wrap: balance;
+  }
+  .case-hero h1 em { font-style: italic; color: var(--burgundy); font-weight: 600; }
+
+  .case-subtitle {
+    max-width: var(--text-width);
+    font-size: var(--type-body-lg);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: var(--gap-l);
+    text-wrap: pretty;
+  }
+  .case-subtitle strong { color: var(--ink); font-weight: 600; }
+
+  /* ── STATS ── */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-s);
+    margin-top: var(--gap-l);
+  }
+  .hero-stat {
+    background: white;
+    border: 1px solid var(--line-light);
+    border-radius: var(--radius-m);
+    padding: 20px;
+    transition: border-color 0.25s var(--ease-out),
+                box-shadow 0.25s var(--ease-out),
+                transform 0.25s var(--ease-out);
+  }
+  .hero-stat:hover {
+    border-color: rgba(201,168,76,0.4);
+    box-shadow: var(--shadow-s), var(--shadow-gold);
+    transform: translateY(-2px);
+  }
+  .hero-stat-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: var(--type-h2);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .hero-stat-num em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .hero-stat-num.navy { color: var(--navy); }
+  .hero-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    font-weight: 500;
+  }
+
+  /* ── TWO COL ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-s);
+    margin-top: var(--gap-m);
+  }
+
+  /* ── PROOF — el número grande ── */
+  .proof {
+    margin-top: var(--gap-xl);
+    padding: var(--gap-m);
+    background: white;
+    border: 1px solid var(--line-light);
+    border-radius: var(--radius-l);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-m);
+    align-items: center;
+    box-shadow: var(--shadow-s);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  }
+  .proof:hover {
+    border-color: rgba(201,168,76,0.3);
+    box-shadow: var(--shadow-m), var(--shadow-gold);
+  }
+  .proof::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, var(--burgundy-glow) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .proof-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: var(--type-display);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    position: relative;
+  }
+  .proof-num em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .proof-label {
+    display: inline-block;
+    background: var(--burgundy-soft);
+    color: var(--burgundy);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: var(--type-tag);
+    font-weight: 500;
+    margin: 10px 0 14px;
+  }
+  .proof-text {
+    font-size: var(--type-body);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    position: relative;
+    text-wrap: pretty;
+  }
+  .proof-text strong { color: var(--ink); font-weight: 600; }
+  .proof-img {
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    border: 1px solid var(--line-light);
+  }
+  .proof-img img { width: 100%; display: block; }
+
+  /* ── CATEGORÍAS ── */
+  .categories-h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h3);
+    letter-spacing: -0.02em;
+    margin: var(--gap-xl) 0 var(--gap-m);
+    line-height: 1.1;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .categories-h3 em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .categories {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap-xs);
+  }
+  .category {
+    background: white;
+    border: 1px solid var(--line-light);
+    border-radius: var(--radius-m);
+    padding: var(--gap-s);
+    transition: border-color 0.25s var(--ease-out),
+                transform 0.25s var(--ease-out),
+                box-shadow 0.25s var(--ease-out);
+  }
+  .category:hover {
+    border-color: rgba(201,168,76,0.35);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-s), 0 0 0 1px rgba(201,168,76,0.15);
+  }
+  .category-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    color: var(--burgundy);
+    font-weight: 500;
+    margin-bottom: var(--gap-xs);
+    letter-spacing: 0.05em;
+  }
+  .category-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-body-lg);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .category-count {
+    font-size: var(--type-tag);
+    color: var(--ink-dim);
+  }
+
+  /* ── DEEP DIVE — Medios de Pago ── */
+  .deep-dive-block {
+    background: white;
+    border: 1px solid rgba(58, 42, 40, 0.10);
+    border-radius: var(--radius-l);
+    padding: var(--gap-m) var(--gap-m);
+    margin-top: var(--gap-l);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-s);
+  }
+  .deep-dive-block::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: -80px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, var(--burgundy-glow) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .deep-dive-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 14px;
+    background: var(--burgundy);
+    color: white;
+    border-radius: 100px;
+    font-size: var(--type-tag);
+    font-weight: 500;
+    margin-bottom: var(--gap-m);
+    position: relative;
+  }
+  .deep-dive-h {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h1);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin-bottom: var(--gap-m);
+    color: var(--ink);
+    position: relative;
+    text-wrap: balance;
+  }
+  .deep-dive-h em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .deep-dive-lead {
+    max-width: var(--text-width);
+    font-size: var(--type-body-lg);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: var(--gap-m);
+    position: relative;
+    text-wrap: pretty;
+  }
+  .deep-dive-lead strong { color: var(--ink); font-weight: 600; }
+  .deep-dive-lead em { color: var(--burgundy); font-style: italic; font-weight: 500; }
+
+  .deep-dive-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-xs);
+    margin: var(--gap-m) 0 var(--gap-l);
+    position: relative;
+  }
+  .deep-meta-cell {
+    background: var(--light-warm);
+    border-radius: var(--radius-m);
+    padding: 14px var(--gap-s);
+    transition: background 0.25s;
+  }
+  .deep-meta-cell:hover { background: var(--light-deep); }
+  .deep-meta-cell .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    color: var(--burgundy);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .deep-meta-cell .value {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-body-lg);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .slides-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-s);
+    margin-top: var(--gap-m);
+    position: relative;
+  }
+
+  .deep-dive-subh {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h3);
+    margin: var(--gap-xl) 0 var(--gap-s);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    position: relative;
+    text-wrap: balance;
+  }
+  .deep-dive-subh em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+
+  /* ── PROCESS FOLDER ── */
+  .process-folder {
+    background: white;
+    border: 1px solid var(--line-light);
+    border-radius: var(--radius-l);
+    padding: var(--gap-m);
+    margin-top: var(--gap-m);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-m);
+    align-items: center;
+    box-shadow: var(--shadow-s);
+    transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+  }
+  .process-folder:hover {
+    border-color: rgba(201,168,76,0.3);
+    box-shadow: var(--shadow-m);
+  }
+  .process-folder img {
+    width: 100%;
+    border-radius: var(--radius-m);
+    border: 1px solid var(--line-light);
+  }
+  .process-folder-text h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h3);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: var(--gap-s);
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .process-folder-text h4 em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .process-folder-text p {
+    font-size: var(--type-body);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .process-folder-text em.tag {
+    display: inline-block;
+    font-style: normal;
+    background: var(--light-warm);
+    color: var(--ink);
+    padding: 2px 8px;
+    border-radius: var(--radius-s);
+    font-size: var(--type-caption);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    margin: 2px;
+  }
+
+  /* ── PROCESS STEPS ── */
+  .process {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-s);
+    margin-top: var(--gap-l);
+  }
+  .process-step {
+    background: white;
+    border: 1px solid var(--line-light);
+    border-radius: var(--radius-l);
+    padding: var(--gap-m);
+    transition: border-color 0.25s var(--ease-out),
+                transform 0.25s var(--ease-out),
+                box-shadow 0.25s var(--ease-out);
+    box-shadow: var(--shadow-s);
+  }
+  .process-step:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-m), var(--shadow-gold);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: var(--burgundy-soft);
+    border-radius: 100px;
+    font-size: var(--type-tag);
+    font-weight: 500;
+    color: var(--burgundy);
+    margin-bottom: var(--gap-s);
+    letter-spacing: 0.02em;
+  }
+  .step-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h3);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: var(--gap-s);
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .step-title em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .step-desc {
+    font-size: var(--type-body);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: var(--gap-s);
+    text-wrap: pretty;
+  }
+  .step-img {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    border-radius: var(--radius-m);
+    border: 1px solid var(--line-light);
+    margin-bottom: var(--gap-s);
+  }
+  .step-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .process-step:hover .step-img img { transform: scale(1.03); }
+  .step-tools {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tool-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    font-weight: 500;
+    color: var(--ink-dim);
+    background: var(--light-warm);
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, color 0.2s;
+  }
+  .tool-tag:hover { background: var(--gold-soft); color: var(--warm-dark); }
+
+  /* ── VIDEO SECTION ── */
+  .video-section {
+    padding: var(--section-pad-v-lg) var(--side-pad);
+  }
+  .frames-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-s);
+    margin-top: var(--gap-m);
+  }
+  .frame {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--radius-m);
+    border: 1px solid var(--line-dark);
+    transition: box-shadow 0.3s var(--ease-out);
+  }
+  .frame:hover { box-shadow: var(--shadow-m); }
+  .frame img { width: 100%; height: 100%; object-fit: cover; }
+  .frame-info {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 6px 14px;
+    background: rgba(13, 10, 18, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--line-dark);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    font-weight: 500;
+    color: var(--ink-bright);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .frame-info span:first-child { color: var(--gold); }
+
+  .video-credits {
+    margin-top: var(--gap-m);
+    padding: var(--gap-m);
+    background: rgba(250, 248, 245, 0.04);
+    border: 1px solid var(--line-dark);
+    border-radius: var(--radius-m);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-m);
+  }
+  .credit-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 4px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .credit-value {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-body);
+    color: var(--ink-bright);
+  }
+
+  /* ── OTROS CURSOS ── */
+  .other-course {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-m);
+    padding: var(--gap-m);
+    background: white;
+    border: 1px solid var(--line-light);
+    border-radius: var(--radius-l);
+    align-items: center;
+    transition: border-color 0.25s var(--ease-out),
+                transform 0.25s var(--ease-out),
+                box-shadow 0.25s var(--ease-out);
+    box-shadow: var(--shadow-s);
+  }
+  .other-course:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-m), var(--shadow-gold);
+  }
+  .other-course-imgs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    aspect-ratio: 16/9;
+  }
+  .other-course-imgs > div {
+    overflow: hidden;
+    border-radius: var(--radius-s);
+    border: 1px solid var(--line-light);
+  }
+  .other-course-imgs img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .other-course:hover .other-course-imgs img { transform: scale(1.04); }
+  .other-course-text .tag {
+    display: inline-block;
+    background: var(--burgundy-soft);
+    color: var(--burgundy);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: var(--type-tag);
+    font-weight: 500;
+    margin-bottom: var(--gap-s);
+  }
+  .other-course-text h4 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h3);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: var(--gap-s);
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .other-course-text h4 em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .other-course-text p {
+    font-size: var(--type-body);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: var(--gap-s);
+    text-wrap: pretty;
+  }
+  .other-course-text p strong { color: var(--ink); font-weight: 600; }
+  .other-course-meta {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .other-course-meta span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    font-weight: 500;
+    color: var(--ink-dim);
+    background: var(--light-warm);
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── DESKTOP ── */
+  @media (min-width: 700px) {
+    .case-hero { padding: var(--section-pad-v-lg) var(--side-pad); }
+    .hero-stats { grid-template-columns: repeat(4, 1fr); gap: var(--gap-s); }
+    .hero-stat { padding: 28px var(--gap-m); }
+    .two-col { grid-template-columns: 1fr 1fr; gap: var(--gap-m); }
+    .proof { grid-template-columns: 1fr 1.4fr; padding: var(--gap-xl); gap: var(--gap-xl); }
+    .categories { grid-template-columns: repeat(4, 1fr); gap: var(--gap-s); }
+    .deep-dive-block { padding: var(--gap-xl); }
+    .deep-dive-meta { grid-template-columns: repeat(4, 1fr); gap: var(--gap-s); }
+    .slides-grid { grid-template-columns: 1fr 1fr; gap: var(--gap-s); }
+    .process-folder { grid-template-columns: 1.3fr 1fr; padding: var(--gap-l); gap: var(--gap-l); }
+    .process { grid-template-columns: 1fr 1fr; gap: var(--gap-m); }
+    .process-step { padding: var(--gap-l); }
+    .video-section { padding: var(--section-pad-v-lg) var(--side-pad); }
+    .frames-grid { grid-template-columns: 1fr 1fr; gap: var(--gap-s); }
+    .video-credits { grid-template-columns: repeat(4, 1fr); gap: var(--gap-m); padding: var(--gap-l); }
+    .other-course { grid-template-columns: 1.1fr 1fr; gap: var(--gap-l); padding: var(--gap-l); }
+  }
+</style>
+
+<!-- Meta tags -->
+<meta name="description" content="Sistema de aprendizaje para casi veinte mil personas. Plataforma Moodle institucional, 16+ áreas formativas, video propio rodado en planta. Caso destacado: Medios de Pago.">
+<meta name="theme-color" content="#8b2a3a">
+<meta name="author" content="Damián Lencina">
+<link rel="canonical" href="https://damilencina.com/caso_coto.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Caso 02 — Medios de Pago · COTO CICSA · Damián Lencina">
+<meta property="og:description" content="Sistema de aprendizaje para casi veinte mil personas. Plataforma Moodle institucional, 16+ áreas formativas, video propio rodado en planta. Caso destacado: Medios de Pago.">
+<meta property="og:url" content="https://damilencina.com/caso_coto.html">
+<meta property="og:image" content="https://damilencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_AR">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Caso 02 — Medios de Pago · COTO CICSA · Damián Lencina">
+<meta name="twitter:description" content="Sistema de aprendizaje para casi veinte mil personas. Plataforma Moodle institucional, 16+ áreas formativas, video propio rodado en planta. Caso destacado: Medios de Pago.">
+<meta name="twitter:image" content="https://damilencina.com/img/og_image.jpg">
+
+<!-- DNS prefetch -->
+<link rel="dns-prefetch" href="https://i.ytimg.com">
+
+</head>
+<body>
+
+<div class="ambient-glow glow-1"></div>
+<div class="ambient-glow glow-2"></div>
+
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">DL <span>·</span> 2026</a>
+  <div class="nav-mark">Caso 02 <span>·</span> 04</div>
+  <div class="nav-links">
+    <a href="index.html#trabajo">Trabajo</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="index.html#contacto">Contacto</a>
+  </div>
+</nav>
+
+<!-- BARRA DE PROGRESO -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- PAGE TRANSITION IN -->
+<div class="page-transition" id="pageTransition">
+  <div class="page-transition-mark">DL · 2026</div>
+</div>
+
+
+<!-- HERO claro -->
+<section class="case-hero">
+  <div class="case-meta">
+    <div class="case-meta-item"><span>Cliente</span> COTO CICSA</div>
+    <div class="case-meta-item"><span>Período</span> 2019 — Hoy</div>
+    <div class="case-meta-item"><span>Rol</span> Diseño · Dirección · Producción</div>
+  </div>
+
+  <h1>El método, de<br>punta a <em>punta</em>.</h1>
+
+  <p class="case-subtitle">
+    De todos los cursos que produje, Medios de Pago es el que mejor condensa cómo trabajo: guion, diseño visual, interactividad y video propio filmado en sucursal. <strong>Cuatro etapas, un flujo</strong>, un resultado que llega a más de cinco mil operadores de punto de venta.
+  </p>
+
+  <div class="hero-stats reveal-stagger">
+    <div class="hero-stat tilt-card">
+      <div class="hero-stat-num"><em><span class="counter" data-target="19852" data-format="thousand">0</span></em></div>
+      <div class="hero-stat-label">Participantes totales</div>
+    </div>
+    <div class="hero-stat tilt-card">
+      <div class="hero-stat-num navy"><span class="counter" data-target="16">0</span>+</div>
+      <div class="hero-stat-label">Áreas formativas</div>
+    </div>
+    <div class="hero-stat tilt-card">
+      <div class="hero-stat-num"><span class="counter" data-target="4">0</span></div>
+      <div class="hero-stat-label">Personas en el equipo</div>
+    </div>
+    <div class="hero-stat tilt-card">
+      <div class="hero-stat-num navy">+<span class="counter" data-target="7">0</span></div>
+      <div class="hero-stat-label">Años de operación</div>
+    </div>
+  </div>
+
+  <!-- Carrusel B de capturas hero -->
+  <div class="carousel-b-wrap" data-carousel-b>
+    <div class="carousel-b">
+      <div class="carousel-b-item">
+        <img src="img/mp_slide_01_portada.jpg" loading="lazy" decoding="async" width="1118" height="623" alt="Portada del curso">
+      </div>
+      <div class="carousel-b-item">
+        <img src="img/mp_slide_03_validez.jpg" loading="lazy" decoding="async" width="1112" height="621" alt="Control de validez">
+      </div>
+      <div class="carousel-b-item">
+        <img src="img/mp_video_01_intro.jpg" loading="lazy" decoding="async" width="1191" height="669" alt="Video Operaciones Especiales">
+      </div>
+      <div class="carousel-b-item">
+        <img src="img/mp_storyline.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Storyline — 27 escenas">
+      </div>
+    </div>
+    <div class="carousel-b-footer">
+      <div class="carousel-b-dots">
+        <div class="carousel-b-dot active"></div>
+        <div class="carousel-b-dot"></div>
+        <div class="carousel-b-dot"></div>
+        <div class="carousel-b-dot"></div>
+      </div>
+      <div class="carousel-b-counter"><span>01</span> / 04</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 01 SISTEMA (claro) -->
+<section class="bg-light">
+  <div class="section-header">
+    <div class="section-tag">01 · El sistema</div>
+    <h2 class="section-h">Una <em>plataforma</em> que organiza la formación de toda la compañía.</h2>
+    <p class="section-lead">
+      Implementamos y configuramos un <strong>Moodle institucional</strong> bajo la identidad de la Dirección de Recursos Humanos. La arquitectura organiza más de dieciséis categorías formativas — desde operaciones de caja hasta seguridad alimentaria — con un sistema visual de portadas <em>fotorrealistas</em> que diferencia cada área sin romper la cohesión de marca.
+    </p>
+  </div>
+
+  <div class="img-card lightbox-trigger reveal editorial-frame">
+    <img src="img/01_moodle_general.jpg" loading="lazy" decoding="async" width="1899" height="869" alt="Moodle vista general">
+    <div class="img-caption">
+      <span class="num">Figura 01</span>
+      <span>Mis Cursos · Vista del usuario final</span>
+      <span class="credit">2025—2026 · <span class="technique">Digital · Moodle</span></span>
+    </div>
+  </div>
+
+  <div class="two-col reveal-stagger">
+    <div class="img-card lightbox-trigger">
+      <img src="img/10_categorias_cajas.jpg" loading="lazy" decoding="async" width="1657" height="821" alt="Backend · Línea de Ventas">
+      <div class="img-caption">
+        <span class="num">Figura 02.A</span>
+        <span>Backend · Línea de Ventas</span>
+        <span class="credit">11 cursos</span>
+      </div>
+    </div>
+    <div class="img-card lightbox-trigger">
+      <img src="img/11_categorias_frescos.jpg" loading="lazy" decoding="async" width="1542" height="795" alt="Backend Frescos">
+      <div class="img-caption">
+        <span class="num">Figura 02.B</span>
+        <span>Backend · Productos Frescos I</span>
+        <span class="credit">8 cursos</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="categories-h3">Dieciséis áreas, una sola <em>arquitectura</em>.</h3>
+
+  <div class="categories reveal-stagger collapsed" data-categories>
+    <div class="category"><div class="category-num">01</div><div class="category-name">Punto de Venta</div><div class="category-count">11 cursos</div></div>
+    <div class="category"><div class="category-num">02</div><div class="category-name">Productos Frescos I</div><div class="category-count">8 cursos</div></div>
+    <div class="category"><div class="category-num">03</div><div class="category-name">Productos Frescos II</div><div class="category-count">3 cursos</div></div>
+    <div class="category"><div class="category-num">04</div><div class="category-name">Productos Elaborados</div><div class="category-count">1 curso</div></div>
+    <div class="category"><div class="category-num">05</div><div class="category-name">Salón de Ventas</div><div class="category-count">5 cursos</div></div>
+    <div class="category"><div class="category-num">06</div><div class="category-name">Mantenimiento</div><div class="category-count">6 cursos</div></div>
+    <div class="category"><div class="category-num">07</div><div class="category-name">Coto Digital</div><div class="category-count">5 cursos</div></div>
+    <div class="category"><div class="category-num">08</div><div class="category-name">Flota Propia</div><div class="category-count">1 curso</div></div>
+    <div class="category"><div class="category-num">09</div><div class="category-name">Artículos Generales</div><div class="category-count">7 cursos</div></div>
+    <div class="category"><div class="category-num">10</div><div class="category-name">Administración</div><div class="category-count">9 cursos</div></div>
+    <div class="category"><div class="category-num">11</div><div class="category-name">RRHH</div><div class="category-count">9 cursos</div></div>
+    <div class="category"><div class="category-num">12</div><div class="category-name">Gestión Comercial</div><div class="category-count">4 cursos</div></div>
+    <div class="category"><div class="category-num">13</div><div class="category-name">Atención al Cliente</div><div class="category-count">1 curso</div></div>
+    <div class="category"><div class="category-num">14</div><div class="category-name">Seguridad</div><div class="category-count">4 cursos</div></div>
+    <div class="category"><div class="category-num">15</div><div class="category-name">Recursos Humanos</div><div class="category-count">1 curso</div></div>
+    <div class="category"><div class="category-num">16</div><div class="category-name">Zona Especial</div><div class="category-count">5 cursos</div></div>
+  </div>
+
+  <button class="categories-toggle" data-categories-toggle>
+    <span class="text">Ver todas las áreas</span>
+    <span class="count">+10</span>
+    <span class="icon">↓</span>
+  </button>
+
+  <div class="proof reveal">
+    <div>
+      <div class="proof-num"><em><span class="counter" data-target="19852" data-format="thousand">0</span></em></div>
+      <div class="proof-label">Participantes encontrados</div>
+      <div class="proof-text">
+        Cada curso publicado <strong>alcanza a casi veinte mil colaboradores</strong>. La escala obliga a pensar el diseño instruccional como un sistema replicable, no como una pieza única.
+      </div>
+    </div>
+    <div class="proof-img">
+      <img src="img/09_participantes_header.jpg" loading="lazy" decoding="async" width="1549" height="649" alt="Captura del dato 19.852">
+    </div>
+  </div>
+</section>
+
+<!-- transición claro → cálido -->
+<div class="transition-down-warm"></div>
+
+<!-- 02 ANATOMÍA (cálido) — Deep dive de Medios de Pago -->
+<section class="bg-warm">
+  <div class="section-header">
+    <div class="section-tag">02 · Anatomía de un curso</div>
+    <h2 class="section-h">Adentro de <em>un proyecto</em>.</h2>
+    <p class="section-lead">
+      Tomemos un curso concreto del sistema para ver el método aplicado de punta a punta.
+    </p>
+  </div>
+
+  <div class="deep-dive-block reveal">
+    <div class="deep-dive-tag">Caso destacado · Medios de Pago</div>
+    <h3 class="deep-dive-h">Medios de <em>pago.</em></h3>
+    <p class="deep-dive-lead">
+      Curso de <strong>inducción para nuevos operadores de punto de venta</strong>. Lo elegí como caso central del portfolio porque condensa todo el método en un solo proyecto: diseño instruccional, sistema visual, video propio filmado en planta y producción multimedia rica. Su público son <em>jóvenes de veinte años en promedio</em> — una generación a la que hay que llegarle con dinámica, no con bullets.
+    </p>
+
+    <div class="deep-dive-meta reveal-stagger">
+      <div class="deep-meta-cell">
+        <div class="label">Área</div>
+        <div class="value">Cajas · Punto de Venta</div>
+      </div>
+      <div class="deep-meta-cell">
+        <div class="label">Inscriptos</div>
+        <div class="value"><span class="counter" data-target="5553" data-format="thousand">0</span></div>
+      </div>
+      <div class="deep-meta-cell">
+        <div class="label">Diapositivas</div>
+        <div class="value"><span class="counter" data-target="27">0</span> escenas</div>
+      </div>
+      <div class="deep-meta-cell">
+        <div class="label">Video propio</div>
+        <div class="value">3 min 14 s</div>
+      </div>
+    </div>
+
+    <div class="img-card lightbox-trigger editorial-frame">
+      <img src="img/mp_moodle_curso.jpg" loading="lazy" decoding="async" width="1843" height="883" alt="Curso Medios de Pago en Moodle">
+      <div class="img-caption">
+        <span class="num">Figura 03</span>
+        <span>Curso publicado · "Lo que tenés que saber" + "Poné a prueba lo aprendido"</span>
+        <span class="credit">Vista del estudiante · <span class="technique">Storyline · 27 escenas</span></span>
+      </div>
+    </div>
+
+    <h4 class="deep-dive-subh">Anatomía de las <em>diapositivas</em>.</h4>
+
+    <div class="filmstrip-wrap">
+      <div class="filmstrip">
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/mp_slide_01_portada.jpg" loading="lazy" decoding="async" width="1118" height="623" alt="Portada del curso">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">01</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">Portada · "Empezar"</div>
+              <div class="filmstrip-sub">Identidad · Illustrator</div>
+            </div>
+          </div>
+        </div>
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/mp_slide_02_efectivo.jpg" loading="lazy" decoding="async" width="1114" height="625" alt="Efectivo">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">02</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">Efectivo · Seguridad de billetes</div>
+              <div class="filmstrip-sub">Foto-realismo</div>
+            </div>
+          </div>
+        </div>
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/mp_slide_03_validez.jpg" loading="lazy" decoding="async" width="1112" height="621" alt="Control de validez">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">03</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">Control de validez de tarjeta</div>
+              <div class="filmstrip-sub">Hover interactivo</div>
+            </div>
+          </div>
+        </div>
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/mp_slide_04_billeteras.jpg" loading="lazy" decoding="async" width="1115" height="624" alt="Billeteras virtuales">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">04</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">Billeteras virtuales</div>
+              <div class="filmstrip-sub">MP · MODO · DNI</div>
+            </div>
+          </div>
+        </div>
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/mp_slide_05_cashback.jpg" loading="lazy" decoding="async" width="1114" height="625" alt="Operaciones Especiales">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">05</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">Operaciones Especiales con débito</div>
+              <div class="filmstrip-sub">Video embebido</div>
+            </div>
+          </div>
+        </div>
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/mp_slide_06_final.jpg" loading="lazy" decoding="async" width="1194" height="676" alt="Cierre">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">27</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">Cierre · Felicitaciones</div>
+              <div class="filmstrip-sub">Refuerzo motivacional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="deep-dive-subh">Evaluación <em>final</em>.</h4>
+
+    <div class="img-card lightbox-trigger editorial-frame">
+      <img src="img/mp_evaluacion.jpg" loading="lazy" decoding="async" width="1916" height="731" alt="Evaluación del curso">
+      <div class="img-caption">
+        <span class="num">Figura 04</span>
+        <span>Cuestionario final · 10 preguntas · 45 min</span>
+        <span class="credit">Validación · <span class="technique">Cuestionario · 10 ítems</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- transición cálido → claro -->
+<div class="transition-up-light"></div>
+
+<!-- 03 PROCESO (claro) -->
+<section class="bg-light">
+  <div class="section-header">
+    <div class="section-tag">03 · El proceso</div>
+    <h2 class="section-h">Un método de cuatro <em>etapas</em>.</h2>
+    <p class="section-lead">
+      Cada curso atraviesa el mismo flujo: conceptualización en Word, diseño visual en Illustrator, armado interactivo en Storyline y producción audiovisual paralela. <strong>El método es lo que hace escalable la calidad.</strong>
+    </p>
+  </div>
+
+  <div class="process-folder reveal tilt-card">
+    <img src="img/mp_carpeta.jpg" loading="lazy" decoding="async" width="997" height="762" alt="Carpeta del curso">
+    <div class="process-folder-text">
+      <h4>Antes del software, la <em>organización</em>.</h4>
+      <p>Cada curso vive en una estructura de carpetas idéntica:
+        <em class="tag">animaciones</em>
+        <em class="tag">audios</em>
+        <em class="tag">contenido</em>
+        <em class="tag">crudos</em>
+        <em class="tag">diseño</em>
+        <em class="tag">evaluación</em>
+        <em class="tag">portadas</em>
+        <em class="tag">premiere</em>
+        <em class="tag">storyline</em>
+        <em class="tag">after</em>.
+        Una nomenclatura común que permite que cualquier integrante del equipo pueda retomar un proyecto sin fricciones.</p>
+    </div>
+  </div>
+
+  <div class="tabs-wrap" data-tabs>
+    <div class="tabs-nav">
+      <button class="tab-btn active" data-tab="01"><span class="tab-btn-num">01</span> Guion</button>
+      <button class="tab-btn" data-tab="02"><span class="tab-btn-num">02</span> Diseño visual</button>
+      <button class="tab-btn" data-tab="03"><span class="tab-btn-num">03</span> Armado interactivo</button>
+      <button class="tab-btn" data-tab="04"><span class="tab-btn-num">04</span> Producción audiovisual</button>
+    </div>
+
+    <div class="tab-panel active" data-panel="01">
+      <div class="tab-panel-grid">
+        <div class="tab-panel-text">
+          <div class="step-num">Etapa 01</div>
+          <h3><em>Guion</em> y estructura</h3>
+          <p>Documento maestro con el contenido por unidad y diapositiva. Para Medios de Pago, trece páginas de Word organizan tres unidades temáticas con imágenes de referencia y notas de producción.</p>
+          <div class="step-tools">
+            <span class="tool-tag">Microsoft Word</span>
+            <span class="tool-tag">OneDrive</span>
+          </div>
+        </div>
+        <div class="tab-panel-img"><img src="img/mp_word.jpg" loading="lazy" decoding="async" width="1915" height="1025" alt="Word con guion"></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="02">
+      <div class="tab-panel-grid">
+        <div class="tab-panel-text">
+          <div class="step-num">Etapa 02</div>
+          <h3>Diseño <em>visual</em></h3>
+          <p>Storyboard completo en Illustrator. Veintisiete escenas diseñadas como sistema unificado: paleta, tipografía consistente, infografías propias, productos fotorrealistas y elementos de identidad institucional.</p>
+          <div class="step-tools">
+            <span class="tool-tag">Illustrator</span>
+            <span class="tool-tag">Photoshop</span>
+          </div>
+        </div>
+        <div class="tab-panel-img"><img src="img/mp_illustrator_general.jpg" loading="lazy" decoding="async" width="1918" height="1026" alt="Illustrator"></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="03">
+      <div class="tab-panel-grid">
+        <div class="tab-panel-text">
+          <div class="step-num">Etapa 03</div>
+          <h3>Armado <em>interactivo</em></h3>
+          <p>Construcción en Storyline con capas, accionadores hover y línea de tiempo sincronizada con audio. El control de validez de tarjetas — donde cada elemento aparece al pasar el mouse — es un buen ejemplo de cómo el ritmo guía la interacción.</p>
+          <div class="step-tools">
+            <span class="tool-tag">Articulate Storyline</span>
+            <span class="tool-tag">SCORM</span>
+          </div>
+        </div>
+        <div class="tab-panel-img"><img src="img/mp_storyline.jpg" loading="lazy" decoding="async" width="1916" height="1026" alt="Storyline"></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="04">
+      <div class="tab-panel-grid">
+        <div class="tab-panel-text">
+          <div class="step-num">Etapa 04</div>
+          <h3>Producción <em>audiovisual</em></h3>
+          <p>Edición del video Operaciones Especiales en Premiere: tres minutos catorce segundos con dos sucursales reales, locución, subtítulos, gráficas de identificación y cortinillas animadas en After Effects.</p>
+          <div class="step-tools">
+            <span class="tool-tag">Premiere Pro</span>
+            <span class="tool-tag">After Effects</span>
+            <span class="tool-tag">Audition</span>
+          </div>
+        </div>
+        <div class="tab-panel-img"><img src="img/mp_premiere.jpg" loading="lazy" decoding="async" width="1912" height="1022" alt="Premiere"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- transición claro → oscuro (directa, larga) -->
+<div class="transition-light-to-dark"></div>
+
+<!-- 04 VIDEO (oscuro) -->
+<section class="bg-dark video-section">
+  <div class="section-header">
+    <div class="section-tag">04 · El video</div>
+    <h2 class="section-h">Cuando el aula <em>se vuelve</em> set.</h2>
+    <p class="section-lead">
+      Para Medios de Pago dirigí, filmé y edité <strong>Operaciones Especiales</strong>: una pieza de tres minutos catorce segundos rodada en sucursal con operadores reales. Idea, guion, dirección, cámara y edición — todo del mismo equipo que diseña el curso.
+    </p>
+  </div>
+
+  <div class="filmstrip-wrap">
+    <div class="filmstrip">
+      <div class="filmstrip-item">
+        <div class="filmstrip-img lightbox-trigger">
+          <img src="img/mp_video_01_intro.jpg" loading="lazy" decoding="async" width="1191" height="669" alt="Frame 1">
+          <div class="frame-info"><span>00:06</span><span>Intro · Operaciones Especiales</span></div>
+        </div>
+        <div class="filmstrip-caption">
+          <div class="filmstrip-num">01</div>
+          <div class="filmstrip-info">
+            <div class="filmstrip-title">Intro · Operaciones Especiales</div>
+            <div class="filmstrip-sub">Apertura del video</div>
+          </div>
+        </div>
+      </div>
+      <div class="filmstrip-item">
+        <div class="filmstrip-img lightbox-trigger">
+          <img src="img/mp_video_02_planta.jpg" loading="lazy" decoding="async" width="1193" height="667" alt="Frame 2">
+          <div class="frame-info"><span>00:15</span><span>Planta · Inicio del proceso</span></div>
+        </div>
+        <div class="filmstrip-caption">
+          <div class="filmstrip-num">02</div>
+          <div class="filmstrip-info">
+            <div class="filmstrip-title">Rodaje en planta</div>
+            <div class="filmstrip-sub">Sucursal real · operadores reales</div>
+          </div>
+        </div>
+      </div>
+      <div class="filmstrip-item">
+        <div class="filmstrip-img lightbox-trigger">
+          <img src="img/mp_video_03_inicio.jpg" loading="lazy" decoding="async" width="1191" height="670" alt="Frame 3">
+          <div class="frame-info"><span>00:27</span><span>Inicio venta y cobro</span></div>
+        </div>
+        <div class="filmstrip-caption">
+          <div class="filmstrip-num">03</div>
+          <div class="filmstrip-info">
+            <div class="filmstrip-title">Inicio venta y cobro</div>
+            <div class="filmstrip-sub">Flujo del proceso</div>
+          </div>
+        </div>
+      </div>
+      <div class="filmstrip-item">
+        <div class="filmstrip-img lightbox-trigger">
+          <img src="img/mp_video_04_banda.jpg" loading="lazy" decoding="async" width="1196" height="674" alt="Frame 4">
+          <div class="frame-info"><span>01:05</span><span>Banda magnética · 3 pasos</span></div>
+        </div>
+        <div class="filmstrip-caption">
+          <div class="filmstrip-num">04</div>
+          <div class="filmstrip-info">
+            <div class="filmstrip-title">Banda magnética</div>
+            <div class="filmstrip-sub">3 pasos · detalle técnico</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-credits">
+    <div><div class="credit-label">Idea y guion</div><div class="credit-value">Damián Lencina</div></div>
+    <div><div class="credit-label">Dirección y cámara</div><div class="credit-value">Damián Lencina</div></div>
+    <div><div class="credit-label">Edición y motion</div><div class="credit-value">Damián Lencina</div></div>
+    <div><div class="credit-label">Duración</div><div class="credit-value">03:14</div></div>
+  </div>
+</section>
+
+<!-- transición oscuro → cálido -->
+<div class="transition-up-warm"></div>
+
+<!-- 05 BTS (cálido) -->
+<section class="bg-warm">
+  <div class="section-header">
+    <div class="section-tag">05 · Detrás de cámara</div>
+    <h2 class="section-h">El aula está<br>en la <em>planta</em>.</h2>
+    <p class="section-lead">
+      No alcanza con grabar en estudio. Para que un curso resuene con quienes lo van a tomar, <strong>filmamos en los lugares donde realmente trabajan</strong>: cámaras de frío, líneas de caja, depósitos. Dirijo los rodajes en sucursal, coordinando con el equipo operativo y con cámara propia.
+    </p>
+  </div>
+
+  <div class="two-col reveal-stagger">
+    <div class="img-card lightbox-trigger">
+      <img src="img/14_coto_rodaje_caja.jpg" loading="lazy" decoding="async" width="1407" height="1055" alt="Rodaje caja">
+      <div class="img-caption">
+        <span class="num">BTS · 01</span>
+        <span>Rodaje · Punto de Venta</span>
+        <span class="credit">Producción · <span class="technique">Cámara propia · 4K</span></span>
+      </div>
+    </div>
+    <div class="img-card lightbox-trigger">
+      <img src="img/13_coto_rodaje_pescaderia.jpg" loading="lazy" decoding="async" width="791" height="1055" alt="Rodaje pescadería">
+      <div class="img-caption">
+        <span class="num">BTS · 02</span>
+        <span>Rodaje · Sector pescadería</span>
+        <span class="credit">Dirección · <span class="technique">Cámara propia · 4K</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- transición claro → oscuro -->
+<div class="transition-light-to-dark"></div>
+
+<!-- VIDEO TUTORIAL: Cómo armamos un curso desde cero -->
+<section class="bg-light case-section video-placeholder-section">
+  <div class="reveal">
+    <div class="section-tag">El método en acción</div>
+    <h2>Ver cómo se hace,<br>no solo <em>el resultado</em>.</h2>
+    <p class="section-body">
+      Storyline, Illustrator, Premiere. El proceso real de producción de este curso, desde la carpeta vacía hasta el SCORM publicado.
+    </p>
+  </div>
+  <div class="video-placeholder reveal">
+    <div class="video-placeholder-inner">
+      <div class="video-placeholder-icon">▶</div>
+      <div class="video-placeholder-label">Videotutorial próximamente</div>
+      <div class="video-placeholder-sub">Cómo armamos un curso desde cero — T1 · Screencast · ~5 min</div>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE (oscuro) -->
+<section class="closing">
+  <p class="closing-quote">
+    "Pensar cada curso como una <em>experiencia</em> y cada video como una pequeña <em>película</em>. Esa doble mirada es lo que define mi forma de trabajar."
+  </p>
+  <div class="closing-author">Sobre el método</div>
+</section>
+
+<!-- transición → oscuro -->
+<div class="transition-down-dark"></div>
+
+<section class="bg-dark footer-cta">
+  <div class="reveal">
+    <div class="footer-cta-tag">Contacto</div>
+    <h2>¿Tenés un proyecto<br>de formación que <em>merece</em><br>ser una experiencia?</h2>
+    <p class="footer-cta-sub">Si buscás diseño instruccional, producción audiovisual o una mirada integral sobre tu e-learning, hablemos.</p>
+    <div class="contact-options">
+      <a href="mailto:dami.lencina21@gmail.com" class="cta-btn">Escribime por mail</a>
+      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="cta-btn cta-btn--outline">LinkedIn</a>
+    </div>
+    <div class="footer-foot">
+      <div>© <span class="footer-year">2026</span> · Damián Lencina</div>
+      <div>Buenos Aires · Argentina</div>
+      <div>
+        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+        · 
+        <a href="https://www.instagram.com/magoyacine" target="_blank" rel="noopener" class="footer-link">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer-nav">
+  <a href="caso_transformacion.html">← Caso anterior</a>
+  <a href="caso_magoya.html">Siguiente caso →</a>
+</div>
+
+
+
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt=""></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

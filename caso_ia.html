@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso 05 — Aprender a crear con IA · Damián Lencina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Caso 05 — Cómo construí este portfolio de cero usando IA. El antes era un mensaje de texto. El después es esto.">
+  <meta name="theme-color" content="#8b2a3a">
+  <meta name="author" content="Damián Lencina">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Caso 05 — Aprender a crear con IA · Damián Lencina">
+  <meta property="og:description" content="El antes era un mensaje de texto. El después es esto. Cómo construí este portfolio de cero en conversación con Claude.">
+  <meta property="og:image" content="https://damilencina.com/img/og_image.jpg">
+  <meta property="og:locale" content="es_AR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Caso 05 — Aprender a crear con IA · Damián Lencina">
+  <meta name="twitter:image" content="https://damilencina.com/img/og_image.jpg">
+
+  <style>
+    /* ── CASO 05: estilos específicos ── */
+
+    /* Terminal / chat bubble */
+    .chat-log {
+      margin: var(--gap-l) 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .chat-msg {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      max-width: 680px;
+    }
+    .chat-msg.claude {
+      align-self: flex-start;
+    }
+    .chat-msg.dami {
+      align-self: flex-end;
+      flex-direction: row-reverse;
+    }
+    .chat-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--type-caption);
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+    .chat-msg.claude .chat-avatar {
+      background: var(--burgundy);
+      color: white;
+    }
+    .chat-msg.dami .chat-avatar {
+      background: var(--navy);
+      color: white;
+    }
+    .chat-bubble {
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: var(--type-body);
+      line-height: 1.55;
+      max-width: 520px;
+    }
+    .chat-msg.claude .chat-bubble {
+      background: rgba(139,42,58,0.08);
+      border: 1px solid rgba(139,42,58,0.12);
+      border-top-left-radius: 4px;
+      color: var(--warm-dark);
+    }
+    .chat-msg.dami .chat-bubble {
+      background: var(--navy);
+      color: var(--ink-bright);
+      border-top-right-radius: 4px;
+    }
+    .chat-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--ink-faint);
+      margin-top: 4px;
+      text-align: center;
+    }
+    .chat-msg.dami .chat-time { text-align: right; }
+
+    /* Stats del proceso */
+    .process-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line-light);
+      border: 1px solid var(--line-light);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: var(--gap-l) 0;
+    }
+    @media (min-width: 640px) {
+      .process-stats { grid-template-columns: repeat(4, 1fr); }
+    }
+    .pstat {
+      background: var(--light);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .bg-dark .process-stats { background: var(--line-dark); border-color: var(--line-dark); }
+    .bg-dark .pstat { background: rgba(255,255,255,0.03); }
+    .pstat-value {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--burgundy);
+    }
+    .bg-dark .pstat-value { color: var(--rose); }
+    .pstat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--type-label);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+    .bg-dark .pstat-label { color: var(--ink-light); opacity: 0.6; }
+
+    /* Versiones timeline */
+    .versions-strip {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: var(--gap-l) 0;
+    }
+    .version-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 5px 10px;
+      border-radius: 100px;
+      border: 1px solid var(--line-light);
+      color: var(--ink-dim);
+      background: var(--light-warm);
+      transition: all 0.2s;
+    }
+    .version-pill.highlight {
+      background: var(--burgundy);
+      border-color: var(--burgundy);
+      color: white;
+    }
+    .version-pill.mid {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: white;
+    }
+
+    /* Bloque de aprendizaje / insight */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin: var(--gap-l) 0;
+    }
+    @media (min-width: 700px) {
+      .insight-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .insight-card {
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--line-light);
+      background: rgba(255,255,255,0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bg-dark .insight-card {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--line-dark);
+    }
+    .insight-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+    .insight-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: var(--type-body-lg);
+      color: var(--ink);
+    }
+    .bg-dark .insight-title { color: var(--ink-bright); }
+    .insight-body {
+      font-size: var(--type-body);
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .bg-dark .insight-body { color: var(--ink-light); }
+
+    /* Screenshot del chat con overlay de anotación */
+    .chat-screenshot {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line-light);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+    .chat-screenshot img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .chat-screenshot-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: var(--burgundy);
+      color: white;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    /* Tesis final */
+    .tesis-block {
+      border-left: 3px solid var(--burgundy);
+      padding: 28px 32px;
+      background: rgba(139,42,58,0.04);
+      border-radius: 0 16px 16px 0;
+      margin: var(--gap-l) 0;
+    }
+    .tesis-block p {
+      font-size: var(--type-lead);
+      line-height: 1.65;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+    .tesis-block strong {
+      color: var(--burgundy);
+      font-style: normal;
+    }
+
+    /* Comparativa antes/después del portfolio */
+    .portfolio-compare {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin: var(--gap-l) 0;
+    }
+    @media (min-width: 700px) {
+      .portfolio-compare { grid-template-columns: 1fr 1fr; }
+    }
+    .portfolio-compare-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .portfolio-compare-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--type-tag);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+    .portfolio-compare-label.before {
+      background: rgba(139,42,58,0.1);
+      color: var(--burgundy);
+      border: 1px solid rgba(139,42,58,0.2);
+    }
+    .portfolio-compare-label.after {
+      background: rgba(22,32,64,0.08);
+      color: var(--navy);
+      border: 1px solid rgba(22,32,64,0.16);
+    }
+    .portfolio-compare-content {
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--line-light);
+      background: var(--light-warm);
+      font-size: var(--type-body);
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .portfolio-compare-content ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .portfolio-compare-content li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .portfolio-compare-content li::before {
+      content: '—';
+      color: var(--ink-faint);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .portfolio-compare-content.after-col li::before {
+      content: '✓';
+      color: var(--burgundy);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav-logo">DL <span>·</span> 2026</a>
+  <div class="nav-mark">Caso 04 <span>·</span> 04</div>
+  <div class="nav-links">
+    <a href="index.html#trabajo">Trabajo</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="index.html#contacto">Contacto</a>
+  </div>
+</nav>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<div class="page-transition" id="pageTransition">
+  <div class="page-transition-mark">DL · 2026</div>
+</div>
+
+<!-- HERO -->
+<section class="case-hero bg-light">
+  <div class="case-hero-grid">
+    <div class="case-hero-text reveal">
+      <div class="case-byline-hero">
+        <strong>Caso 04</strong>
+        <span>Claude AI + Damián Lencina · 2026 · Proceso propio</span>
+      </div>
+      <h1 class="case-hero-title">
+        El antes era<br>
+        un <em>mensaje</em>.<br>
+        El después es esto.
+      </h1>
+      <p class="case-hero-sub">
+        Este no es un caso de cliente. Es el meta-caso: cómo se construyó este portfolio — cada página, cada slider, cada token de espaciado — desde cero, en conversación con IA. El caso demuestra dos cosas al mismo tiempo: que sé construir experiencias complejas, y que sé usar las herramientas del presente para hacerlo mejor.
+      </p>
+    </div>
+
+    <div class="case-hero-stats reveal">
+      <div class="hero-stat">
+        <div class="hero-stat-value"><em>37</em></div>
+        <div class="hero-stat-label">Versiones</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value navy">6</div>
+        <div class="hero-stat-label">Páginas construidas</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value"><em>−68%</em></div>
+        <div class="hero-stat-label">Peso optimizado</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value navy">0</div>
+        <div class="hero-stat-label">Estilos inline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- transición claro → oscuro -->
+<div class="transition-down-dark"></div>
+
+<!-- EL ANTES -->
+<section class="bg-dark case-section">
+  <div class="reveal">
+    <div class="section-tag dark">El antes</div>
+    <h2>No había portfolio.<br>Había una <em>idea</em>.</h2>
+    <p class="section-body">
+      El punto de partida no fue un diseño desactualizado ni un código que arreglar. Fue un mensaje. Sin archivos adjuntos, sin wireframes, sin brief. Solo la intención de construir algo que contara bien quién es Damián Lencina como profesional.
+    </p>
+  </div>
+
+  <!-- Chat recreado del primer mensaje -->
+  <div class="chat-log reveal">
+    <div class="chat-msg dami">
+      <div class="chat-avatar">DL</div>
+      <div>
+        <div class="chat-bubble">quiero hacer un portfolio</div>
+        <div class="chat-time">El comienzo · 2026</div>
+      </div>
+    </div>
+
+    <div class="chat-msg claude">
+      <div class="chat-avatar">C</div>
+      <div>
+        <div class="chat-bubble">Perfecto. Antes de arrancar necesito entender qué querés mostrar y a quién va dirigido. ¿Cuál es tu perfil profesional?</div>
+      </div>
+    </div>
+
+    <div class="chat-msg dami">
+      <div class="chat-avatar">DL</div>
+      <div>
+        <div class="chat-bubble">soy diseñador de e-learning corporativo y realizador audiovisual. trabajo en COTO hace 7 años. quiero mostrar mis casos de trabajo</div>
+      </div>
+    </div>
+
+    <div class="chat-msg claude">
+      <div class="chat-avatar">C</div>
+      <div>
+        <div class="chat-bubble">Tenemos mucho material para trabajar. Propongo empezar por la estructura: cuántos casos, qué jerarquía, qué historia querés que cuente el portfolio como unidad. ¿Arrancamos?</div>
+      </div>
+    </div>
+
+    <div class="chat-msg dami">
+      <div class="chat-avatar">DL</div>
+      <div>
+        <div class="chat-bubble">dale</div>
+        <div class="chat-time">Y así empezó todo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal" style="margin-top: var(--gap-l);">
+    <div class="portfolio-compare">
+      <div class="portfolio-compare-col">
+        <div class="portfolio-compare-label before">El antes</div>
+        <div class="portfolio-compare-content">
+          <ul>
+            <li>Un mensaje de texto en un chat</li>
+            <li>Sin archivos, sin diseño, sin código</li>
+            <li>Sin estructura definida</li>
+            <li>Sin imágenes de trabajo</li>
+            <li>Sin sistema visual</li>
+          </ul>
+        </div>
+      </div>
+      <div class="portfolio-compare-col">
+        <div class="portfolio-compare-label after">El después</div>
+        <div class="portfolio-compare-content after-col">
+          <ul>
+            <li>6 páginas HTML/CSS/JS completas</li>
+            <li>5 casos documentados con narrativa</li>
+            <li>Sistema de design tokens en :root</li>
+            <li>42 imágenes optimizadas (3.8MB total)</li>
+            <li>2 compare sliders interactivos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- transición oscuro → cálido -->
+<div class="transition-up-warm"></div>
+
+<!-- EL MÉTODO -->
+<section class="bg-warm case-section">
+  <div class="reveal">
+    <div class="section-tag">El método</div>
+    <h2>Conversación como<br><em>herramienta de diseño</em>.</h2>
+    <p class="section-body">
+      No fue "pedirle cosas a una IA". Fue un proceso iterativo donde cada intercambio tenía roles claros: visión editorial y criterio estético de un lado, ejecución técnica y estructura del otro. La calidad del resultado dependió directamente de la calidad de las preguntas.
+    </p>
+  </div>
+
+  <!-- Versiones strip -->
+  <div class="reveal">
+    <p class="section-body" style="margin-bottom: var(--gap-m);">49 versiones en una conversación continua. Cada bloque con un propósito:</p>
+    <div class="versions-strip">
+      <span class="version-pill highlight">v01–v05</span>
+      <span class="version-pill">Estructura base</span>
+      <span class="version-pill highlight">v06–v12</span>
+      <span class="version-pill">Casos y contenido</span>
+      <span class="version-pill mid">v13–v20</span>
+      <span class="version-pill">Imágenes reales</span>
+      <span class="version-pill mid">v21–v27</span>
+      <span class="version-pill">Interactividad</span>
+      <span class="version-pill highlight">v28–v33</span>
+      <span class="version-pill">Sistema visual</span>
+      <span class="version-pill mid">v34–v40</span>
+      <span class="version-pill">Optimización y tokens</span>
+      <span class="version-pill highlight">v41–v49</span>
+      <span class="version-pill">Videos, refinamiento y publicación</span>
+    </div>
+  </div>
+
+  <!-- Insights del método -->
+  <div class="insight-grid reveal">
+    <div class="insight-card">
+      <div class="insight-icon">🎯</div>
+      <div class="insight-title">El feedback preciso acelera</div>
+      <div class="insight-body">
+        "quedó feo" no es feedback útil. "el degradé arranca antes de tiempo y el hero queda atrapado debajo de una franja oscura enorme" sí lo es. A medida que avanzamos, la precisión del feedback creció y las iteraciones se volvieron más quirúrgicas.
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">🔄</div>
+      <div class="insight-title">Romper para aprender</div>
+      <div class="insight-body">
+        La v33 rompió el diseño. El CSS que agregamos con max-width directo en las secciones limitó también los fondos. Ese error enseñó más sobre cómo funciona el modelo de caja que diez tutoriales.
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">🗣️</div>
+      <div class="insight-title">El idioma importa</div>
+      <div class="insight-body">
+        "hacelo más chico" puede significar diez cosas distintas. "limitá el ancho del slider a 720px y centralo con margin auto" es una instrucción ejecutable. Construimos un vocabulario técnico-estético compartido en el camino.
+      </div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">📐</div>
+      <div class="insight-title">El sistema supera la suma</div>
+      <div class="insight-body">
+        Corregir un espaciado una vez no es suficiente si en otra sección hay otro valor hardcodeado. La v36 introdujo tokens de diseño en :root. Desde ahí, un cambio global cuesta una línea.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- transición cálido → oscuro -->
+<div class="transition-down-dark"></div>
+
+<!-- LO QUE CONSTRUIMOS -->
+<section class="bg-dark case-section">
+  <div class="reveal">
+    <div class="section-tag dark">Lo que construimos</div>
+    <h2>Números de un<br>proceso <em>real</em>.</h2>
+    <p class="section-body">
+      Cada número acá tiene historia. No son métricas de vanidad — son evidencia de decisiones tomadas, problemas resueltos y criterio aplicado.
+    </p>
+  </div>
+
+  <div class="process-stats reveal">
+    <div class="pstat">
+      <div class="pstat-value">49</div>
+      <div class="pstat-label">Versiones ZIP</div>
+    </div>
+    <div class="pstat">
+      <div class="pstat-value">6</div>
+      <div class="pstat-label">Páginas HTML</div>
+    </div>
+    <div class="pstat">
+      <div class="pstat-value">42</div>
+      <div class="pstat-label">Imágenes activas</div>
+    </div>
+    <div class="pstat">
+      <div class="pstat-value">−68%</div>
+      <div class="pstat-label">Peso img (12→3.8MB)</div>
+    </div>
+    <div class="pstat">
+      <div class="pstat-value">2</div>
+      <div class="pstat-label">Sliders interactivos</div>
+    </div>
+    <div class="pstat">
+      <div class="pstat-value">0</div>
+      <div class="pstat-label">Estilos inline</div>
+    </div>
+    <div class="pstat">
+      <div class="pstat-value">27</div>
+      <div class="pstat-label">CSS tokens en :root</div>
+    </div>
+    <div class="pstat">
+      <div class="pstat-value">33</div>
+      <div class="pstat-label">Imgs huérfanas borradas</div>
+    </div>
+  </div>
+
+  <!-- Evidencia visual del proceso -->
+  <div class="reveal">
+    <p class="section-body" style="margin-bottom: var(--gap-m);">Algunas conversaciones que definieron el resultado — y lo que produjeron:</p>
+    <div class="filmstrip-wrap">
+      <div class="filmstrip">
+
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/antes_moodle_viejo.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Estado inicial del portfolio — Moodle viejo como primer elemento">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">01</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">"quiero hacer un portfolio"</div>
+              <div class="filmstrip-sub">El mensaje inicial · v01 · esto fue lo primero que apareció</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/antes_avatar.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Capturas del antes — diseño viejo con avatar genérico">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">02</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">"te paso las capturas del antes"</div>
+              <div class="filmstrip-sub">Subiendo imágenes reales · el sistema empieza a tener material</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/mp_illustrator_general.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Proceso de diseño en Illustrator">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">03</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">"mostrame cómo trabajás"</div>
+              <div class="filmstrip-sub">El proceso de producción · Illustrator · las herramientas reales</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/despues_storyline_portada.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Resultado — nuevo diseño Medios de Pago">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">04</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">"quedó hermoso, cómo seguimos?"</div>
+              <div class="filmstrip-sub">El después · nuevo estándar visual · v33+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/despues_felicitaciones.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Resultado final — curso Medios de Pago completo">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">05</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">"bien no se rompió nada no? jajaj"</div>
+              <div class="filmstrip-sub">Verificación · v44 · el portfolio sobrevive la auditoría</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="filmstrip-item">
+          <div class="filmstrip-img lightbox-trigger">
+            <img src="img/01_moodle_general.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Portfolio publicado — resultado final">
+          </div>
+          <div class="filmstrip-caption">
+            <div class="filmstrip-num">06</div>
+            <div class="filmstrip-info">
+              <div class="filmstrip-title">"SEGUIMOS?"</div>
+              <div class="filmstrip-sub">v49 · publicado en GitHub Pages · online</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="filmstrip-hint">Desliza para ver más</div>
+    </div>
+  </div>
+
+  <!-- Intercambios clave ampliados -->
+  <div class="reveal" style="margin-top: var(--gap-xl);">
+    <p class="section-body" style="margin-bottom: var(--gap-l);">Los intercambios que más definieron el proceso:</p>
+
+    <div class="chat-log">
+      <div class="chat-msg dami">
+        <div class="chat-avatar">DL</div>
+        <div>
+          <div class="chat-bubble">quedó feo che, antes el placeholder estaba mejor. además me gustaría cambiar ese título</div>
+          <div class="chat-time">Iteración 13 · redesign del thumb principal</div>
+        </div>
+      </div>
+      <div class="chat-msg claude">
+        <div class="chat-avatar">C</div>
+        <div>
+          <div class="chat-bubble">Tenés razón en las dos. Vamos por partes: el thumb se ve gigante porque la imagen viene en relación de aspecto muy ancha y rompe la grilla. Solución: limitar el alto y hacer que la imagen se vea recortada con object-fit: cover.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-log" style="margin-top: var(--gap-l);">
+      <div class="chat-msg dami">
+        <div class="chat-avatar">DL</div>
+        <div>
+          <div class="chat-bubble">creo que se rompió un poco el diseño no? jajaja</div>
+          <div class="chat-time">Iteración 21 · el CSS que se rompió</div>
+        </div>
+      </div>
+      <div class="chat-msg claude">
+        <div class="chat-avatar">C</div>
+        <div>
+          <div class="chat-bubble">El bug raíz: cuando agregué max-width directo a .case-section y .case-hero, esos section también tienen las clases bg-light/bg-dark que pintan el fondo. El max-width limitó el fondo coloreado también, dejando islas y desbordes raros.</div>
+        </div>
+      </div>
+      <div class="chat-msg dami">
+        <div class="chat-avatar">DL</div>
+        <div>
+          <div class="chat-bubble">ah oki oki</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-log" style="margin-top: var(--gap-l);">
+      <div class="chat-msg dami">
+        <div class="chat-avatar">DL</div>
+        <div>
+          <div class="chat-bubble">cómo se llama ese efecto que le pusiste para ir corriendo del antes y el después?</div>
+          <div class="chat-time">Iteración 29 · el image comparison slider</div>
+        </div>
+      </div>
+      <div class="chat-msg claude">
+        <div class="chat-avatar">C</div>
+        <div>
+          <div class="chat-bubble">Ese efecto se llama image comparison slider (o before/after slider). Hay librerías que lo hacen pero el que armamos es vanilla JS sin dependencias.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-log" style="margin-top: var(--gap-l);">
+      <div class="chat-msg dami">
+        <div class="chat-avatar">DL</div>
+        <div>
+          <div class="chat-bubble">quiero que alinees todo el portfolio, que cada cosa esté en su respectivo tamaño para que todo tenga un orden visual con alineaciones con sentido. quiero uniformidad, prolijidad de diseñador en todo</div>
+          <div class="chat-time">Iteración 36 · el sistema de tokens</div>
+        </div>
+      </div>
+      <div class="chat-msg claude">
+        <div class="chat-avatar">C</div>
+        <div>
+          <div class="chat-bubble">Había 6 valores distintos de max-width para texto (520, 560, 580, 600, 620, 680px). Todos son ahora var(--text-width) que es 64ch. Si cambiás una variable en :root, aplica a todo el sitio automáticamente.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-log" style="margin-top: var(--gap-l);">
+      <div class="chat-msg dami">
+        <div class="chat-avatar">DL</div>
+        <div>
+          <div class="chat-bubble">bieeeeen, ahora tengo una idea más jajajaja — vos y el trabajo que hicimos juntos en este portfolio es nuestro último caso de trabajo, y tenés todo para crearlo!</div>
+          <div class="chat-time">Iteración 38 · el meta-caso</div>
+        </div>
+      </div>
+      <div class="chat-msg claude">
+        <div class="chat-avatar">C</div>
+        <div>
+          <div class="chat-bubble">Jajaja no me la esperaba para nada. Es una idea brillante — y tiene toda la coherencia del mundo dentro del portfolio.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- transición oscuro → cálido -->
+<div class="transition-up-warm"></div>
+
+<!-- LA TESIS -->
+<section class="bg-warm case-section">
+  <div class="reveal">
+    <div class="section-tag">La tesis</div>
+    <h2>No es saber los<br>comandos. Es saber<br><em>qué pedirle</em>.</h2>
+    <p class="section-body">
+      El dominio de una herramienta nueva no se mide por la cantidad de prompts que conocés. Se mide por la claridad con la que podés articular un problema, la precisión con la que podés evaluar una solución, y la honestidad con la que podés decir "quedó feo, rehacelo".
+    </p>
+  </div>
+
+  <div class="tesis-block reveal">
+    <p>Eso es exactamente lo que hace un buen diseñador instruccional con cualquier tecnología: <strong>no dominar la herramienta, sino dominar el criterio</strong> para usarla bien. La IA no reemplaza el juicio estético, la visión narrativa ni el conocimiento del usuario. Los amplifica — si sabés qué amplificar.</p>
+  </div>
+
+  <div class="insight-grid reveal">
+    <div class="insight-card">
+      <div class="insight-icon">🧠</div>
+      <div class="insight-title">El criterio es el diferencial</div>
+      <div class="insight-body">Cualquier persona puede escribir "haceme un portfolio". Lo que diferencia el resultado es saber cuándo algo no funciona, por qué no funciona, y cómo describir lo que sí querés.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">⚡</div>
+      <div class="insight-title">Velocidad con propósito</div>
+      <div class="insight-body">Lo que antes requería semanas de aprendizaje técnico se comprimió en una sesión. Pero la velocidad no es el logro — el logro es que esa velocidad estuvo al servicio de decisiones de diseño reales.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">🔁</div>
+      <div class="insight-title">La iteración como método</div>
+      <div class="insight-body">49 versiones no son 49 intentos fallidos. Son 49 decisiones tomadas. Cada ZIP es un checkpoint de criterio aplicado. La IA permite que el ciclo diseñar → ver → corregir sea tan rápido que se vuelve natural.</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-icon">📚</div>
+      <div class="insight-title">Aprender haciendo, en tiempo real</div>
+      <div class="insight-body">CSS, design tokens, optimización de imágenes, sliders interactivos. Ninguno fue aprendido antes de necesitarlo. Cada concepto apareció en el momento exacto en que hacía falta — el mejor contexto de aprendizaje posible.</div>
+    </div>
+  </div>
+</section>
+
+<!-- transición cálido → oscuro -->
+<div class="transition-down-dark"></div>
+
+<!-- VIDEO TUTORIAL: Cómo construí este portfolio con IA -->
+<section class="bg-light case-section video-placeholder-section">
+  <div class="reveal">
+    <div class="section-tag">El proceso en pantalla</div>
+    <h2>Ver la conversación<br>en <em>tiempo real</em>.</h2>
+    <p class="section-body">
+      Un screencast del proceso real: Claude en pantalla, las decisiones en vivo, los errores y las correcciones. El workflow que ningún tutorial de IA te muestra.
+    </p>
+  </div>
+  <div class="video-placeholder reveal">
+    <div class="video-placeholder-inner">
+      <div class="video-placeholder-icon">▶</div>
+      <div class="video-placeholder-label">Videotutorial próximamente</div>
+      <div class="video-placeholder-sub">Cómo construí este portfolio con IA — T3 · Screencast · ~5 min</div>
+    </div>
+  </div>
+</section>
+
+<!-- transición claro → oscuro -->
+<div class="transition-down-dark"></div>
+
+<!-- CIERRE -->
+<section class="closing">
+  <p class="closing-quote">
+    "Este portfolio no existía. Ahora existe. Y el proceso de construirlo es, en sí mismo, <em>la demostración más clara</em> de cómo trabajo."
+  </p>
+  <div class="closing-author">Damián Lencina · 2026</div>
+</section>
+
+<div class="transition-down-dark"></div>
+
+<!-- FOOTER CTA -->
+<section class="bg-dark footer-cta" id="contacto">
+  <div class="reveal">
+    <div class="footer-cta-tag">Contacto</div>
+    <h2>¿Tenés un proyecto<br>de formación que <em>merece</em><br>ser una experiencia?</h2>
+    <p class="footer-cta-sub">Trabajo con empresas que quieren ir más allá de las diapositivas. Freelance, consultorías puntuales o proyectos integrales.</p>
+    <div class="contact-options">
+      <a href="mailto:dami.lencina21@gmail.com" class="cta-btn">Escribime por mail</a>
+      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="cta-btn cta-btn--outline">LinkedIn</a>
+    </div>
+    <div class="footer-foot">
+      <div>© <span class="footer-year">2026</span> · Damián Lencina</div>
+      <div>Buenos Aires · Argentina</div>
+      <div>
+        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+        · 
+        <a href="https://www.instagram.com/magoyacine" target="_blank" rel="noopener" class="footer-link">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer-nav">
+  <a href="caso_magoya.html">← Caso anterior</a>
+  <a href="index.html">Volver al portfolio</a>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

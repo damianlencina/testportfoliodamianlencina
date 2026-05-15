@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damián Lencina — Diseño de aprendizaje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* === Estilos específicos de la home === */
+
+  /* HERO — dos columnas: título izq, avatar+método der */
+  .hero {
+    padding: 60px var(--side-pad);
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    background: var(--light);
+    min-height: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-xl);
+    align-items: center;
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+
+  /* Columna izquierda */
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-m);
+  }
+
+  /* Columna derecha: avatar + método */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--gap-m);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+
+  /* Avatar circular */
+  .hero-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--line-light);
+    box-shadow: 0 4px 20px var(--burgundy-glow);
+    flex-shrink: 0;
+  }
+  .hero-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.97) contrast(1.05) saturate(0.92);
+  }
+
+  /* Método integrado al hero */
+  .hero-method {
+    padding-top: var(--gap-m);
+    border-top: 1px solid var(--line-light);
+    width: 100%;
+  }
+  .hero-method-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-tag);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: var(--gap-s);
+  }
+  .hero-method-tag::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--burgundy);
+  }
+  .hero-method h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h4);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--warm-dark);
+    margin-bottom: var(--gap-s);
+    text-wrap: balance;
+  }
+  .hero-method h3 em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 500;
+  }
+  .hero-method p {
+    font-size: var(--type-body);
+    line-height: 1.65;
+    color: var(--warm-mid);
+    text-wrap: pretty;
+  }
+  .hero-method p strong { color: var(--warm-dark); font-weight: 600; }
+
+  .hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h1);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 600;
+  }
+  .hero h1 .line {
+    display: block;
+    overflow: hidden;
+  }
+  .hero h1 .line span {
+    display: inline-block;
+    animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .hero h1 .line:nth-child(1) span { animation-delay: 0.3s; }
+  .hero h1 .line:nth-child(2) span { animation-delay: 0.55s; }
+
+  .hero-bottom {
+    margin-top: 0;
+    animation: fadeUp 1s ease 0.9s both;
+    opacity: 0;
+  }
+  .hero-desc {
+    font-size: var(--type-body-lg);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: var(--gap-m);
+    max-width: var(--text-width);
+    text-wrap: pretty;
+  }
+  .hero-desc strong { color: var(--ink); font-weight: 600; }
+  .hero-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xs);
+    font-size: var(--type-small);
+    color: var(--ink-dim);
+  }
+  .hero-meta div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-meta div::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--burgundy);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MÉTODO (warm) */
+  .method-section {
+    padding: var(--section-pad-v) var(--side-pad);
+  }
+  .method-inner {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+  .method-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h2);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--gap-m);
+    color: var(--warm-dark);
+    max-width: var(--text-width);
+    text-wrap: balance;
+  }
+  .method-section h2 em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 500;
+  }
+  .method-section p {
+    font-size: var(--type-body-lg);
+    line-height: 1.65;
+    color: var(--warm-mid);
+    max-width: var(--text-width);
+    text-wrap: pretty;
+  }
+  .method-section p strong { color: var(--warm-dark); font-weight: 600; }
+
+  /* MANIFIESTO (oscuro) */
+  .manifesto {
+    padding: var(--section-pad-v) var(--side-pad);
+    text-align: center;
+  }
+  .manifesto-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .manifesto-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-tag);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--rose);
+    background: rgba(212, 160, 168, 0.12);
+    border: 1px solid rgba(212, 160, 168, 0.24);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: var(--gap-m);
+  }
+  .manifesto p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: var(--type-h3);
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .manifesto p em {
+    font-style: italic;
+    color: var(--rose);
+    font-weight: 400;
+  }
+
+  /* TRABAJO — caso destacado */
+  .featured-case {
+    background: white;
+    border: 1px solid var(--line-light);
+    padding: var(--gap-m);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-s);
+    transition: transform 0.4s var(--ease-out),
+                box-shadow 0.4s var(--ease-out),
+                border-color 0.3s var(--ease-out);
+    margin-bottom: var(--gap-m);
+  }
+  .featured-case:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-l), var(--shadow-gold);
+  }
+  .case-byline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--burgundy-soft);
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: var(--type-tag);
+    font-weight: 500;
+    color: var(--burgundy);
+    margin-bottom: var(--gap-m);
+  }
+  .case-byline span { color: var(--ink-dim); font-weight: 400; }
+  .case-headline {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h2);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--gap-m);
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .case-headline em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 500;
+  }
+  .case-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-bottom: var(--gap-m);
+    border-radius: var(--radius-m);
+    overflow: hidden;
+  }
+  .case-img {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+  .case-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .featured-case:hover .case-img img { transform: scale(1.04); }
+
+  .case-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-xs);
+    margin: var(--gap-m) 0;
+  }
+  .stat {
+    background: var(--light-warm);
+    padding: var(--gap-s) 18px;
+    border-radius: var(--radius-m);
+    transition: background 0.2s;
+  }
+  .stat:hover { background: var(--light-deep); }
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: var(--type-h3);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .stat-value em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .stat-value.navy { color: var(--navy); }
+
+  .case-text {
+    font-size: var(--type-body);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: var(--gap-m) 0;
+    text-wrap: pretty;
+  }
+  .case-text strong { color: var(--ink); font-weight: 600; }
+  .case-text em { color: var(--burgundy); font-style: italic; font-weight: 500; }
+
+  .case-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--burgundy);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-size: var(--type-small);
+    font-weight: 500;
+    transition: background 0.25s var(--ease-out),
+                gap 0.25s var(--ease-out),
+                transform 0.25s var(--ease-out);
+    margin-top: var(--gap-xs);
+  }
+  .featured-case:hover .case-cta {
+    background: var(--ink);
+    gap: 12px;
+    transform: translateX(2px);
+  }
+  .case-cta::after { content: '→'; font-size: 14px; }
+
+  /* WORK GRID */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-s);
+  }
+  .work-item {
+    background: var(--light);
+    border: 1px solid var(--line-light);
+    padding: var(--gap-m);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow-s);
+    transition: transform 0.4s var(--ease-out),
+                box-shadow 0.4s var(--ease-out),
+                border-color 0.3s var(--ease-out);
+    will-change: transform;
+  }
+  .work-item:hover {
+    border-color: rgba(201, 168, 76, 0.4);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-l), var(--shadow-gold);
+  }
+  .work-thumb {
+    aspect-ratio: 3/2;
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    margin-bottom: var(--gap-m);
+    background: var(--light-warm);
+    transition: box-shadow 0.4s var(--ease-out);
+  }
+  .work-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s var(--ease-out);
+  }
+  .work-item:hover .work-thumb img { transform: scale(1.05); }
+  .work-item:hover .work-thumb {
+    box-shadow: inset 0 0 0 1px rgba(201, 168, 76, 0.2);
+  }
+  .work-thumb.empty {
+    background: linear-gradient(135deg, var(--light-warm), var(--light-deep));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-faint);
+    font-size: var(--type-small);
+    font-weight: 500;
+    border: 1px dashed var(--line-light-strong);
+  }
+  .work-thumb.empty span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .work-thumb.empty span::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--burgundy);
+    border-radius: 50%;
+  }
+  .work-byline {
+    display: inline-block;
+    font-size: var(--type-tag);
+    font-weight: 500;
+    color: var(--burgundy);
+    margin-bottom: var(--gap-s);
+    background: var(--burgundy-soft);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .work-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h3);
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: var(--gap-s);
+    text-wrap: balance;
+  }
+  .work-title em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+  .work-desc {
+    font-size: var(--type-body);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: var(--gap-s);
+    text-wrap: pretty;
+  }
+  .work-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--type-caption);
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+  .work-status::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--ink-faint);
+    border-radius: 50%;
+  }
+  .work-status.active { color: var(--burgundy); }
+  .work-status.active::before { background: var(--burgundy); }
+
+  /* SOBRE MÍ (warm) */
+  .about-section {
+    padding: var(--section-pad-v) var(--side-pad);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gap-l);
+    align-items: start;
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+  .about-portrait {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: var(--radius-l);
+    background: var(--warm-dark);
+    box-shadow: var(--shadow-l);
+  }
+  .about-portrait img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .about-content h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--type-h2);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--gap-m);
+    color: var(--warm-dark);
+    text-wrap: balance;
+  }
+  .about-content h2 em {
+    font-style: italic;
+    color: var(--burgundy);
+    font-weight: 500;
+  }
+  .about-text {
+    font-size: var(--type-body-lg);
+    line-height: 1.7;
+    color: var(--warm-mid);
+  }
+  .about-text p { margin-bottom: var(--gap-s); text-wrap: pretty; }
+  .about-text strong { color: var(--warm-dark); font-weight: 600; }
+
+  .about-meta {
+    margin-top: var(--gap-l);
+    padding-top: var(--gap-m);
+    border-top: 1px solid rgba(58, 42, 40, 0.15);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap-s);
+  }
+  .about-meta-item {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(58, 42, 40, 0.10);
+    border-radius: var(--radius-m);
+    padding: 14px var(--gap-s);
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .about-meta-item:hover {
+    border-color: rgba(201,168,76,0.3);
+    box-shadow: 0 2px 12px rgba(201,168,76,0.08);
+  }
+  .about-meta-item .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    color: var(--burgundy);
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .about-meta-item .value {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--type-body);
+    font-weight: 600;
+    color: var(--warm-dark);
+    margin-bottom: 2px;
+  }
+  .about-meta-item .sub {
+    font-size: var(--type-tag);
+    color: var(--warm-mid);
+  }
+
+  /* FOOTER CTA (oscuro) */
+  .footer-cta {
+    padding: var(--section-pad-v-lg) var(--side-pad) var(--section-pad-v);
+    text-align: center;
+  }
+  .footer-cta h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(36px, 8vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-bottom: var(--gap-l);
+    color: var(--ink-bright);
+    text-wrap: balance;
+  }
+  .footer-cta h2 em { font-style: italic; color: var(--rose); font-weight: 500; }
+  .footer-cta a.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 32px;
+    background: var(--burgundy);
+    color: white;
+    border-radius: 100px;
+    font-size: var(--type-body);
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s var(--ease-out),
+                box-shadow 0.3s var(--ease-out),
+                gap 0.3s var(--ease-out),
+                transform 0.2s var(--ease-out);
+  }
+  .footer-cta a.cta-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s var(--ease-out);
+  }
+  .footer-cta a.cta-btn:hover::before { left: 120%; }
+  .footer-cta a.cta-btn:hover {
+    background: #b03048;
+    box-shadow: 0 8px 24px rgba(160, 41, 61, 0.4);
+    gap: 16px;
+    transform: translateY(-2px);
+  }
+  .footer-cta a.cta-btn::after { content: '→'; font-size: 16px; }
+
+  .footer-foot {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--gap-xl);
+    padding-top: var(--gap-m);
+    border-top: 1px solid var(--line-dark);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: var(--type-label);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    gap: var(--gap-s);
+  }
+
+  /* ── DESKTOP ── */
+  @media (min-width: 700px) {
+    .hero { padding: var(--section-pad-v) var(--side-pad); min-height: 100vh; }
+    .hero h1 { font-size: clamp(56px, 6vw, 88px); }
+    .hero-inner { grid-template-columns: 1.2fr 1fr; gap: var(--gap-xl); }
+    .hero-avatar { width: 220px; height: 220px; }
+    .method-section { padding: var(--section-pad-v-lg) var(--side-pad); }
+    .manifesto { padding: var(--section-pad-v) var(--side-pad); }
+    .footer-cta { padding: var(--section-pad-v-lg) var(--side-pad) var(--section-pad-v); }
+    .featured-case { padding: var(--gap-l); }
+    .case-images { grid-template-columns: repeat(4, 1fr); }
+    .case-stats { grid-template-columns: repeat(4, 1fr); }
+    .work-grid { grid-template-columns: 1fr 1fr; gap: var(--gap-m); }
+    .about-section { padding: var(--section-pad-v-lg) var(--side-pad); }
+    .about-grid { grid-template-columns: 1fr 1.5fr; gap: var(--gap-xl); }
+    .about-meta { grid-template-columns: 1fr 1fr; gap: var(--gap-s); }
+  }
+
+  @media (max-width: 700px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-right { flex-direction: row; align-items: flex-start; gap: var(--gap-m); }
+    .hero-avatar { width: 80px; height: 80px; flex-shrink: 0; }
+    .hero-method { border-top: none; padding-top: 0; }
+    .footer-foot { flex-direction: column; gap: var(--gap-xs); text-align: center; }
+  }
+</style>
+
+<!-- Meta tags -->
+<meta name="description" content="Portfolio de Damián Lencina: diseño de experiencias formativas para empresas y realización audiovisual independiente. +7 años en e-learning corporativo con foco en narrativa cinematográfica.">
+<meta name="theme-color" content="#8b2a3a">
+<meta name="author" content="Damián Lencina">
+<link rel="canonical" href="https://damilencina.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Damián Lencina — Diseño de aprendizaje">
+<meta property="og:description" content="Portfolio de Damián Lencina: diseño de experiencias formativas para empresas y realización audiovisual independiente. +7 años en e-learning corporativo con foco en narrativa cinematográfica.">
+<meta property="og:url" content="https://damilencina.com/">
+<meta property="og:image" content="https://damilencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_AR">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Damián Lencina — Diseño de aprendizaje">
+<meta name="twitter:description" content="Portfolio de Damián Lencina: diseño de experiencias formativas para empresas y realización audiovisual independiente. +7 años en e-learning corporativo con foco en narrativa cinematográfica.">
+<meta name="twitter:image" content="https://damilencina.com/img/og_image.jpg">
+
+<!-- DNS prefetch -->
+<link rel="dns-prefetch" href="https://i.ytimg.com">
+
+</head>
+<body>
+
+<div class="ambient-glow glow-1"></div>
+<div class="ambient-glow glow-2"></div>
+
+<nav>
+  <div class="nav-mark">DL <span>·</span> 2026</div>
+  <ul class="nav-links">
+    <li><a href="#trabajo">Trabajo</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- BARRA DE PROGRESO -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- PAGE TRANSITION IN -->
+<div class="page-transition" id="pageTransition">
+  <div class="page-transition-mark">DL · 2026</div>
+</div>
+
+
+<!-- HERO claro -->
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <!-- Columna izquierda: presentación -->
+    <div class="hero-left">
+      <div class="hero-pills">
+        <span class="tag-pill tag-burgundy">Diseño de aprendizaje</span>
+        <span class="tag-pill tag-navy">Realización audiovisual</span>
+        <span class="tag-pill tag-muted">e-Learning corporativo</span>
+      </div>
+
+      <h1>
+        <span class="line"><span>Aprender también</span></span>
+        <span class="line"><span><em>se diseña.</em></span></span>
+      </h1>
+
+      <div class="hero-bottom">
+        <p class="hero-desc">
+          Soy <strong class="hero-name">Damián Lencina</strong>. Diseño experiencias formativas para empresas con la misma atención que pongo en una escena de cine: el detalle, el ritmo, lo que se ve y lo que se sugiere.
+        </p>
+        <div class="hero-meta">
+          <div>Buenos Aires, Argentina</div>
+          <div>+7 años en e-learning corporativo</div>
+          <div>Disponible para colaboraciones</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: avatar + método -->
+    <div class="hero-right">
+      <div class="hero-avatar">
+        <img src="img/retrato_avatar.jpg" alt="Damián Lencina" loading="eager" width="400" height="400">
+      </div>
+
+      <div class="hero-method">
+        <div class="hero-method-tag">El método</div>
+        <h3>Pienso cada curso como una <em>experiencia</em> y cada video como una pequeña <em>película</em>.</h3>
+        <p>
+          <strong>La doble mirada</strong> — la del que enseña y la del que cuenta — define mi forma de trabajar.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="scroll-hint" id="scrollHint">
+    <div class="scroll-hint-text">Scroll</div>
+    <div class="scroll-hint-line"></div>
+  </div>
+
+</section>
+
+<!-- transición claro → oscuro -->
+<div class="transition-down-dark"></div>
+
+<!-- MANIFIESTO (oscuro) -->
+<div class="bg-dark manifesto">
+  <div class="reveal">
+  <div class="manifesto-tag">Manifiesto</div>
+  <p>No me interesa hacer cursos. Me interesa <em>diseñar experiencias</em>: piezas donde la pedagogía y la narrativa audiovisual se vuelven la misma cosa.</p>
+  </div>
+</div>
+
+<!-- transición oscuro → cálido -->
+<div class="transition-up-warm"></div>
+
+<!-- transición cálido → claro -->
+<div class="transition-up-light"></div>
+
+<!-- TRABAJO (claro) -->
+<section class="bg-light" id="trabajo">
+  <div class="section-header">
+    <div class="section-tag">01 · Trabajo seleccionado</div>
+    <h2 class="section-h">Cuatro proyectos que cuentan<br>cómo <em>trabajo</em>.</h2>
+    <p class="section-lead">Casos reales de e-learning corporativo y producción audiovisual, con foco en el proceso y los resultados.</p>
+  </div>
+
+  <a href="caso_transformacion.html" class="featured-case reveal tilt-card">
+    <div class="case-byline">
+      <strong>Caso 01</strong>
+      <span>COTO CICSA · 2019—Hoy · Liderazgo de área</span>
+    </div>
+    <h3 class="case-headline">
+      Siete años transformando<br>
+      el e-learning de una<br>
+      <em>compañía</em>.
+    </h3>
+
+    <div class="case-mini-grid">
+      <figure class="case-mini-item">
+        <div class="case-mini-tag before">Antes</div>
+        <div class="case-mini-img">
+          <img src="img/antes_avatar.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Bienvenida Curso Logística Operativa — diseño anterior">
+        </div>
+        <figcaption>Diseño sin sistema</figcaption>
+      </figure>
+      <figure class="case-mini-item">
+        <div class="case-mini-tag process">Proceso</div>
+        <div class="case-mini-img case-mini-collage">
+          <img class="collage-back" src="img/mp_premiere.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Edición en Premiere">
+          <img class="collage-mid" src="img/mp_storyline.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Armado en Storyline">
+          <img class="collage-front" src="img/mp_illustrator_general.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Diseño en Illustrator">
+        </div>
+        <figcaption>Illustrator · Premiere · Storyline</figcaption>
+      </figure>
+      <figure class="case-mini-item">
+        <div class="case-mini-tag after">Ahora</div>
+        <div class="case-mini-img">
+          <img src="img/despues_felicitaciones.jpg" loading="lazy" decoding="async" width="1280" height="720" alt="Curso Medios de Pago — pantalla de cierre con ilustración">
+        </div>
+        <figcaption>Sistema integral</figcaption>
+      </figure>
+    </div>
+
+    <div class="case-stats">
+      <div class="stat">
+        <div class="stat-label">Años</div>
+        <div class="stat-value"><em>+<span class="counter" data-target="7">0</span></em></div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Áreas integradas</div>
+        <div class="stat-value navy"><span class="counter" data-target="16">0</span>+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Cursos producidos</div>
+        <div class="stat-value"><span class="counter" data-target="80">0</span>+</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Personas alcanzadas</div>
+        <div class="stat-value navy"><span class="counter" data-target="19852" data-format="thousand">0</span></div>
+      </div>
+    </div>
+
+    <p class="case-text">
+      De junior a responsable del área. <strong>Cuando llegué a COTO no había sistema</strong>: cada curso era una pieza aparte, sin identidad visual, sin estrategia. Hoy hay una plataforma Moodle institucional, un método replicable y una arquitectura que alcanza a <em>casi veinte mil colaboradores</em>.
+    </p>
+
+    <div class="case-cta">Ver caso completo</div>
+  </a>
+
+  <div class="work-grid reveal-stagger">
+    <a href="caso_coto.html" class="work-item tilt-card">
+      <div class="work-thumb">
+        <img src="img/thumb_mp_portada.jpg" loading="lazy" decoding="async" width="800" height="600" alt="Curso Medios de Pago">
+      </div>
+      <div class="work-byline">Caso 02 · COTO · Medios de Pago</div>
+      <h3 class="work-title">¿Cómo hacemos un curso <em>desde cero</em>?</h3>
+      <p class="work-desc">El método de cuatro etapas en un caso completo: diseño instruccional, sistema visual, video filmado en planta y evaluación final.</p>
+      <div class="work-status active">Ver caso</div>
+    </a>
+
+    <a href="caso_magoya.html" class="work-item tilt-card">
+      <div class="work-thumb">
+        <img src="img/magoya_backstage.jpg" loading="lazy" decoding="async" width="800" height="600" alt="Magoya Producciones — backstage">
+      </div>
+      <div class="work-byline">Caso 03 · Magoya · 2016—Hoy</div>
+      <h3 class="work-title">Productora <em>cinéfila</em></h3>
+      <p class="work-desc">Sitio editorial + canal de YouTube + Instagram. Críticas, festivales y producción audiovisual propia.</p>
+      <div class="work-status active">Ver caso</div>
+    </a>
+
+    <a href="caso_ia.html" class="work-item tilt-card work-item--ia">
+      <div class="work-thumb work-thumb--ia">
+        <div class="ia-thumb-inner">
+          <div class="ia-thumb-tag">Caso 05</div>
+          <div class="ia-thumb-title">Este portfolio<br>es el caso.</div>
+          <div class="ia-thumb-sub">49 versiones · 1 conversación</div>
+          <div class="ia-thumb-preview">
+            <img src="img/despues_storyline_portada.jpg" alt="Portfolio preview" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="work-byline">Caso 04 · Claude AI + DL · 2026</div>
+      <h3 class="work-title">Aprender a crear<br>con <em>IA</em>.</h3>
+      <p class="work-desc">El antes era un mensaje de texto. El después es este portfolio. El proceso de construirlo es la demostración.</p>
+      <div class="work-status active">Ver caso</div>
+    </a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><em>Diseño instruccional</em><div class="marquee-dot"></div></div>
+    <div class="marquee-item">Articulate Storyline<div class="marquee-dot"></div></div>
+    <div class="marquee-item"><em>Producción audiovisual</em><div class="marquee-dot"></div></div>
+    <div class="marquee-item">Adobe Premiere Pro<div class="marquee-dot"></div></div>
+    <div class="marquee-item"><em>Moodle LMS</em><div class="marquee-dot"></div></div>
+    <div class="marquee-item">Adobe Illustrator<div class="marquee-dot"></div></div>
+    <div class="marquee-item"><em>e-Learning corporativo</em><div class="marquee-dot"></div></div>
+    <div class="marquee-item">Buenos Aires · Argentina<div class="marquee-dot"></div></div>
+    <div class="marquee-item"><em>Diseño instruccional</em><div class="marquee-dot"></div></div>
+    <div class="marquee-item">Articulate Storyline<div class="marquee-dot"></div></div>
+    <div class="marquee-item"><em>Producción audiovisual</em><div class="marquee-dot"></div></div>
+    <div class="marquee-item">Adobe Premiere Pro<div class="marquee-dot"></div></div>
+    <div class="marquee-item"><em>Moodle LMS</em><div class="marquee-dot"></div></div>
+    <div class="marquee-item">Adobe Illustrator<div class="marquee-dot"></div></div>
+    <div class="marquee-item"><em>e-Learning corporativo</em><div class="marquee-dot"></div></div>
+    <div class="marquee-item">Buenos Aires · Argentina<div class="marquee-dot"></div></div>
+  </div>
+</div>
+
+<!-- transición claro → cálido -->
+<div class="transition-down-warm"></div>
+
+<!-- SOBRE MÍ (cálido) -->
+<section class="bg-warm about-section" id="sobre">
+  <div class="section-header">
+    <div class="section-tag">02 · Sobre mí</div>
+  </div>
+
+  <div class="about-grid reveal">
+    <div class="about-portrait">
+      <img src="img/retrato.jpg" loading="lazy" decoding="async" width="593" height="741" alt="Damián Lencina">
+    </div>
+    <div class="about-content">
+      <h2>Entre el aula<br>y la <em>cámara</em>.</h2>
+      <div class="about-text">
+        <p>Soy <strong>Damián Lencina</strong>, comunicador social y realizador audiovisual. Llegué al e-learning desde la comunicación —no desde la pedagogía— y creo que eso cambia cómo pienso cada pieza: primero qué historia quiero contar, después cómo estructurarla para que funcione como aprendizaje.</p>
+        <p>Hoy soy responsable del área de Formación e-Learning en <strong>COTO CICSA</strong>, donde lidero un equipo de cuatro personas. Construimos juntos el sistema desde casi cero: la plataforma, el método, el estándar visual, la producción audiovisual. Todo.</p>
+        <p>En paralelo mantengo <strong>Magoya Producciones</strong>, un proyecto cinéfilo que arrancó en 2016 con amigos y que me recuerda por qué me importa contar bien las cosas.</p>
+      </div>
+
+      <div class="about-meta">
+        <div class="about-meta-item">
+          <div class="label">Formación</div>
+          <div class="value">Lic. Comunicación Social</div>
+          <div class="sub">UNM · Universidad Nacional de Moreno</div>
+        </div>
+        <div class="about-meta-item">
+          <div class="label">Rol actual</div>
+          <div class="value">Responsable e-Learning</div>
+          <div class="sub">COTO CICSA · 2019—Hoy</div>
+        </div>
+        <div class="about-meta-item">
+          <div class="label">Equipo</div>
+          <div class="value">04 personas</div>
+          <div class="sub">Diseñadores y comunicadores</div>
+        </div>
+        <div class="about-meta-item">
+          <div class="label">Base</div>
+          <div class="value">Buenos Aires</div>
+          <div class="sub">Disponible para colaboraciones</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="about-timeline reveal">
+    <div class="timeline-label">Recorrido</div>
+    <div class="timeline-items">
+      <div class="timeline-item">
+        <div class="timeline-year">2016</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Magoya Producciones</div>
+          <div class="timeline-desc">Inicio del proyecto audiovisual independiente. Primeros cortometrajes, críticas y festivales.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Lic. Comunicación Social — UNM</div>
+          <div class="timeline-desc">Graduación con orientación en comunicación digital y producción audiovisual.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Ingreso a COTO CICSA</div>
+          <div class="timeline-desc">Primer contacto con el e-learning corporativo. Diseño de cursos, Moodle, Storyline. Todo nuevo.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2021</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Primer video de producción propia</div>
+          <div class="timeline-desc">Rodaje en planta para un curso corporativo. La línea entre e-learning y realización audiovisual se borra.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Responsable del área</div>
+          <div class="timeline-desc">Liderazgo del equipo. Diseño del método de cuatro etapas. Escala del sistema a 16+ áreas operativas.</div>
+        </div>
+      </div>
+      <div class="timeline-item timeline-item--now">
+        <div class="timeline-year">Hoy</div>
+        <div class="timeline-content">
+          <div class="timeline-title">19.852 participantes activos</div>
+          <div class="timeline-desc">El sistema sigue creciendo. Y cada curso sigue siendo una pequeña película.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Herramientas -->
+  <div class="about-tools reveal">
+    <div class="tools-label">Herramientas</div>
+    <div class="tools-grid">
+      <div class="tool-group">
+        <div class="tool-group-title">Diseño e interactividad</div>
+        <div class="tool-tags">
+          <span>Articulate Storyline 360</span>
+          <span>Adobe Illustrator</span>
+          <span>Adobe Photoshop</span>
+        </div>
+      </div>
+      <div class="tool-group">
+        <div class="tool-group-title">Producción audiovisual</div>
+        <div class="tool-tags">
+          <span>Adobe Premiere Pro</span>
+          <span>After Effects</span>
+          <span>Audition</span>
+        </div>
+      </div>
+      <div class="tool-group">
+        <div class="tool-group-title">Plataforma y gestión</div>
+        <div class="tool-tags">
+          <span>Moodle LMS</span>
+          <span>Microsoft Word</span>
+          <span>OneDrive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- transición cálido → claro -->
+<div class="transition-up-light"></div>
+
+<!-- SERVICIOS -->
+<section class="bg-light servicios-section" id="servicios">
+  <div class="section-header reveal">
+    <div class="section-tag">03 · Lo que puedo hacer por vos</div>
+    <h2 class="section-h">Del aprendizaje<br>a la <em>solución</em>.</h2>
+    <p class="section-lead">
+      Todo lo que viste en este portfolio se traduce en tres servicios concretos. No vengo con una sola herramienta — vengo con la mirada completa: diseño, producción y estrategia.
+    </p>
+  </div>
+
+  <div class="servicios-grid reveal-stagger">
+
+    <!-- Servicio 1 -->
+    <div class="servicio-card servicio-card--primary">
+      <div class="servicio-num">01</div>
+      <div class="servicio-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="servicio-tag">E-Learning corporativo</div>
+      <h3 class="servicio-title">Diseño y producción<br>de cursos <em>que funcionan</em>.</h3>
+      <p class="servicio-desc">
+        Desde el guion instruccional hasta el SCORM publicado en tu plataforma. Diseño, interactividad, video y evaluación integrados en un solo flujo de trabajo.
+      </p>
+      <ul class="servicio-items">
+        <li>Diagnóstico de necesidades y diseño instruccional</li>
+        <li>Producción en Articulate Storyline 360</li>
+        <li>Sistema visual y diseño de interfaz de curso</li>
+        <li>Video corporativo filmado e integrado</li>
+        <li>Publicación SCORM en Moodle u otras plataformas</li>
+      </ul>
+      <div class="servicio-ideal">
+        <span class="servicio-ideal-label">Ideal para</span>
+        Empresas medianas/grandes que quieren ir más allá de las diapositivas.
+      </div>
+    </div>
+
+    <!-- Servicio 2 -->
+    <div class="servicio-card">
+      <div class="servicio-num">02</div>
+      <div class="servicio-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      </div>
+      <div class="servicio-tag">Producción audiovisual</div>
+      <h3 class="servicio-title">Video corporativo<br>con <em>mirada de autor</em>.</h3>
+      <p class="servicio-desc">
+        No es video genérico de stock. Es producción pensada para comunicar: guion, rodaje, edición y post-producción con criterio narrativo y estético.
+      </p>
+      <ul class="servicio-items">
+        <li>Video institucional y de capacitación</li>
+        <li>Guion, producción y dirección</li>
+        <li>Rodaje en locación (planta, sucursal, oficina)</li>
+        <li>Edición y post-producción en Premiere Pro</li>
+        <li>Motion graphics en After Effects</li>
+      </ul>
+      <div class="servicio-ideal">
+        <span class="servicio-ideal-label">Ideal para</span>
+        Organizaciones que necesitan video profesional sin el costo de una productora completa.
+      </div>
+    </div>
+
+    <!-- Servicio 3 -->
+    <div class="servicio-card">
+      <div class="servicio-num">03</div>
+      <div class="servicio-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+      </div>
+      <div class="servicio-tag">Estrategia e implementación</div>
+      <h3 class="servicio-title">Armar el sistema<br>desde <em>cero</em>.</h3>
+      <p class="servicio-desc">
+        ¿No tenés plataforma? ¿Tenés cursos viejos que nadie usa? ¿Querés empezar a capacitar de forma digital? Puedo diseñar e implementar todo el sistema de formación, no solo un curso.
+      </p>
+      <ul class="servicio-items">
+        <li>Auditoría de formación existente</li>
+        <li>Implementación y configuración de Moodle LMS</li>
+        <li>Arquitectura de categorías y cursos</li>
+        <li>Diseño del método y estándar de producción</li>
+        <li>Capacitación al equipo interno</li>
+      </ul>
+      <div class="servicio-ideal">
+        <span class="servicio-ideal-label">Ideal para</span>
+        Pymes y startups que quieren arrancar con formación digital sin improvisar.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Nota de trabajo -->
+  <div class="servicios-nota reveal">
+    <div class="servicios-nota-inner">
+      <div class="servicios-nota-tag">Cómo trabajo</div>
+      <p>
+        Trabajo de forma <strong>freelance</strong>, en proyectos puntuales o colaboraciones continuas. Puedo ser el único responsable del proyecto o integrarme a tu equipo existente. <em>No tengo paquetes cerrados</em>: cada proyecto empieza con una conversación.
+      </p>
+      <a href="#contacto" class="servicios-cta">Hablemos de tu proyecto →</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- transición claro → oscuro -->
+<div class="transition-down-dark"></div>
+
+<!-- FOOTER CTA (oscuro) -->
+<section class="bg-dark footer-cta" id="contacto">
+  <div class="reveal">
+  <div class="footer-cta-tag">Contacto</div>
+  <h2>¿Tenés un proyecto<br>de formación que <em>merece</em><br>ser una experiencia?</h2>
+  <p class="footer-cta-sub">Trabajo con empresas que quieren ir más allá de las diapositivas. Si buscás diseño instruccional, producción audiovisual o una mirada integral sobre tu e-learning corporativo, hablemos.</p>
+  <div class="contact-options">
+      <a href="mailto:dami.lencina21@gmail.com" class="cta-btn">Escribime por mail</a>
+      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="cta-btn cta-btn--outline">LinkedIn</a>
+    </div>
+
+  <div class="footer-foot">
+    <div>© <span class="footer-year">2026</span> · Damián Lencina</div>
+    <div>Buenos Aires · Argentina</div>
+    <div>
+      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" style="color:inherit; text-decoration:none; border-bottom: 1px solid rgba(232,228,222,0.3);">LinkedIn</a>
+      · 
+      <a href="https://www.instagram.com/magoyacine" target="_blank" rel="noopener" style="color:inherit; text-decoration:none; border-bottom: 1px solid rgba(232,228,222,0.3);">Instagram</a>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt=""></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
