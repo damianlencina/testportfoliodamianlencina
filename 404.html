@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Damián Lencina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .not-found {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px var(--side-pad);
+      text-align: center;
+      background: var(--ink);
+    }
+    .nf-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(80px, 18vw, 160px);
+      font-weight: 500;
+      color: var(--burgundy);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: var(--gap-m);
+      opacity: 0.3;
+    }
+    .nf-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: var(--type-tag);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: var(--gap-m);
+      font-weight: 500;
+    }
+    .nf-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: clamp(28px, 5vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink-bright);
+      text-wrap: balance;
+      margin-bottom: var(--gap-m);
+    }
+    .nf-title em { font-style: italic; color: var(--rose); font-weight: 500; }
+    .nf-body {
+      font-size: var(--type-body-lg);
+      line-height: 1.65;
+      color: var(--ink-light);
+      opacity: 0.7;
+      max-width: 560px;
+      text-wrap: pretty;
+      margin-bottom: var(--gap-xl);
+    }
+    .nf-body strong { color: var(--ink-bright); opacity: 1; font-weight: 600; }
+    .nf-body em { color: var(--rose); font-style: italic; }
+    .nf-links {
+      display: flex;
+      gap: var(--gap-s);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .nf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-size: var(--type-small);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s var(--ease-out);
+    }
+    .nf-link--primary {
+      background: var(--burgundy);
+      color: white;
+    }
+    .nf-link--primary:hover { background: #b03048; transform: translateY(-2px); }
+    .nf-link--ghost {
+      background: transparent;
+      color: var(--ink-light);
+      border: 1px solid var(--line-dark);
+    }
+    .nf-link--ghost:hover { border-color: var(--rose); color: var(--rose); }
+    .nf-film-note {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-mark" style="text-decoration:none">DL <span>·</span> 2026</a>
+</nav>
+
+<section class="not-found bg-dark">
+  <div class="nf-code">404</div>
+  <div class="nf-tag">Página no encontrada</div>
+  <h1 class="nf-title">
+    Esta página no existe.<br>
+    Pero el error me dio<br>
+    una <em>idea</em>.
+  </h1>
+  <p class="nf-body">
+    En el proceso de construir este portfolio cometí muchos errores. Un CSS que rompió el diseño en la v33. Un archivo mal nombrado. Un link que apuntaba a ningún lado.<br><br>
+    <strong>Cada error enseñó más que diez tutoriales.</strong> El error que estás viendo vos ahora es parte del proceso también. <em>Así funciona diseñar en vivo.</em>
+  </p>
+  <div class="nf-links">
+    <a href="index.html" class="nf-link nf-link--primary">← Volver al portfolio</a>
+    <a href="caso_ia.html" class="nf-link nf-link--ghost">Ver cómo construí esto →</a>
+  </div>
+  <div class="nf-film-note">DL · 2026 · Error documentado · Versión actual: v50</div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

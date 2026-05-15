@@ -713,6 +713,7 @@
   <ul class="nav-links">
     <li><a href="#trabajo">Trabajo</a></li>
     <li><a href="#servicios">Servicios</a></li>
+    <li><a href="notas.html">Notas</a></li>
     <li><a href="sobre.html">Sobre</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -783,6 +784,32 @@
 
 <!-- transición claro → oscuro -->
 <div class="transition-down-dark"></div>
+
+<!-- QUIZ DE ENTRADA -->
+<div class="bg-dark quiz-section" id="quiz">
+  <div class="quiz-inner reveal">
+    <div class="quiz-label">¿Qué estás buscando?</div>
+    <p class="quiz-sub">Te llevo directo a lo que necesitás ver.</p>
+    <div class="quiz-options">
+      <button class="quiz-btn" data-target="#trabajo" data-msg="Te muestro los casos de e-learning corporativo primero.">
+        <span class="quiz-btn-icon">📚</span>
+        <span class="quiz-btn-text">Diseño instruccional<br><em>y cursos e-learning</em></span>
+        <span class="quiz-btn-arrow">→</span>
+      </button>
+      <button class="quiz-btn" data-target="#trabajo" data-msg="Empezá por Magoya y el caso COTO con video propio.">
+        <span class="quiz-btn-icon">🎬</span>
+        <span class="quiz-btn-text">Producción audiovisual<br><em>y video corporativo</em></span>
+        <span class="quiz-btn-arrow">→</span>
+      </button>
+      <button class="quiz-btn" data-target="#servicios" data-msg="Pasamos directo a los servicios y cómo trabajamos.">
+        <span class="quiz-btn-icon">🏗️</span>
+        <span class="quiz-btn-text">Armar un sistema<br><em>de formación desde cero</em></span>
+        <span class="quiz-btn-arrow">→</span>
+      </button>
+    </div>
+    <button class="quiz-skip" onclick="document.querySelector('#trabajo').scrollIntoView({behavior:'smooth'})">Ver todo el portfolio →</button>
+  </div>
+</div>
 
 <!-- MANIFIESTO (oscuro) -->
 <div class="bg-dark manifesto">
@@ -1155,7 +1182,10 @@
       <p>
         Trabajo de forma <strong>freelance</strong>, en proyectos puntuales o colaboraciones continuas. Puedo ser el único responsable del proyecto o integrarme a tu equipo existente. <em>No tengo paquetes cerrados</em>: cada proyecto empieza con una conversación.
       </p>
-      <a href="#contacto" class="servicios-cta">Hablemos de tu proyecto →</a>
+      <div style="display:flex;gap:var(--gap-s);flex-wrap:wrap;align-items:center;">
+        <a href="#contacto" class="servicios-cta">Hablemos de tu proyecto →</a>
+        <a href="Damian_Lencina_Resumen.pdf" download class="servicios-cta" style="background:transparent;color:var(--burgundy);border:1px solid var(--burgundy);">↓ Descargar resumen (PDF)</a>
+      </div>
     </div>
   </div>
 
