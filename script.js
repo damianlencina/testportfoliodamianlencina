@@ -49,6 +49,8 @@
   /* ============================ Reveal on scroll ============================ */
   const revealTargets = document.querySelectorAll('.reveal, .reveal-stagger');
   if ('IntersectionObserver' in window && revealTargets.length) {
+    // Activar las animaciones agregando la clase al <html>
+    document.documentElement.classList.add('js-reveal-init');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -58,9 +60,8 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
     revealTargets.forEach(el => io.observe(el));
-  } else {
-    revealTargets.forEach(el => el.classList.add('in'));
   }
+  /* Si no hay IntersectionObserver, los elementos quedan visibles por default (no se aplica .js-reveal-init) */
 
   /* ============================ Counter animation ============================ */
   const counters = document.querySelectorAll('.counter');
