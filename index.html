@@ -763,8 +763,18 @@
 
     <!-- Columna derecha: avatar + método -->
     <div class="hero-right">
-      <div class="hero-avatar">
-        <img src="img/retrato_avatar.jpg" alt="Damián Lencina" loading="eager" width="400" height="400">
+
+      <!-- AVATAR REPRODUCTOR -->
+      <div class="avatar-player-wrap">
+        <div class="avatar-hint">Hacé clic ↓</div>
+        <button class="avatar-player" id="avatarPlayer" aria-label="Reproducir video de presentación">
+          <img src="img/retrato_avatar.jpg" alt="Damián Lencina" loading="eager" width="400" height="400" class="avatar-photo">
+          <div class="avatar-overlay">
+            <div class="avatar-play-btn" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </button>
       </div>
 
       <div class="hero-method">
@@ -784,6 +794,18 @@
   </div>
 
 </section>
+
+<!-- MODAL REPRODUCTOR DE VIDEO -->
+<div class="video-modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video de presentación">
+  <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+  <div class="video-modal-inner">
+    <button class="video-modal-close" id="videoModalClose" aria-label="Cerrar video">✕</button>
+    <div class="video-modal-frame">
+      <div id="ytPlayer"></div>
+    </div>
+    <p class="video-modal-caption" id="videoModalCaption">La Jetée · Chris Marker · 1962 · Placeholder hasta tu video</p>
+  </div>
+</div>
 
 <!-- transición claro → oscuro -->
 <div class="transition-down-dark"></div>

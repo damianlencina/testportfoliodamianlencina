@@ -1002,3 +1002,113 @@ document.querySelectorAll('[data-carousel-b]').forEach(wrap => {
     if (window.innerWidth > 900) closeMenu();
   });
 })();
+
+// ============================================================
+// AVATAR REPRODUCTOR — YouTube IFrame API
+// ============================================================
+(function setupAvatarPlayer() {
+  const btn = document.getElementById('avatarPlayer');
+  const modal = document.getElementById('videoModal');
+  const backdrop = document.getElementById('videoModalBackdrop');
+  const closeBtn = document.getElementById('videoModalClose');
+  if (!btn || !modal) return;
+
+  // ── ID del video de YouTube ──
+  // Reemplazá 'TU_VIDEO_ID' con el ID real cuando tengas el video subido
+  // El ID es la parte después de ?v= en la URL de YouTube
+  // Ejemplo: https://youtu.be/dQw4w9WgXcQ → ID = dQw4w9WgXcQ
+  const YT_VIDEO_ID = 'jO4W6TPkSD8'; // PLACEHOLDER: reemplazá con tu video cuando lo tengas
+
+  let player = null;
+  let ytReady = false;
+
+  // Cargar la API de YouTube de forma diferida (solo cuando se necesita)
+  function loadYTApi() {
+    if (document.getElementById('yt-api-script')) return;
+    const s = document.createElement('script');
+    s.id = 'yt-api-script';
+    s.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+
+  // Callback global que llama YouTube cuando la API está lista
+  window.onYouTubeIframeAPIReady = function() {
+    ytReady = true;
+  };
+
+  function createPlayer() {
+    player = new YT.Player('ytPlayer', {
+      videoId: YT_VIDEO_ID,
+      playerVars: {
+        autoplay: 1,
+        rel: 0,          // No mostrar videos relacionados al terminar
+        modestbranding: 1,
+        playsinline: 1,
+        cc_load_policy: 0,
+      },
+      events: {
+        onStateChange: function(e) {
+          // YT.PlayerState.ENDED = 0
+          if (e.data === 0) {
+            closeModal();
+          }
+        }
+      }
+    });
+  }
+
+  function openModal() {
+    modal.classList.add('modal-open');
+    document.body.style.overflow = 'hidden';
+
+    if (ytReady) {
+      // API ya cargada — crear o reproducir
+      if (player && player.playVideo) {
+        player.seekTo(0);
+        player.playVideo();
+      } else {
+        createPlayer();
+      }
+    } else {
+      // API no cargada todavía — cargarla y esperar
+      loadYTApi();
+      const waitForYT = setInterval(() => {
+        if (window.YT && window.YT.Player) {
+          clearInterval(waitForYT);
+          ytReady = true;
+          createPlayer();
+        }
+      }, 100);
+    }
+  }
+
+  function closeModal() {
+    modal.classList.remove('modal-open');
+    document.body.style.overflow = '';
+    if (player && player.pauseVideo) {
+      player.pauseVideo();
+    }
+  }
+
+  // Abrir
+  btn.addEventListener('click', () => {
+    loadYTApi(); // Precarga apenas clickea
+    openModal();
+  });
+
+  // Cerrar con botón X
+  closeBtn.addEventListener('click', closeModal);
+
+  // Cerrar con backdrop
+  backdrop.addEventListener('click', closeModal);
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('modal-open')) {
+      closeModal();
+    }
+  });
+
+  // Precarga la API al hacer hover sobre el avatar (optimización)
+  btn.addEventListener('mouseenter', loadYTApi, { once: true });
+})();
