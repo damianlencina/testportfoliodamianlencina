@@ -4231,3 +4231,288 @@ nav.scrolled .nav-hamburger span { background: var(--ink-bright); }
   .video-modal-inner { width: 100%; }
   .video-modal-frame { border-radius: var(--radius-l) var(--radius-l) 0 0; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   v2.0 — REDISEÑO EDITORIAL
+   Suma sobre el sistema existente. No reemplaza.
+══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Fuente serif editorial */
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  /* Easing cinematográfico — más lento, más natural */
+  --ease-cinema: cubic-bezier(0.16, 0.7, 0.2, 1);
+  --ease-cinema-slow: cubic-bezier(0.2, 0.65, 0.25, 1);
+}
+
+/* ── 01 · TIPOGRAFÍA EDITORIAL ─────────────────────────────────────── */
+
+/* Hero h1 — serif editorial con itálica viva */
+.hero h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  font-optical-sizing: auto;
+}
+.hero h1 em {
+  font-style: italic;
+  font-weight: 500;
+  font-variation-settings: "opsz" 144;
+}
+
+/* Headlines de caso — serif también */
+.case-headline,
+.case-hero h1 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+}
+.case-headline em,
+.case-hero h1 em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* H2 de sección — serif para los grandes */
+.section-h,
+.bg-warm h2,
+.bg-light h2,
+.bg-dark h2,
+.featured-case h3.case-headline,
+.about-content h2,
+.method-section h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+}
+
+/* Closing quotes — serif italic, más cinéfilo */
+.closing-quote,
+blockquote.closing-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144;
+}
+
+/* Manifiesto — serif italic más expresivo */
+.manifesto p {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.015em;
+}
+.manifesto p em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Nota: el body, navs, pills, botones, tags, captions y meta info siguen en Inter */
+
+/* ── 03 · ESPACIO RESPIRADO ────────────────────────────────────────── */
+
+@media (min-width: 700px) {
+  :root {
+    --section-pad-v: 96px;
+    --section-pad-v-lg: 128px;
+    --gap-xl: 80px;
+  }
+}
+@media (min-width: 1100px) {
+  :root {
+    --section-pad-v: 112px;
+    --section-pad-v-lg: 152px;
+  }
+}
+
+/* ── 04 · NUMERACIÓN EDITORIAL ─────────────────────────────────────── */
+
+.editorial-number {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(48px, 9vw, 96px);
+  line-height: 0.85;
+  color: var(--burgundy);
+  letter-spacing: -0.04em;
+  display: inline-block;
+  font-variation-settings: "opsz" 144;
+}
+
+/* Reemplazo del case-byline pequeño por algo más editorial */
+.case-byline-editorial {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: var(--gap-m);
+  flex-wrap: wrap;
+}
+.case-byline-editorial .num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 0.9;
+  color: var(--burgundy);
+  letter-spacing: -0.03em;
+}
+.case-byline-editorial .meta {
+  font-family: var(--font-mono);
+  font-size: var(--type-tag);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  font-weight: 500;
+}
+.case-byline-editorial .meta strong { color: var(--ink); font-weight: 600; }
+
+/* ── 06 · FOOTER REFORZADO ─────────────────────────────────────────── */
+
+.footer-grid {
+  max-width: var(--content-width);
+  margin: var(--gap-xl) auto 0;
+  padding-top: var(--gap-l);
+  border-top: 1px solid var(--line-dark);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-l);
+  text-align: left;
+}
+@media (min-width: 700px) {
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: var(--gap-m);
+  }
+}
+
+.footer-col-label {
+  font-family: var(--font-mono);
+  font-size: var(--type-label);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--gap-s);
+}
+.footer-col-brand {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--ink-bright);
+  margin-bottom: var(--gap-s);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-col a {
+  color: var(--ink-light);
+  text-decoration: none;
+  font-size: var(--type-small);
+  transition: color 0.25s var(--ease-cinema);
+  font-weight: 400;
+  opacity: 0.75;
+}
+.footer-col a:hover { color: var(--gold-light); opacity: 1; }
+
+/* Colofón cinematográfico */
+.footer-fin {
+  text-align: center;
+  padding: var(--gap-l) var(--side-pad) var(--gap-m);
+  border-top: 1px solid var(--line-dark);
+  margin-top: var(--gap-l);
+}
+.footer-fin-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+.footer-fin-meta {
+  font-family: var(--font-mono);
+  font-size: var(--type-label);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0.5;
+}
+
+/* ── 07 · TRANSICIONES CINEMATOGRÁFICAS ────────────────────────────── */
+
+.reveal {
+  transition: opacity 0.9s var(--ease-cinema-slow),
+              transform 0.9s var(--ease-cinema-slow) !important;
+}
+.reveal-stagger > * {
+  transition: opacity 0.85s var(--ease-cinema-slow),
+              transform 0.85s var(--ease-cinema-slow) !important;
+}
+
+/* Hover de cards más lento y cinematográfico */
+.featured-case,
+.work-item,
+.servicio-card,
+.nota-card {
+  transition: transform 0.6s var(--ease-cinema),
+              box-shadow 0.6s var(--ease-cinema),
+              border-color 0.4s var(--ease-cinema) !important;
+}
+
+/* ── 05 · LIMPIEZA TÉCNICA: clases utilitarias para reemplazar inline ── */
+
+.u-mt-s { margin-top: var(--gap-s) !important; }
+.u-mt-m { margin-top: var(--gap-m) !important; }
+.u-mt-l { margin-top: var(--gap-l) !important; }
+.u-mt-xl { margin-top: var(--gap-xl) !important; }
+.u-mb-s { margin-bottom: var(--gap-s) !important; }
+.u-mb-m { margin-bottom: var(--gap-m) !important; }
+.u-mb-l { margin-bottom: var(--gap-l) !important; }
+.u-text-center { text-align: center !important; }
+.u-flex-wrap { display: flex; gap: var(--gap-s); flex-wrap: wrap; align-items: center; }
+
+/* Botón outline burgundy — reemplaza inline style del PDF */
+.cta-btn--outline-burgundy {
+  background: transparent !important;
+  color: var(--burgundy) !important;
+  border: 1px solid var(--burgundy) !important;
+}
+.cta-btn--outline-burgundy:hover {
+  background: var(--burgundy-soft) !important;
+}
+
+/* Quote dimmer (segunda cita en transformación) */
+.closing-quote--dim {
+  font-size: clamp(16px, 2vw, 20px);
+  opacity: 0.7;
+}
+.closing-secondary {
+  margin-top: 40px;
+  border-top: 1px solid rgba(58,42,40,0.12);
+  padding-top: 40px;
+}
+
+/* Helpers adicionales */
+.footer-inline-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(232,228,222,0.3);
+  transition: color 0.25s, border-color 0.25s;
+}
+.footer-inline-link:hover {
+  color: var(--gold-light);
+  border-color: var(--gold);
+}
+.link-burgundy { color: var(--burgundy); }
+.link-burgundy:hover { color: var(--burgundy-deep); }
