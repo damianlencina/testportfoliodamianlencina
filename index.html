@@ -54,34 +54,44 @@
       <span class="hero-status-item">v2.0/Z · 2026</span>
     </div>
 
-    <!-- Título -->
-    <h1>
-      <span class="line"><span>Aprender</span></span>
-      <span class="line"><span>también</span></span>
-      <span class="line"><span class="grad">se diseña.</span></span>
-    </h1>
+    <!-- Grid 2 columnas: texto + video -->
+    <div class="hero-grid">
 
-    <!-- Subtítulo con avatar inline -->
-    <p class="hero-sub">
-      <span class="hero-author">
-        <button class="avatar-player" id="avatarPlayer" aria-label="Reproducir video de presentación">
-          <img src="img/retrato_avatar.jpg" alt="Damián Lencina" loading="eager" width="112" height="112" class="avatar-photo">
-          <span class="avatar-play-indicator" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <div class="hero-content">
+        <h1>
+          <span class="line"><span>Aprender</span></span>
+          <span class="line"><span>también</span></span>
+          <span class="line"><span class="grad">se diseña.</span></span>
+        </h1>
+
+        <p class="hero-sub">
+          <strong>Damián Lencina</strong> diseña experiencias formativas para empresas con la atención que pondría un realizador audiovisual: el detalle, el ritmo, lo que se ve y lo que se sugiere.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#trabajo" class="btn btn-primary">
+            Ver el trabajo
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contacto" class="btn btn-ghost">Contactar</a>
+        </div>
+      </div>
+
+      <!-- Video card a la derecha -->
+      <aside class="hero-video">
+        <button class="hero-video-card" id="avatarPlayer" aria-label="Reproducir video de presentación">
+          <img src="img/retrato_avatar.jpg" alt="Damián Lencina" loading="eager" class="hero-video-img">
+          <span class="hero-video-overlay" aria-hidden="true"></span>
+          <span class="hero-video-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          </span>
+          <span class="hero-video-meta">
+            <span class="hero-video-tag">▶ Presentación · 90 seg</span>
+            <span class="hero-video-name">Damián Lencina</span>
           </span>
         </button>
-        <strong>Damián Lencina</strong>
-      </span>
-      &nbsp;diseña experiencias formativas para empresas con la atención que pondría un realizador audiovisual: el detalle, el ritmo, lo que se ve y lo que se sugiere.
-    </p>
+      </aside>
 
-    <!-- CTAs -->
-    <div class="hero-actions">
-      <a href="#trabajo" class="btn btn-primary">
-        Ver el trabajo
-        <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#contacto" class="btn btn-ghost">Contactar</a>
     </div>
 
     <!-- Meta grid -->
@@ -170,7 +180,7 @@
 
       <a href="caso_coto.html" class="work-item">
         <div class="work-thumb">
-          <img src="img/thumb_mp_portada.jpg" loading="lazy" alt="Curso Medios de Pago">
+          <img src="img/mp_slide_01_portada.jpg" loading="lazy" alt="Curso Medios de Pago — portada">
         </div>
         <div class="work-body">
           <div class="work-byline">Caso 02 · COTO · Medios de Pago</div>
@@ -184,8 +194,21 @@
       </a>
 
       <a href="caso_magoya.html" class="work-item">
-        <div class="work-thumb">
-          <img src="img/magoya_backstage.jpg" loading="lazy" alt="Magoya Producciones">
+        <div class="work-thumb work-thumb--magoya">
+          <div class="magoya-thumb-inner">
+            <div class="magoya-thumb-grain"></div>
+            <div class="magoya-thumb-bars">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="magoya-thumb-content">
+              <div class="magoya-thumb-tag">▸ Caso 03 · 2016 → Hoy</div>
+              <div class="magoya-thumb-logo">
+                <span class="magoya-logo-mark">▸</span>magoya<span class="magoya-logo-accent">cine</span>
+              </div>
+              <div class="magoya-thumb-sub">Multimedio editorial cinéfilo</div>
+            </div>
+          </div>
         </div>
         <div class="work-body">
           <div class="work-byline">Caso 03 · Magoya · 2016 → Hoy</div>
@@ -200,10 +223,11 @@
 
       <a href="caso_ia.html" class="work-item work-item--ia">
         <div class="work-thumb">
+          <div class="ia-thumb-grid"></div>
           <div class="ia-thumb-inner">
-            <div class="ia-thumb-tag">Caso 04</div>
-            <div class="ia-thumb-title">Este portfolio<br>es el caso.</div>
-            <div class="ia-thumb-sub">v51 · 1 conversación con IA</div>
+            <div class="ia-thumb-tag">Caso 04 · v52/Z</div>
+            <div class="ia-thumb-title">Este portfolio<br>es el caso<span class="ia-cursor">_</span></div>
+            <div class="ia-thumb-sub">$ claude --build portfolio</div>
           </div>
         </div>
         <div class="work-body">
