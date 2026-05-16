@@ -3,69 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre mí — Damián Lencina</title>
+  <title>Sobre mí — Damián Lencina · Diseño de aprendizaje</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Damián Lencina — Comunicador social, realizador audiovisual y responsable de Formación e-Learning en COTO CICSA. +7 años construyendo sistemas de aprendizaje corporativo.">
-  <meta name="theme-color" content="#8b2a3a">
-  <meta name="author" content="Damián Lencina">
-  <link rel="canonical" href="https://damilencina.com/sobre.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Sobre mí — Damián Lencina">
-  <meta property="og:description" content="Comunicador social, realizador audiovisual y responsable de Formación e-Learning en COTO CICSA.">
-  <meta property="og:image" content="https://damilencina.com/img/og_image.jpg">
-  <meta property="og:locale" content="es_AR">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://damilencina.com/img/og_image.jpg">
-<link rel="dns-prefetch" href="https://i.ytimg.com">
+  <meta name="description" content="Damián Lencina · Comunicador social y realizador audiovisual. Responsable de e-Learning en COTO CICSA. +7 años diseñando experiencias formativas.">
+  <style>
+    /* Sobre — hero */
+    .sobre-hero {
+      padding: 160px var(--side-pad) 80px;
+      max-width: var(--content-width);
+      margin: 0 auto;
+      position: relative;
+    }
+    .sobre-hero-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: var(--t-h1);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 32px;
+      max-width: 18ch;
+    }
+    .sobre-hero-title .grad {
+      background: var(--aurora-grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Timeline */
+    .timeline-section { background: var(--bg-tint); }
+    .timeline-wrap {
+      max-width: var(--content-width);
+      margin: 0 auto;
+    }
+    .timeline-label {
+      font-family: var(--type-mono);
+      font-size: var(--t-tag);
+      color: var(--ink-dim);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .timeline-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--ink-line);
+    }
+    .timeline-items {
+      display: grid;
+      gap: 1px;
+      background: var(--ink-line-soft);
+      border-radius: var(--radius-l);
+      overflow: hidden;
+      border: 1px solid var(--ink-line-soft);
+    }
+    .timeline-item {
+      background: var(--bg);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 32px;
+      align-items: baseline;
+      transition: background 0.3s;
+    }
+    .timeline-item:hover { background: var(--bg-tint); }
+    .timeline-year {
+      font-family: var(--type-mono);
+      font-size: var(--t-h4);
+      font-weight: 500;
+      color: var(--ink-dim);
+      letter-spacing: 0.02em;
+    }
+    .timeline-item--now .timeline-year {
+      background: var(--aurora-grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+    }
+    .timeline-title {
+      font-size: var(--t-h4);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .timeline-desc {
+      font-size: var(--t-body);
+      line-height: 1.55;
+      color: var(--ink-mid);
+    }
+
+    /* Tools */
+    .tools-wrap {
+      max-width: var(--content-width);
+      margin: 0 auto;
+    }
+    .tools-label {
+      font-family: var(--type-mono);
+      font-size: var(--t-tag);
+      color: var(--ink-dim);
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tools-label::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--ink-line);
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .tool-group {
+      background: var(--bg);
+      border: 1px solid var(--ink-line-soft);
+      border-radius: var(--radius-l);
+      padding: 28px;
+      transition: border-color 0.3s, transform 0.3s var(--ease-out);
+    }
+    .tool-group:hover {
+      border-color: var(--ink-line);
+      transform: translateY(-4px);
+    }
+    .tool-group-title {
+      font-family: var(--type-mono);
+      font-size: var(--t-tag);
+      color: var(--ink-dim);
+      margin-bottom: 16px;
+    }
+    .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tool-tags span {
+      font-size: var(--t-small);
+      font-weight: 500;
+      padding: 6px 12px;
+      background: var(--bg-tint);
+      color: var(--ink);
+      border-radius: var(--radius-s);
+    }
+
+    @media (max-width: 720px) {
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; padding: 24px; }
+      .tools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body>
+<body class="case-page">
 
 <!-- NAV -->
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">DL <span>·</span> 2026</a>
-  <div class="nav-mark">Sobre mí</div>
-  <div class="nav-links" id="navLinks">
-    <a href="index.html#trabajo">Trabajo</a>
-    <a href="index.html#servicios">Servicios</a>
-    <a href="notas.html">Notas</a>
-    <a href="sobre.html" class="active">Sobre</a>
-    <a href="index.html#contacto">Contacto</a>
-  </div>
-    <a href="index.html#contacto">Contacto</a>
-  </div>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+<nav id="nav">
+  <a href="index.html" class="nav-mark">DL <span>·</span> Sobre mí</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#trabajo">Trabajo</a></li>
+    <li><a href="index.html#metodo">Método</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- BARRA DE PROGRESO -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- PAGE TRANSITION IN -->
-<div class="page-transition" id="pageTransition">
-  <div class="page-transition-mark">DL · 2026</div>
-</div>
-
 <!-- HERO -->
-<section class="bg-light sobre-hero">
-  <div class="reveal sobre-hero-inner">
-    <div class="section-tag">Sobre mí</div>
-    <h1 class="sobre-hero-title">
-      Entre el aula<br>y la <em>cámara</em>.
-    </h1>
-  </div>
+<section class="sobre-hero">
+  <a href="index.html" class="case-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Volver al portfolio
+  </a>
+
+  <div class="case-tag">Sobre mí</div>
+
+  <h1 class="sobre-hero-title">
+    Entre el aula y la <span class="grad">cámara</span>.
+  </h1>
 </section>
 
-<!-- transición claro → cálido -->
-<div class="transition-down-warm"></div>
-
-<!-- CONTENIDO PRINCIPAL -->
-<section class="bg-warm about-section">
-
+<!-- Contenido principal -->
+<section class="about-section" style="padding-top: 40px;">
   <div class="about-grid reveal">
     <div class="about-portrait">
-      <img src="img/retrato.jpg" loading="eager" decoding="async" width="593" height="741" alt="Damián Lencina">
+      <img src="img/retrato.jpg" loading="eager" alt="Damián Lencina">
     </div>
     <div class="about-content">
       <div class="about-text">
@@ -98,58 +230,62 @@
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Timeline -->
-  <div class="about-timeline reveal">
+<!-- Timeline -->
+<section class="timeline-section">
+  <div class="timeline-wrap reveal">
     <div class="timeline-label">Recorrido</div>
     <div class="timeline-items">
-      <div class="timeline-item" tabindex="0">
+      <div class="timeline-item">
         <div class="timeline-year">2016</div>
-        <div class="timeline-content">
+        <div>
           <div class="timeline-title">Magoya Producciones</div>
           <div class="timeline-desc">Inicio del proyecto audiovisual independiente. Cortometrajes, críticas y festivales.</div>
         </div>
       </div>
-      <div class="timeline-item" tabindex="0">
+      <div class="timeline-item">
         <div class="timeline-year">2018</div>
-        <div class="timeline-content">
+        <div>
           <div class="timeline-title">Lic. Comunicación Social</div>
           <div class="timeline-desc">Graduación en la UNM con orientación en comunicación digital y producción audiovisual.</div>
         </div>
       </div>
-      <div class="timeline-item" tabindex="0">
+      <div class="timeline-item">
         <div class="timeline-year">2019</div>
-        <div class="timeline-content">
+        <div>
           <div class="timeline-title">Ingreso a COTO CICSA</div>
           <div class="timeline-desc">Primer contacto con el e-learning corporativo. Diseño de cursos, Moodle, Storyline.</div>
         </div>
       </div>
-      <div class="timeline-item" tabindex="0">
+      <div class="timeline-item">
         <div class="timeline-year">2021</div>
-        <div class="timeline-content">
+        <div>
           <div class="timeline-title">Primer video propio</div>
           <div class="timeline-desc">Rodaje en planta para un curso corporativo. La línea entre e-learning y audiovisual se borra.</div>
         </div>
       </div>
-      <div class="timeline-item" tabindex="0">
+      <div class="timeline-item">
         <div class="timeline-year">2023</div>
-        <div class="timeline-content">
+        <div>
           <div class="timeline-title">Responsable del área</div>
           <div class="timeline-desc">Liderazgo del equipo. Método de cuatro etapas. Sistema a 16+ áreas operativas.</div>
         </div>
       </div>
-      <div class="timeline-item timeline-item--now" tabindex="0">
+      <div class="timeline-item timeline-item--now">
         <div class="timeline-year">Hoy</div>
-        <div class="timeline-content">
+        <div>
           <div class="timeline-title">19.852 participantes</div>
           <div class="timeline-desc">El sistema sigue creciendo. Y cada curso sigue siendo una pequeña película.</div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Herramientas -->
-  <div class="about-tools reveal">
+<!-- Herramientas -->
+<section style="background: var(--bg);">
+  <div class="tools-wrap reveal">
     <div class="tools-label">Herramientas</div>
     <div class="tools-grid">
       <div class="tool-group">
@@ -157,64 +293,47 @@
         <div class="tool-tags">
           <span>Articulate Storyline 360</span>
           <span>Adobe Illustrator</span>
+          <span>Photoshop</span>
         </div>
       </div>
       <div class="tool-group">
         <div class="tool-group-title">Producción audiovisual</div>
         <div class="tool-tags">
           <span>Adobe Premiere Pro</span>
+          <span>After Effects</span>
+          <span>Audition</span>
         </div>
       </div>
       <div class="tool-group">
         <div class="tool-group-title">Plataforma LMS</div>
         <div class="tool-tags">
           <span>Moodle</span>
+          <span>SCORM</span>
         </div>
       </div>
     </div>
   </div>
-
 </section>
 
-<!-- VIDEO: Presentación personal -->
-<section class="bg-light case-section video-placeholder-section">
-  <div class="reveal">
-    <div class="section-tag">En primera persona</div>
-    <h2>Mejor que leerlo,<br><em>escucharlo</em>.</h2>
-    <p class="section-body">
-      Quién soy, de dónde vengo y por qué pienso el e-learning desde la narrativa audiovisual.
-    </p>
-  </div>
-  <div class="video-placeholder reveal">
-    <div class="video-placeholder-inner">
-      <div class="video-placeholder-icon">▶</div>
-      <div class="video-placeholder-label">Video próximamente</div>
-      <div class="video-placeholder-sub">Presentación personal — V1 · A cámara · ~90 seg</div>
-    </div>
-  </div>
-</section>
-
-<!-- transición claro → oscuro -->
-<div class="transition-down-dark"></div>
-
-<!-- FOOTER CTA -->
-<section class="bg-dark footer-cta" id="contacto">
-  <div class="reveal">
-    <div class="footer-cta-tag">Contacto</div>
-    <h2>¿Tenés un proyecto<br>de formación que <em>merece</em><br>ser una experiencia?</h2>
-    <p class="footer-cta-sub">Trabajo con empresas que quieren ir más allá de las diapositivas. Freelance, consultorías puntuales o proyectos integrales.</p>
-    <div class="contact-options">
-      <a href="mailto:dami.lencina21@gmail.com" class="cta-btn">Escribime por mail</a>
-      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="cta-btn cta-btn--outline">LinkedIn</a>
-    </div>
-    <div class="footer-foot">
-      <div>© <span class="footer-year">2026</span> · Damián Lencina</div>
-      <div>Buenos Aires · Argentina</div>
-      <div>
-        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
-        · 
-        <a href="https://www.instagram.com/magoyacine" target="_blank" rel="noopener" class="footer-link">Instagram</a>
+<!-- Footer CTA -->
+<section class="footer-cta" id="contacto">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-tag">Contacto</div>
+      <h2>¿Tenés un proyecto de formación que <span class="grad">merece</span> ser una experiencia?</h2>
+      <p class="footer-cta-sub">Trabajo con empresas que quieren ir más allá de las diapositivas. Freelance, consultorías puntuales o proyectos integrales.</p>
+      <div class="contact-actions">
+        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
+          Escribime
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">LinkedIn</a>
       </div>
+    </div>
+
+    <div class="footer-fin">
+      <div class="footer-fin-text">End of file</div>
+      <div class="footer-fin-meta">© <span class="footer-year">2026</span> · DL · v2.0/Z</div>
     </div>
   </div>
 </section>

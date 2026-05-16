@@ -1,733 +1,362 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caso 03 — Magoya · Damián Lencina</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-  /* === Estilos específicos del caso Magoya === */
-
-  .case-hero {
-    padding: 100px 24px 80px;
-    position: relative;
-    z-index: 2;
-    background: var(--light);
-  }
-  .case-meta {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-  }
-  .case-meta-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 16px;
-    background: white;
-    border: 1px solid var(--line-light);
-    border-radius: 100px;
-    font-size: 12px;
-    color: var(--ink-soft);
-  }
-  .case-meta-item span { color: var(--burgundy); font-weight: 500; }
-  .case-meta-item span::after { content: ' ·'; }
-
-  .case-logo-row {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 36px;
-    padding: 20px;
-    background: white;
-    border: 1px solid var(--line-light);
-    border-radius: 20px;
-    width: fit-content;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-  }
-  .case-logo {
-    background: var(--ink);
-    padding: 12px 18px;
-    display: inline-flex;
-    align-items: center;
-    border-radius: 12px;
-  }
-  .case-logo img {
-    height: 26px;
-    width: auto;
-    display: block;
-  }
-  .case-logo-text {
-    font-size: 11px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-  .case-logo-text div {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .case-logo-text div::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    background: var(--burgundy);
-    border-radius: 50%;
-  }
-
-  .case-hero h1 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: clamp(40px, 8vw, 72px);
-    line-height: 1;
-    letter-spacing: -0.035em;
-    margin-bottom: 28px;
-    color: var(--ink);
-    max-width: 1300px;
-  }
-  .case-hero h1 em { font-style: italic; color: var(--burgundy); font-weight: 600; }
-
-  .case-subtitle {
-    max-width: 720px;
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin-bottom: 40px;
-  }
-  .case-subtitle strong { color: var(--ink); font-weight: 600; }
-  .case-subtitle em { color: var(--burgundy); font-style: italic; font-weight: 500; }
-
-  /* CHANNELS */
-  .channels {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-top: 40px;
-  }
-  .channel {
-    background: white;
-    border: 1px solid var(--line-light);
-    border-radius: 20px;
-    padding: 20px 22px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s;
-    display: block;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
-  }
-  .channel:hover {
-    border-color: var(--burgundy);
-    transform: translateY(-2px);
-  }
-  .channel-platform {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--burgundy-soft);
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--burgundy);
-    margin-bottom: 14px;
-  }
-  .channel-handle {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    letter-spacing: -0.02em;
-    margin-bottom: 10px;
-    color: var(--ink);
-  }
-  .channel-arrow {
-    font-size: 14px;
-    color: var(--ink-faint);
-    transition: all 0.3s;
-  }
-  .channel:hover .channel-arrow {
-    color: var(--burgundy);
-    transform: translateX(4px);
-  }
-
-  /* CONTENT TYPES */
-  .content-types {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-top: 32px;
-  }
-  .content-type {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(58, 42, 40, 0.10);
-    border-radius: 16px;
-    padding: 22px;
-    transition: all 0.3s;
-  }
-  .content-type:hover {
-    border-color: var(--burgundy);
-    background: rgba(255, 255, 255, 0.8);
-    transform: translateY(-2px);
-  }
-  .ct-num {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--burgundy-soft);
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--burgundy);
-    margin-bottom: 14px;
-  }
-  .ct-name {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 22px;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin-bottom: 12px;
-    color: var(--warm-dark);
-  }
-  .ct-name em { font-style: italic; color: var(--burgundy); font-weight: 500; }
-  .ct-desc {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--warm-mid);
-  }
-
-  /* ROLE CALLOUT */
-  .role-callout {
-    margin-top: 40px;
-    padding: 32px;
-    background: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(58, 42, 40, 0.12);
-    border-radius: 24px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .role-callout::before {
-    content: '';
-    position: absolute;
-    top: -100px; right: -100px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(139, 42, 58, 0.10) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .role-label {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--burgundy-soft);
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--burgundy);
-    margin-bottom: 12px;
-    position: relative;
-  }
-  .role-big {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: clamp(32px, 5vw, 44px);
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--warm-dark);
-    position: relative;
-  }
-  .role-big em { font-style: italic; color: var(--burgundy); font-weight: 500; }
-  .role-text {
-    font-size: 15px;
-    line-height: 1.65;
-    color: var(--warm-mid);
-    position: relative;
-  }
-  .role-text strong { color: var(--warm-dark); font-weight: 600; }
-  .role-text em { color: var(--burgundy); font-style: italic; font-weight: 500; }
-
-  /* VIDEOS (oscuro) */
-  .videos-section {
-    padding: 100px 24px;
-  }
-  .videos-h {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: clamp(24px, 4vw, 32px);
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-    margin: 60px 0 24px;
-    color: var(--ink-bright);
-  }
-  .videos-h em { font-style: italic; color: var(--rose); font-weight: 500; }
-
-  .videos-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .video-card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--line-dark);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-  .video-card:hover {
-    border-color: var(--rose);
-    transform: translateY(-2px);
-  }
-  .video-thumb {
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    position: relative;
-    background: rgba(0, 0, 0, 0.3);
-  }
-  .video-thumb img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-  .video-card:hover .video-thumb img { transform: scale(1.04); }
-  .video-play {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 56px;
-    height: 56px;
-    background: var(--burgundy);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    padding-left: 4px;
-    border-radius: 50%;
-    transition: all 0.3s;
-    box-shadow: 0 4px 24px rgba(139, 42, 58, 0.4);
-  }
-  .video-card:hover .video-play {
-    transform: translate(-50%, -50%) scale(1.1);
-    background: var(--rose);
-    color: var(--warm-dark);
-  }
-  .video-meta {
-    padding: 24px;
-  }
-  .video-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    background: rgba(196, 160, 168, 0.12);
-    border: 1px solid rgba(196, 160, 168, 0.24);
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--rose);
-    margin-bottom: 12px;
-  }
-  .video-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 24px;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    margin-bottom: 12px;
-    color: var(--ink-bright);
-  }
-  .video-title em { font-style: italic; color: var(--rose); font-weight: 500; }
-  .video-desc {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--ink-light);
-    margin-bottom: 14px;
-  }
-  .video-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--rose);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-  .video-link::after { content: '→'; }
-
-  /* CHANNEL CTA (oscuro) */
-  .channel-cta {
-    margin-top: 32px;
-    padding: 28px 32px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--line-dark);
-    border-radius: 100px;
-    text-decoration: none;
-    color: inherit;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 20px;
-    align-items: center;
-    transition: all 0.3s;
-  }
-  .channel-cta:hover {
-    background: var(--burgundy);
-    border-color: var(--burgundy);
-  }
-  .channel-cta:hover .cta-handle { color: var(--rose); }
-  .cta-text {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: clamp(18px, 2.5vw, 24px);
-    letter-spacing: -0.02em;
-    color: var(--ink-bright);
-  }
-  .cta-handle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--ink-light);
-    font-weight: 500;
-    transition: color 0.3s;
-    letter-spacing: 0.05em;
-  }
-  .cta-arrow {
-    font-size: 20px;
-    color: var(--rose);
-  }
-
-  @media (min-width: 700px) {
-    .case-hero { padding: 120px 48px 100px; }
-    .case-hero h1 { font-size: clamp(56px, 8vw, 96px); }
-    .case-logo-row { padding: 24px 28px; }
-    .channels { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .channel { padding: 24px; }
-    .channel-handle { font-size: 24px; }
-    .content-types { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .content-type { padding: 28px 24px; }
-    .role-callout { grid-template-columns: 1fr 1.5fr; gap: 48px; padding: 48px; }
-    .videos-section { padding: 140px 48px; }
-    .videos-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-    .channel-cta { padding: 32px 40px; gap: 32px; }
-  }
-</style>
-
-<!-- Meta tags -->
-<meta name="description" content="Productora cinéfila Magoya: sitio editorial, canal de YouTube, Instagram. Críticas, festivales, retrospectivas y producción audiovisual propia desde 2016.">
-<meta name="theme-color" content="#8b2a3a">
-<meta name="author" content="Damián Lencina">
-<link rel="canonical" href="https://damilencina.com/caso_magoya.html">
-
-<!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Caso 03 — Magoya · Damián Lencina">
-<meta property="og:description" content="Productora cinéfila Magoya: sitio editorial, canal de YouTube, Instagram. Críticas, festivales, retrospectivas y producción audiovisual propia desde 2016.">
-<meta property="og:url" content="https://damilencina.com/caso_magoya.html">
-<meta property="og:image" content="https://damilencina.com/img/og_image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="es_AR">
-
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Caso 03 — Magoya · Damián Lencina">
-<meta name="twitter:description" content="Productora cinéfila Magoya: sitio editorial, canal de YouTube, Instagram. Críticas, festivales, retrospectivas y producción audiovisual propia desde 2016.">
-<meta name="twitter:image" content="https://damilencina.com/img/og_image.jpg">
-
-<!-- DNS prefetch -->
-<link rel="dns-prefetch" href="https://i.ytimg.com">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso 03 — Magoya · El taller donde aprendí a crear · Damián Lencina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Productora cinéfila Magoya: sitio editorial, canal de YouTube, Instagram. Críticas, festivales, retrospectivas y producción audiovisual propia desde 2016.">
+  <style>
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 32px 0 48px;
+    }
+    .channel-link {
+      background: var(--bg);
+      border: 1px solid var(--ink-line-soft);
+      border-radius: var(--radius-l);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: border-color 0.3s, transform 0.3s var(--ease-out);
+      position: relative;
+    }
+    .channel-link:hover {
+      border-color: var(--ink-line);
+      transform: translateY(-4px);
+    }
+    .channel-platform {
+      font-family: var(--type-mono);
+      font-size: var(--t-tag);
+      color: var(--ink-dim);
+    }
+    .channel-handle {
+      font-size: var(--t-h4);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .channel-arrow {
+      position: absolute;
+      top: 24px; right: 24px;
+      font-family: var(--type-mono);
+      color: var(--ink-dim);
+    }
+    .channel-link:hover .channel-arrow { color: var(--ink); }
+    .video-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 48px 0;
+    }
+    .video-card-mg {
+      background: var(--bg);
+      border: 1px solid var(--ink-line-soft);
+      border-radius: var(--radius-l);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s, transform 0.3s var(--ease-out);
+    }
+    .video-card-mg:hover {
+      border-color: var(--ink-line);
+      transform: translateY(-4px);
+    }
+    .video-card-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--bg-dark);
+    }
+    .video-card-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .video-card-play {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bg);
+      font-size: 18px;
+    }
+    .video-card-body { padding: 24px; }
+    .video-card-tag {
+      font-family: var(--type-mono);
+      font-size: var(--t-tag);
+      color: var(--ink-dim);
+      margin-bottom: 8px;
+    }
+    .video-card-title {
+      font-size: var(--t-h3);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .video-card-title .grad {
+      background: var(--aurora-grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .video-card-desc {
+      font-size: var(--t-small);
+      line-height: 1.55;
+      color: var(--ink-mid);
+      margin-bottom: 12px;
+    }
+    .video-card-link {
+      font-size: var(--t-small);
+      font-weight: 500;
+      color: var(--ink);
+    }
+    @media (max-width: 720px) {
+      .channels-grid { grid-template-columns: 1fr; }
+      .video-cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body>
+<body class="case-page">
 
-<div class="ambient-glow glow-1"></div>
-<div class="ambient-glow glow-2"></div>
-
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">DL <span>·</span> 2026</a>
-  <div class="nav-mark">Caso 03 <span>·</span> 04</div>
-  <div class="nav-links" id="navLinks">
-    <a href="index.html#trabajo">Trabajo</a>
-    <a href="index.html#servicios">Servicios</a>
-    <a href="notas.html">Notas</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="index.html#contacto">Contacto</a>
-  </div>
-    <a href="index.html#contacto">Contacto</a>
-  </div>
-  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-mark">DL <span>·</span> Caso 03/04</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#trabajo">Trabajo</a></li>
+    <li><a href="index.html#metodo">Método</a></li>
+    <li><a href="index.html#sobre">Sobre</a></li>
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- BARRA DE PROGRESO -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- PAGE TRANSITION IN -->
-<div class="page-transition" id="pageTransition">
-  <div class="page-transition-mark">DL · 2026</div>
-</div>
-
-
-<!-- HERO claro -->
+<!-- HERO -->
 <section class="case-hero">
-  <div class="case-meta">
-    <div class="case-meta-item"><span>Proyecto</span> Magoya Cine</div>
-    <div class="case-meta-item"><span>Período</span> 2016 — Hoy</div>
-    <div class="case-meta-item"><span>Mi rol</span> Idea · Contenido · Dirección creativa</div>
-  </div>
+  <a href="index.html#trabajo" class="case-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Volver al portfolio
+  </a>
 
-  <div class="case-logo-row">
-    <div class="case-logo">
-      <img src="img/magoya_logo.jpg" width="249" height="48" alt="Magoya Cine">
-    </div>
-    <div class="case-logo-text">
-      <div>Identidad y marca</div>
-      <div>2016 / Buenos Aires</div>
-    </div>
-  </div>
+  <div class="case-tag">Caso 03 · Magoya Cine · 2016 → Hoy</div>
 
-  <h1>El taller donde<br>aprendí a <em>crear</em>.</h1>
+  <h1 class="case-title">
+    El taller donde aprendí a <span class="grad">crear</span>.
+  </h1>
 
-  <p class="case-subtitle">
+  <p class="case-lead">
     Magoya nació en la facu, con Nahu y Eva, mientras cursábamos juntos materias de comunicación. Cuando llegamos a la materia de audiovisual, supimos que era eso. Y dijimos: <strong>vamos por más</strong>. Lo que empezó como un trabajo práctico se convirtió en un multimedio independiente que duró años.
   </p>
 
-  <div class="channels reveal-stagger">
-    <a href="https://magoyacine.com/" target="_blank" class="channel tilt-card">
-      <div class="channel-platform">Web</div>
-      <div class="channel-handle">magoyacine.com</div>
-      <div class="channel-arrow">→</div>
+  <div class="case-meta">
+    <div class="case-meta-item">
+      <div class="label">Proyecto</div>
+      <div class="value">Magoya Cine</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="label">Período</div>
+      <div class="value">2016 → Hoy</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="label">Mi rol</div>
+      <div class="value">Idea · Contenido · Dirección creativa</div>
+    </div>
+    <div class="case-meta-item">
+      <div class="label">Origen</div>
+      <div class="value">Buenos Aires · UNM</div>
+    </div>
+  </div>
+
+  <!-- Canales -->
+  <div class="channels-grid reveal-stagger">
+    <a href="https://magoyacine.com/" target="_blank" rel="noopener" class="channel-link">
+      <span class="channel-platform">Web</span>
+      <span class="channel-handle">magoyacine.com</span>
+      <span class="channel-arrow">→</span>
     </a>
-    <a href="https://www.instagram.com/magoyacine/" target="_blank" class="channel tilt-card">
-      <div class="channel-platform">Instagram</div>
-      <div class="channel-handle">@magoyacine</div>
-      <div class="channel-arrow">→</div>
+    <a href="https://www.instagram.com/magoyacine/" target="_blank" rel="noopener" class="channel-link">
+      <span class="channel-platform">Instagram</span>
+      <span class="channel-handle">@magoyacine</span>
+      <span class="channel-arrow">→</span>
     </a>
-    <a href="https://www.youtube.com/@magoyaproducciones1167" target="_blank" class="channel tilt-card">
-      <div class="channel-platform">YouTube</div>
-      <div class="channel-handle">@magoyaproducciones</div>
-      <div class="channel-arrow">→</div>
+    <a href="https://www.youtube.com/@magoyaproducciones1167" target="_blank" rel="noopener" class="channel-link">
+      <span class="channel-platform">YouTube</span>
+      <span class="channel-handle">@magoyaproducciones</span>
+      <span class="channel-arrow">→</span>
     </a>
   </div>
 </section>
 
-<!-- TESTIMONIO -->
-<div class="bg-light testimonio-strip">
-  <div class="testimonio-float testimonio-float--inline reveal">
-    <div class="testimonio-avatar">
-      <div class="testimonio-avatar-placeholder">👤</div>
+<!-- 01 El origen -->
+<div class="case-section-narrow reveal">
+  <div class="case-section-tag">01 · El origen</div>
+  <h2>De TP universitario a <span class="grad">multimedio</span>.</h2>
+  <p>Con la guía de nuestros profes de audiovisual, arte, sonido y radio, nos mandamos. Primero como si fuera una entrega más. Después el proyecto traspasó el semestre, los meses, los años.</p>
+  <p>Un tiempo fuimos fuertes en redes, un tiempo en producción audiovisual, un tiempo en noticias web, un tiempo en todo junto. <strong>Año tras año construimos una mirada estética y de comunicación</strong> sobre lo que más nos gustaba: el cine y todos sus derivados.</p>
+</div>
+
+<!-- Tipos de contenido — grid -->
+<div class="case-section reveal">
+  <div class="method-grid reveal-stagger" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="method-item">
+      <div class="method-num">01 · Editorial</div>
+      <div class="method-title">Críticas de películas</div>
+      <p class="method-desc">Reseñas de estrenos, ediciones de festivales y producciones de plataformas. Mirada propia, sin concesiones.</p>
     </div>
-    <div class="testimonio-body">
-      <p class="testimonio-text">"Magoya tiene una voz propia que pocos proyectos independientes logran. La mirada crítica y la calidad de producción son de otro nivel para un proyecto sin presupuesto."</p>
-      <div class="testimonio-meta">
-        <span class="testimonio-name">— Nombre · Colaborador / Lector</span>
-        <a href="#" class="testimonio-li" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-      </div>
+    <div class="method-item">
+      <div class="method-num">02 · Cobertura</div>
+      <div class="method-title">Festivales de cine</div>
+      <p class="method-desc">Acreditación y cobertura del Festival Internacional de Cine de Mar del Plata, edición tras edición.</p>
+    </div>
+    <div class="method-item">
+      <div class="method-num">03 · Curaduría</div>
+      <div class="method-title">Tops y recomendados</div>
+      <p class="method-desc">Selecciones de fin de año, recomendados temáticos por plataforma y listas curadas que arman conversación.</p>
+    </div>
+    <div class="method-item">
+      <div class="method-num">04 · Memoria</div>
+      <div class="method-title">Retrospectivas</div>
+      <p class="method-desc">Repaso por la obra de directores y autores: Lee Chang-dong, Gregg Araki, Leonardo Favio, entre otros.</p>
+    </div>
+    <div class="method-item">
+      <div class="method-num">05 · Cultura pop</div>
+      <div class="method-title">El rincón</div>
+      <p class="method-desc">Trivia, anécdotas, cruces entre cine y otras disciplinas. Lo que no entra en las otras secciones.</p>
+    </div>
+    <div class="method-item">
+      <div class="method-num">06 · Producción</div>
+      <div class="method-title">Audiovisual propio</div>
+      <p class="method-desc">Contenido producido por nosotros para el canal de YouTube y las redes: comentarios, ensayos, formato libre.</p>
     </div>
   </div>
 </div>
 
-<!-- transición claro → cálido -->
-<div class="transition-down-warm"></div>
+<!-- Mi lugar en Magoya — highlight -->
+<div class="case-section-narrow reveal">
+  <div class="case-section-tag">Mi lugar en Magoya</div>
+  <h2>El taller de <span class="grad">pruebas</span>.</h2>
+  <p>Después de años, tomé la decisión de apartarme para explorar nuevos rumbos. Pero Magoya fue mi escenario, mi película personal para formarme como comunicador y creador de historias.</p>
+  <p><strong>Nunca me voy a olvidar de lo que aprendí ahí.</strong> La mirada estética, el criterio editorial, la valentía de hacer — todo eso empezó con Nahu, Eva y una materia de audiovisual en la universidad.</p>
+</div>
 
-<!-- 01 EL PROYECTO (cálido) -->
-<section class="bg-warm">
-  <div class="section-header">
-    <div class="section-tag">01 · El origen</div>
-    <h2 class="section-h">De TP universitario<br>a <em>multimedio</em>.</h2>
-    <p class="section-lead">
-      Con la guía de nuestros profes de audiovisual, arte, sonido y radio, nos mandamos. Primero como si fuera una entrega más. Después el proyecto traspasó el semestre, los meses, los años. Un tiempo fuimos fuertes en redes, un tiempo en producción audiovisual, un tiempo en noticias web, un tiempo en todo junto. <strong>Año tras año construimos una mirada estética y de comunicación</strong> sobre lo que más nos gustaba: el cine y todos sus derivados.
-    </p>
-  </div>
+<!-- Backstage -->
+<div class="case-section-narrow reveal">
+  <div class="case-section-tag">02 · Backstage</div>
+  <h2>Trabajo grupal, equipo <span class="grad">casero</span>.</h2>
+  <p>Más allá del trabajo editorial, Magoya produce <strong>contenido audiovisual propio</strong> para el canal de YouTube y las redes: ensayos sobre cine argentino, video-minutos de ficción, recomendaciones temáticas. Trabajo grupal con amigos, equipo casero, ganas de hacer cine sobre cine.</p>
+</div>
 
-  <div class="content-types reveal-stagger">
-    <div class="content-type tilt-card">
-      <div class="ct-num">01 · Editorial</div>
-      <div class="ct-name"><em>Críticas</em> de películas</div>
-      <div class="ct-desc">Reseñas de estrenos, ediciones de festivales y producciones de plataformas. Mirada propia, sin concesiones.</div>
-    </div>
-    <div class="content-type tilt-card">
-      <div class="ct-num">02 · Cobertura</div>
-      <div class="ct-name"><em>Festivales</em> de cine</div>
-      <div class="ct-desc">Acreditación y cobertura del Festival Internacional de Cine de Mar del Plata, edición tras edición.</div>
-    </div>
-    <div class="content-type tilt-card">
-      <div class="ct-num">03 · Curaduría</div>
-      <div class="ct-name"><em>Tops</em> y recomendados</div>
-      <div class="ct-desc">Selecciones de fin de año, recomendados temáticos por plataforma y listas curadas que arman conversación.</div>
-    </div>
-    <div class="content-type tilt-card">
-      <div class="ct-num">04 · Memoria</div>
-      <div class="ct-name"><em>Retrospectivas</em></div>
-      <div class="ct-desc">Repaso por la obra de directores y autores: Lee Chang-dong, Gregg Araki, Leonardo Favio, entre otros.</div>
-    </div>
-    <div class="content-type tilt-card">
-      <div class="ct-num">05 · Cultura pop</div>
-      <div class="ct-name">El <em>rincón</em></div>
-      <div class="ct-desc">Trivia, anécdotas, cruces entre cine y otras disciplinas. Lo que no entra en las otras secciones.</div>
-    </div>
-    <div class="content-type tilt-card">
-      <div class="ct-num">06 · Producción</div>
-      <div class="ct-name">Audiovisual <em>propio</em></div>
-      <div class="ct-desc">Contenido producido por nosotros para el canal de YouTube y las redes: comentarios, ensayos, formato libre.</div>
-    </div>
-  </div>
+<div class="case-section reveal">
+  <figure class="case-image">
+    <img src="img/magoya_backstage.jpg" loading="lazy" alt="Backstage de rodaje Magoya">
+    <figcaption class="case-image-caption">BTS · Rodaje · Producción audiovisual Magoya</figcaption>
+  </figure>
+</div>
 
-  <div class="role-callout reveal">
-    <div>
-      <div class="role-label">Mi lugar en Magoya</div>
-      <div class="role-big">El taller<br>de <em>pruebas.</em></div>
-    </div>
-    <div class="role-text">
-      Después de años, tomé la decisión de apartarme para explorar nuevos rumbos. Pero Magoya fue mi escenario, mi película personal para formarme como comunicador y creador de historias. <strong>Nunca me voy a olvidar de lo que aprendí ahí.</strong> La mirada estética, el criterio editorial, la valentía de hacer — todo eso empezó con Nahu, Eva y una materia de audiovisual en la universidad.
-    </div>
-  </div>
-</section>
+<!-- Piezas destacadas -->
+<div class="case-section-narrow reveal">
+  <div class="case-section-tag">03 · Piezas destacadas</div>
+  <h2>Algunas piezas de nuestro <span class="grad">archivo</span>.</h2>
+  <p>Una pequeña selección del trabajo audiovisual que viene haciendo Magoya. Producción casera, equipo grupal, decisiones tomadas entre amigos.</p>
+</div>
 
-<!-- transición cálido → claro -->
-<div class="transition-up-light"></div>
-
-<!-- BACKSTAGE (claro) -->
-<section class="bg-light">
-  <div class="section-header">
-    <div class="section-tag">02 · Backstage</div>
-    <h2 class="section-h">Trabajo grupal,<br>equipo <em>casero</em>.</h2>
-    <p class="section-lead">
-      Más allá del trabajo editorial, Magoya produce <strong>contenido audiovisual propio</strong> para el canal de YouTube y las redes: ensayos sobre cine argentino, video-minutos de ficción, recomendaciones temáticas. Trabajo grupal con amigos, equipo casero, ganas de hacer cine sobre cine.
-    </p>
-  </div>
-
-  <div class="img-card lightbox-trigger editorial-frame">
-    <img src="img/magoya_backstage.jpg" loading="lazy" decoding="async" width="1600" height="900" alt="Backstage rodaje">
-    <div class="img-caption">
-      <span class="num">BTS · 01</span>
-      <span>Rodaje · Producción audiovisual Magoya</span>
-      <span class="credit">Trabajo grupal · <span class="technique">Rodaje propio</span></span>
-    </div>
-  </div>
-</section>
-
-<!-- transición claro → oscuro -->
-<div class="transition-light-to-dark"></div>
-
-<!-- 03 PIEZAS DESTACADAS (oscuro) -->
-<section class="bg-dark videos-section">
-  <div class="section-header">
-    <div class="section-tag">03 · Piezas destacadas</div>
-    <h2 class="section-h">Algunas <em>piezas</em><br>de nuestro archivo.</h2>
-    <p class="section-lead">
-      Una pequeña selección del trabajo audiovisual que viene haciendo Magoya. Producción casera, equipo grupal, decisiones tomadas entre amigos.
-    </p>
-  </div>
-
-  <div class="videos-grid reveal-stagger">
-    <a href="https://www.youtube.com/watch?v=81Jd5m6BPx4" target="_blank" class="video-card tilt-card">
-      <div class="video-thumb">
-        <img src="https://i.ytimg.com/vi/81Jd5m6BPx4/hqdefault.jpg" loading="lazy" decoding="async" alt="TE RECUERDO">
-        <div class="video-play">▶</div>
+<div class="case-section reveal">
+  <div class="video-cards-grid">
+    <a href="https://www.youtube.com/watch?v=81Jd5m6BPx4" target="_blank" rel="noopener" class="video-card-mg">
+      <div class="video-card-thumb">
+        <img src="https://i.ytimg.com/vi/81Jd5m6BPx4/hqdefault.jpg" loading="lazy" alt="TE RECUERDO">
+        <div class="video-card-play">▶</div>
       </div>
-      <div class="video-meta">
-        <div class="video-tag">Video minuto · Ficción · 2016</div>
-        <div class="video-title"><em>"Te</em> recuerdo<em>"</em></div>
-        <div class="video-desc">Primer video minuto de Magoya. Estrenado en el Festival Interbarrial Audiovisual (FIBAV) de la Universidad Nacional de Lanús.</div>
-        <div class="video-link">Ver en YouTube</div>
+      <div class="video-card-body">
+        <div class="video-card-tag">Video minuto · Ficción · 2016</div>
+        <div class="video-card-title">"<span class="grad">Te recuerdo</span>"</div>
+        <p class="video-card-desc">Primer video minuto de Magoya. Estrenado en el Festival Interbarrial Audiovisual (FIBAV) de la Universidad Nacional de Lanús.</p>
+        <span class="video-card-link">Ver en YouTube →</span>
       </div>
     </a>
 
-    <a href="https://www.youtube.com/watch?v=R9RDNs-set4" target="_blank" class="video-card tilt-card">
-      <div class="video-thumb">
-        <img src="https://i.ytimg.com/vi/R9RDNs-set4/hqdefault.jpg" loading="lazy" decoding="async" alt="Cine argentino VS Hollywood">
-        <div class="video-play">▶</div>
+    <a href="https://www.youtube.com/watch?v=R9RDNs-set4" target="_blank" rel="noopener" class="video-card-mg">
+      <div class="video-card-thumb">
+        <img src="https://i.ytimg.com/vi/R9RDNs-set4/hqdefault.jpg" loading="lazy" alt="Cine argentino VS Hollywood">
+        <div class="video-card-play">▶</div>
       </div>
-      <div class="video-meta">
-        <div class="video-tag">Ensayo · Recomendados · 2020</div>
-        <div class="video-title">Cine <em>argentino</em> VS <em>Hollywood</em></div>
-        <div class="video-desc">Cinco películas argentinas que dialogan con el imaginario hollywoodense. Producido durante la cuarentena.</div>
-        <div class="video-link">Ver en YouTube</div>
+      <div class="video-card-body">
+        <div class="video-card-tag">Ensayo · Recomendados · 2020</div>
+        <div class="video-card-title">Cine <span class="grad">argentino</span> VS Hollywood</div>
+        <p class="video-card-desc">Cinco películas argentinas que dialogan con el imaginario hollywoodense. Producido durante la cuarentena.</p>
+        <span class="video-card-link">Ver en YouTube →</span>
       </div>
     </a>
   </div>
+</div>
 
-  <a href="https://www.youtube.com/@magoyaproducciones1167" target="_blank" class="channel-cta">
-    <div>
-      <div class="cta-text">Ver el canal completo</div>
-      <div class="cta-handle">@magoyaproducciones</div>
-    </div>
-    <div class="cta-arrow">→</div>
+<!-- Cierre -->
+<div class="case-section-narrow reveal">
+  <div class="case-highlight">
+    <div class="case-highlight-label">Damián Lencina · sobre Magoya</div>
+    <p>"Magoya fue mi taller de pruebas, mi escenario, mi película para formarme como comunicador y creador de historias, de imágenes, de expresiones. <strong>Todo empezó ahí.</strong>"</p>
+  </div>
+</div>
+
+<!-- Case nav -->
+<div class="case-nav">
+  <a href="caso_coto.html" class="case-nav-item">
+    <div class="case-nav-direction">← Anterior · Caso 02</div>
+    <div class="case-nav-title">Medios de Pago · El método</div>
   </a>
-</section>
-
-<!-- VIDEO: Por qué hacemos Magoya -->
-<section class="bg-warm case-section video-placeholder-section">
-  <div class="reveal">
-    <div class="section-tag">La motivación</div>
-    <h2>Por qué seguimos<br>haciendo <em>esto</em>.</h2>
-    <p class="section-body">
-      Magoya no es un proyecto con fines de lucro. Es el lugar donde todo empezó y donde sigo aprendiendo a contar. En este video explico por qué.
-    </p>
-  </div>
-  <div class="video-placeholder reveal">
-    <div class="video-placeholder-inner">
-      <div class="video-placeholder-icon">▶</div>
-      <div class="video-placeholder-label">Video próximamente</div>
-      <div class="video-placeholder-sub">Magoya: por qué hacemos esto — V3 · A cámara · ~90 seg</div>
-    </div>
-  </div>
-</section>
-
-<!-- CIERRE -->
-<section class="closing">
-  <p class="closing-quote">
-    "Magoya fue mi taller de pruebas, mi escenario, mi película para formarme como comunicador y creador de historias, de imágenes, de expresiones. <em>Todo empezó ahí.</em>"
-  </p>
-  <div class="closing-author">Damián Lencina · sobre Magoya</div>
-</section>
-
-<!-- transición → oscuro -->
-<div class="transition-down-dark"></div>
-
-<section class="bg-dark footer-cta">
-  <div class="reveal">
-    <div class="footer-cta-tag">Contacto</div>
-    <h2>¿Tenés un proyecto<br>de formación que <em>merece</em><br>ser una experiencia?</h2>
-    <p class="footer-cta-sub">Si buscás diseño instruccional, producción audiovisual o una mirada integral sobre tu e-learning, hablemos.</p>
-    <div class="contact-options">
-      <a href="mailto:dami.lencina21@gmail.com" class="cta-btn">Escribime por mail</a>
-      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="cta-btn cta-btn--outline">LinkedIn</a>
-    </div>
-    <div class="footer-foot">
-      <div>© <span class="footer-year">2026</span> · Damián Lencina</div>
-      <div>Buenos Aires · Argentina</div>
-      <div>
-        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
-        · 
-        <a href="https://www.instagram.com/magoyacine" target="_blank" rel="noopener" class="footer-link">Instagram</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="footer-nav">
-  <a href="caso_coto.html">← Caso anterior</a>
-  <a href="caso_ia.html">Siguiente caso →</a>
+  <a href="caso_ia.html" class="case-nav-item case-nav-item--next">
+    <div class="case-nav-direction">Siguiente · Caso 04</div>
+    <div class="case-nav-title">Aprender a crear con IA</div>
+  </a>
 </div>
 
+<!-- Footer -->
+<section class="footer-cta">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-tag">Trabajemos juntos</div>
+      <h2>¿Tenés un proyecto de formación que <span class="grad">merece</span> ser una experiencia?</h2>
+      <p class="footer-cta-sub">Si buscás diseño instruccional, producción audiovisual o una mirada integral sobre tu e-learning, hablemos.</p>
+      <div class="contact-actions">
+        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
+          Escribime
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">LinkedIn</a>
+      </div>
+    </div>
 
-
-
-<!-- BACK TO TOP -->
-<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+    <div class="footer-fin">
+      <div class="footer-fin-text">End of file</div>
+      <div class="footer-fin-meta">© <span class="footer-year">2026</span> · DL · v2.0/Z</div>
+    </div>
+  </div>
+</section>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose">✕</button>
   <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt=""></div>
 </div>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
 
 <script src="script.js"></script>
 </body>

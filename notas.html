@@ -3,245 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notas — Damián Lencina</title>
+  <title>Notas — Damián Lencina · Diseño de aprendizaje</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Notas de Damián Lencina sobre e-learning, diseño instruccional, producción audiovisual e IA.">
+  <meta name="description" content="Notas sobre e-learning, diseño, producción audiovisual e IA. Damián Lencina · Diseño de aprendizaje.">
   <style>
-    .notas-hero { padding: var(--section-pad-v-lg) var(--side-pad) var(--section-pad-v); }
-    .notas-grid {
+    .notas-hero {
+      padding: 160px var(--side-pad) 80px;
       max-width: var(--content-width);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--gap-m);
-      padding: 0 var(--side-pad) var(--section-pad-v);
+      position: relative;
     }
+    .notas-hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: var(--t-h1);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      margin-bottom: 32px;
+      max-width: 18ch;
+    }
+    .notas-hero h1 .grad {
+      background: var(--aurora-grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .notas-hero p {
+      font-size: var(--t-lead);
+      line-height: 1.5;
+      color: var(--ink-mid);
+      max-width: 60ch;
+    }
+
+    .notas-wrap {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
     .nota-card {
-      background: white;
-      border: 1px solid var(--line-light);
+      background: var(--bg);
+      border: 1px solid var(--ink-line-soft);
       border-radius: var(--radius-l);
-      padding: var(--gap-l);
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      box-shadow: var(--shadow-s);
-      transition: transform 0.3s var(--ease-out), box-shadow 0.3s, border-color 0.3s;
+      padding: 40px;
+      transition: border-color 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+      cursor: pointer;
     }
     .nota-card:hover {
+      border-color: var(--ink-line);
       transform: translateY(-4px);
-      box-shadow: var(--shadow-l), var(--shadow-gold);
-      border-color: rgba(201,168,76,0.35);
+      box-shadow: var(--shadow-m);
     }
     .nota-card--featured {
-      border-left: 3px solid var(--burgundy);
+      background: var(--bg-dark);
+      color: var(--ink-invert);
+      border-color: transparent;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 48px;
     }
+    .nota-card--featured::before {
+      content: '';
+      position: absolute;
+      top: -40%; right: -20%;
+      width: 70%; height: 80%;
+      background: radial-gradient(ellipse, rgba(139,92,246,0.35) 0%, rgba(99,102,241,0.15) 40%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .nota-card--featured > * { position: relative; z-index: 1; }
+
     .nota-meta {
       display: flex;
       align-items: center;
-      gap: var(--gap-s);
-      margin-bottom: var(--gap-m);
+      gap: 16px;
       flex-wrap: wrap;
+      margin-bottom: 20px;
+      font-family: var(--type-mono);
+      font-size: var(--t-tag);
+      color: var(--ink-dim);
     }
+    .nota-card--featured .nota-meta { color: rgba(255,255,255,0.5); }
     .nota-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-label);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--burgundy);
-      background: var(--burgundy-soft);
-      padding: 3px 10px;
-      border-radius: 100px;
-      font-weight: 500;
+      padding: 4px 10px;
+      background: var(--bg-tint);
+      color: var(--ink);
+      border-radius: var(--radius-s);
+      letter-spacing: 0.02em;
     }
-    .nota-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-label);
-      color: var(--ink-faint);
-      letter-spacing: 0.1em;
+    .nota-card--featured .nota-tag {
+      background: var(--aurora-grad);
+      color: var(--bg);
     }
-    .nota-time {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: var(--type-label);
-      color: var(--ink-faint);
-      letter-spacing: 0.1em;
-    }
+    .nota-date { letter-spacing: 0.02em; }
+    .nota-time { letter-spacing: 0.02em; }
+
     .nota-title {
       font-family: 'Inter', sans-serif;
       font-weight: 600;
-      font-size: var(--type-h3);
+      font-size: var(--t-h2);
       line-height: 1.1;
-      letter-spacing: -0.025em;
+      letter-spacing: -0.035em;
       color: var(--ink);
-      text-wrap: balance;
-      margin-bottom: var(--gap-s);
+      margin-bottom: 16px;
     }
-    .nota-title em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+    .nota-card--featured .nota-title { color: var(--ink-invert); }
+    .nota-title .grad {
+      background: var(--aurora-grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
     .nota-desc {
-      font-size: var(--type-body);
-      line-height: 1.65;
-      color: var(--ink-soft);
-      text-wrap: pretty;
-      margin-bottom: var(--gap-m);
+      font-size: var(--t-body-l);
+      line-height: 1.6;
+      color: var(--ink-mid);
+      margin-bottom: 20px;
     }
+    .nota-card--featured .nota-desc { color: rgba(255,255,255,0.75); }
+
+    .nota-body {
+      font-size: var(--t-body);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+    }
+    .nota-body p { margin-bottom: 16px; }
+
     .nota-cta {
-      font-size: var(--type-small);
-      font-weight: 600;
-      color: var(--burgundy);
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: gap 0.2s;
+      font-size: var(--t-small);
+      font-weight: 500;
+      color: var(--ink);
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+      transition: gap 0.2s var(--ease-out);
     }
-    .nota-card:hover .nota-cta { gap: 10px; }
-    .nota-cta::after { content: '→'; }
+    .nota-card:hover .nota-cta { gap: 12px; }
+    .nota-card--featured .nota-cta {
+      color: var(--ink-invert);
+      border-bottom-color: var(--ink-invert);
+    }
+
     .notas-wip {
       max-width: var(--content-width);
-      margin: 0 auto var(--section-pad-v);
-      padding: 0 var(--side-pad);
-    }
-    .notas-wip-inner {
-      background: var(--light-warm);
-      border: 1px dashed var(--line-light-strong);
+      margin: 64px auto 0;
+      padding: 32px 40px;
+      background: var(--bg-tint);
+      border: 1px solid var(--ink-line-soft);
       border-radius: var(--radius-l);
-      padding: var(--gap-l);
       text-align: center;
     }
-    .notas-wip-inner p {
-      font-size: var(--type-body);
-      color: var(--ink-dim);
-      line-height: 1.6;
+    .notas-wip p {
+      font-size: var(--t-body);
+      color: var(--ink-mid);
+      line-height: 1.5;
     }
-    .notas-wip-inner strong { color: var(--ink-soft); }
-    @media (min-width: 700px) {
-      .notas-grid { grid-template-columns: 1fr 1fr; }
-      .nota-card--featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-l); align-items: start; }
-      .nota-card--featured .nota-meta { grid-column: 1 / -1; }
+    .notas-wip a {
+      color: var(--ink);
+      font-weight: 600;
+      border-bottom: 1px solid var(--ink-line);
+      transition: border-color 0.2s;
+    }
+    .notas-wip a:hover { border-bottom-color: var(--ink); }
+
+    @media (max-width: 720px) {
+      .nota-card--featured {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 32px 24px;
+      }
+      .nota-card { padding: 28px 24px; }
     }
   </style>
 </head>
-<body>
+<body class="case-page">
 
-<nav class="nav" id="nav">
-  <a href="index.html" class="nav-logo">DL <span>·</span> 2026</a>
-  <div class="nav-mark">Notas</div>
-  <div class="nav-links">
-    <a href="index.html#trabajo">Trabajo</a>
-    <a href="index.html#servicios">Servicios</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="index.html#contacto">Contacto</a>
-  </div>
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-mark">DL <span>·</span> Notas</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#trabajo">Trabajo</a></li>
+    <li><a href="index.html#metodo">Método</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="index.html#servicios">Servicios</a></li>
+    <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <div class="scroll-progress" id="scrollProgress"></div>
-<div class="page-transition" id="pageTransition">
-  <div class="page-transition-mark">DL · 2026</div>
-</div>
 
 <!-- HERO -->
-<section class="bg-light notas-hero">
-  <div class="reveal" style="max-width: var(--content-width); margin: 0 auto;">
-    <div class="section-tag">Notas</div>
-    <h1 style="font-family:'Inter',sans-serif;font-weight:600;font-size:clamp(40px,7vw,80px);line-height:1;letter-spacing:-0.035em;color:var(--ink);text-wrap:balance;margin-bottom:var(--gap-m);">
-      Lo que pienso<br>cuando <em style="font-style:italic;color:var(--burgundy);font-weight:500;">diseño</em>.
-    </h1>
-    <p style="font-size:var(--type-body-lg);line-height:1.65;color:var(--ink-soft);max-width:var(--text-width);text-wrap:pretty;">
-      No un blog de posteos semanales. Notas sobre e-learning, diseño, producción audiovisual e IA — escritas cuando tengo algo que vale la pena decir.
-    </p>
-  </div>
+<section class="notas-hero">
+  <a href="index.html" class="case-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Volver al portfolio
+  </a>
+
+  <div class="case-tag">Notas · Pensamiento en proceso</div>
+
+  <h1>
+    Lo que pienso cuando <span class="grad">diseño</span>.
+  </h1>
+
+  <p>
+    No un blog de posteos semanales. Notas sobre e-learning, diseño, producción audiovisual e IA — escritas cuando tengo algo que vale la pena decir.
+  </p>
 </section>
 
-<div class="transition-down-warm"></div>
+<!-- Notas -->
+<section style="padding: 40px var(--side-pad) var(--gap-3xl);">
+  <div class="notas-wrap reveal-stagger">
 
-<!-- NOTAS -->
-<section class="bg-warm" style="padding: var(--section-pad-v) 0;">
-
-  <div class="notas-grid reveal-stagger">
-
-    <!-- Nota 1 — Featured -->
-    <div class="nota-card nota-card--featured">
-      <div class="nota-meta">
-        <span class="nota-tag">E-Learning</span>
-        <span class="nota-date">Mayo 2026</span>
-        <span class="nota-time">· 4 min de lectura</span>
-      </div>
+    <!-- Nota featured -->
+    <article class="nota-card nota-card--featured">
       <div>
-        <h2 class="nota-title">Por qué el video corporativo<br>suele ser un <em>desastre</em>.</h2>
+        <div class="nota-meta">
+          <span class="nota-tag">E-Learning</span>
+          <span class="nota-date">Mayo 2026</span>
+          <span class="nota-time">· 4 min de lectura</span>
+        </div>
+        <h2 class="nota-title">Por qué el video corporativo suele ser un <span class="grad">desastre</span>.</h2>
         <p class="nota-desc">
-          La mayoría de los videos de capacitación son aburridos por las mismas tres razones. No es presupuesto, no es tecnología. Es criterio narrativo — o la falta de él. Después de producir decenas de videos en planta, aprendí exactamente qué los hace funcionar o fallar.
+          La mayoría de los videos de capacitación son aburridos por las mismas tres razones. No es presupuesto, no es tecnología. Es <strong>criterio narrativo</strong> — o la falta de él. Después de producir decenas de videos en planta, aprendí exactamente qué los hace funcionar o fallar.
         </p>
-        <span class="nota-cta">Leer nota</span>
+        <span class="nota-cta">Leer nota →</span>
       </div>
-      <div>
-        <p style="font-size:var(--type-body);line-height:1.7;color:var(--warm-mid);text-wrap:pretty;">
-          El primer error es confundir información con relato. Un video que lista los pasos de un proceso es un manual en movimiento, no un video. El segundo es filmar a alguien que no quiere estar frente a la cámara — se nota en cada cuadro. El tercero, y el más difícil de corregir, es no tener una pregunta central: ¿qué quiero que el espectador sienta al terminar de verlo?
-        </p>
-        <p style="font-size:var(--type-body);line-height:1.7;color:var(--warm-mid);text-wrap:pretty;margin-top:var(--gap-s);">
-          Estas no son observaciones abstractas. Son diagnósticos que hice sobre videos que existían antes de que yo llegara al área, y sobre primeros intentos propios que no funcionaron. La diferencia entre un video que se ve hasta el final y uno que se cierra a los 40 segundos no está en la resolución ni en la música — está en si hay algo que querer saber.
-        </p>
+      <div class="nota-body">
+        <p>El primer error es confundir información con relato. Un video que lista los pasos de un proceso es un manual en movimiento, no un video. El segundo es filmar a alguien que no quiere estar frente a la cámara — se nota en cada cuadro. El tercero, y el más difícil de corregir, es no tener una pregunta central: ¿qué quiero que el espectador sienta al terminar de verlo?</p>
+        <p>Estas no son observaciones abstractas. Son diagnósticos que hice sobre videos que existían antes de que yo llegara al área, y sobre primeros intentos propios que no funcionaron. La diferencia entre un video que se ve hasta el final y uno que se cierra a los 40 segundos no está en la resolución ni en la música — está en si hay algo que querer saber.</p>
       </div>
-    </div>
+    </article>
 
     <!-- Nota 2 -->
-    <div class="nota-card">
+    <article class="nota-card">
       <div class="nota-meta">
         <span class="nota-tag">Diseño</span>
         <span class="nota-date">Abril 2026</span>
         <span class="nota-time">· 3 min</span>
       </div>
-      <h2 class="nota-title">Lo que el cine me enseñó<br>sobre el <em>e-learning</em>.</h2>
+      <h2 class="nota-title">Lo que el cine me enseñó sobre el <span class="grad">e-learning</span>.</h2>
       <p class="nota-desc">
-        Hay una pregunta que me hago antes de empezar cualquier curso: ¿qué historia quiero contar? No qué contenidos quiero transmitir. Qué historia. Esa diferencia cambia todo lo que viene después.
+        Hay una pregunta que me hago antes de empezar cualquier curso: ¿qué historia quiero contar? No qué contenidos quiero transmitir. <strong>Qué historia.</strong> Esa diferencia cambia todo lo que viene después.
       </p>
-      <span class="nota-cta">Leer nota</span>
-    </div>
+      <span class="nota-cta">Leer nota →</span>
+    </article>
 
     <!-- Nota 3 -->
-    <div class="nota-card">
+    <article class="nota-card">
       <div class="nota-meta">
         <span class="nota-tag">IA</span>
         <span class="nota-date">Mayo 2026</span>
         <span class="nota-time">· 5 min</span>
       </div>
-      <h2 class="nota-title">Cómo diseñar una evaluación<br>que no sea un <em>trámite</em>.</h2>
+      <h2 class="nota-title">Cómo diseñar una evaluación que no sea un <span class="grad">trámite</span>.</h2>
       <p class="nota-desc">
-        La evaluación es la parte más subestimada del diseño instruccional. La mayoría son un formulario disfrazado de aprendizaje. Hay tres cosas que cambian eso — y ninguna requiere tecnología sofisticada.
+        La evaluación es la parte más subestimada del diseño instruccional. La mayoría son un formulario disfrazado de aprendizaje. <strong>Hay tres cosas que cambian eso</strong> — y ninguna requiere tecnología sofisticada.
       </p>
-      <span class="nota-cta">Leer nota</span>
-    </div>
+      <span class="nota-cta">Leer nota →</span>
+    </article>
 
   </div>
 
-  <!-- Próximamente -->
-  <div class="notas-wip">
-    <div class="notas-wip-inner reveal">
-      <p>Más notas en proceso. <strong>Si querés que te avise cuando salgan</strong>, escribime a <a href="mailto:dami.lencina21@gmail.com" class="link-burgundy">dami.lencina21@gmail.com</a>.</p>
-    </div>
+  <!-- WIP -->
+  <div class="notas-wip reveal">
+    <p>Más notas en proceso. <strong>Si querés que te avise cuando salgan</strong>, escribime a <a href="mailto:dami.lencina21@gmail.com">dami.lencina21@gmail.com</a>.</p>
   </div>
-
 </section>
 
-<div class="transition-down-dark"></div>
-
-<section class="bg-dark footer-cta" id="contacto">
-  <div class="reveal">
-    <div class="footer-cta-tag">Contacto</div>
-    <h2>¿Tenés un proyecto<br>de formación que <em>merece</em><br>ser una experiencia?</h2>
-    <p class="footer-cta-sub">Trabajo con empresas que quieren ir más allá de las diapositivas.</p>
-    <div class="contact-options">
-      <a href="mailto:dami.lencina21@gmail.com" class="cta-btn">Escribime por mail</a>
-      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="cta-btn cta-btn--outline">LinkedIn</a>
+<!-- Footer CTA -->
+<section class="footer-cta" id="contacto">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-tag">Contacto</div>
+      <h2>¿Tenés un proyecto de formación que <span class="grad">merece</span> ser una experiencia?</h2>
+      <p class="footer-cta-sub">Trabajo con empresas que quieren ir más allá de las diapositivas.</p>
+      <div class="contact-actions">
+        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
+          Escribime
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">LinkedIn</a>
+      </div>
     </div>
-    <div class="footer-foot">
-      <div>© 2026 · Damián Lencina</div>
-      <div>Buenos Aires · Argentina</div>
+
+    <div class="footer-fin">
+      <div class="footer-fin-text">End of file</div>
+      <div class="footer-fin-meta">© <span class="footer-year">2026</span> · DL · v2.0/Z</div>
     </div>
   </div>
 </section>
 
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
 <script src="script.js"></script>
 </body>
 </html>
