@@ -3896,3 +3896,150 @@ body.dark-mode .testimonio-float {
 }
 body.dark-mode .stat,
 body.dark-mode .about-meta-item { background: rgba(255,255,255,0.04); }
+
+/* ── HERO PILLS como navegación ── */
+.hero-pill-nav {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  font-weight: inherit;
+  transition: transform 0.2s var(--ease-out),
+              box-shadow 0.2s var(--ease-out),
+              opacity 0.2s;
+}
+.hero-pill-nav:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139,42,58,0.18);
+}
+.hero-pill-nav:active { transform: translateY(0); }
+
+/* ══════════════════════════════════════════
+   HAMBURGER MENU (mobile)
+══════════════════════════════════════════ */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 1001;
+  margin-left: auto;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.3s var(--ease-out), opacity 0.3s, width 0.3s;
+  transform-origin: center;
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.nav-hamburger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Nav oscuro cuando está en bg-dark scrolled */
+nav.scrolled .nav-hamburger span { background: var(--ink-bright); }
+
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+
+  /* Menú desplegable */
+  .nav-links {
+    display: none !important; /* override al display:none general */
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26, 24, 20, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    z-index: 999;
+    padding: 0;
+    list-style: none;
+    margin: 0;
+  }
+  .nav-links.nav-open {
+    display: flex !important;
+  }
+  /* Links del menú abierto */
+  .nav-links li { width: 100%; text-align: center; }
+  .nav-links a,
+  .nav-links > a {
+    display: block;
+    font-size: clamp(24px, 7vw, 40px);
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.03em;
+    color: var(--ink-bright);
+    padding: 18px 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+    border: none;
+  }
+  .nav-links a:hover,
+  .nav-links > a:hover { color: var(--rose); }
+  .nav-links a::after,
+  .nav-links > a::after { display: none; }
+
+  /* Dark mode toggle: moverlo a la izquierda en mobile para no chocar con back-to-top */
+  .dark-mode-toggle {
+    bottom: 24px;
+    right: auto;
+    left: 24px;
+  }
+
+  /* Hero pills: más área táctil en mobile */
+  .hero-pill-nav {
+    padding: 10px 18px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Testimonio en mobile: sin flotante, padding ajustado */
+  .testimonio-float {
+    margin: var(--gap-m) 0 0;
+    flex-direction: column;
+    gap: var(--gap-s);
+  }
+  .testimonio-strip {
+    padding: 0 var(--side-pad) var(--gap-m);
+  }
+
+  /* Video placeholder: menos alto en mobile */
+  .video-placeholder-inner {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Quiz: más compacto */
+  .quiz-btn {
+    padding: 16px 18px;
+  }
+  .quiz-btn-text { font-size: var(--type-small); }
+
+  /* Servicios: una columna */
+  .servicios-grid { grid-template-columns: 1fr; }
+  .servicio-card--primary { grid-column: auto; display: flex; flex-direction: column; }
+  .servicio-card--primary .servicio-items { border-left: none; padding-left: 0; border-top: 1px solid var(--line-light); padding-top: var(--gap-s); }
+}
+
+/* Muy pequeño — 375px */
+@media (max-width: 400px) {
+  .hero-pills { flex-wrap: wrap; gap: 8px; }
+  .hero-pill-nav { font-size: 11px; padding: 8px 14px; }
+  .quiz-section { padding: 40px var(--side-pad); }
+}

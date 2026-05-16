@@ -928,3 +928,77 @@ document.querySelectorAll('[data-carousel-b]').forEach(wrap => {
   s.textContent = `@keyframes fadeInUp { from { opacity:0; transform:translate(-50%,12px); } to { opacity:1; transform:translate(-50%,0); } }`;
   document.head.appendChild(s);
 })();
+
+// ============================================================
+// HERO PILLS — navegación con scroll suave y toast
+// ============================================================
+(function setupHeroPills() {
+  const pills = document.querySelectorAll('.hero-pill-nav');
+  if (!pills.length) return;
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const targetSel = pill.dataset.target;
+      const msg = pill.dataset.msg;
+
+      // Toast
+      const toast = document.createElement('div');
+      toast.style.cssText = `
+        position:fixed; bottom:32px; left:50%; transform:translateX(-50%);
+        background:var(--burgundy); color:white; padding:12px 24px;
+        border-radius:100px; font-size:14px; font-weight:500;
+        z-index:9999; box-shadow:0 4px 20px rgba(0,0,0,0.3);
+        animation: fadeInUp 0.3s ease both; white-space:nowrap;
+      `;
+      toast.textContent = msg;
+      document.body.appendChild(toast);
+
+      // Scroll
+      setTimeout(() => {
+        const el = document.querySelector(targetSel);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => toast.remove(), 2500);
+      }, 200);
+    });
+  });
+})();
+
+// ============================================================
+// HAMBURGER MENU
+// ============================================================
+(function setupHamburger() {
+  const btn = document.getElementById('navHamburger');
+  const links = document.getElementById('navLinks');
+  if (!btn || !links) return;
+
+  function openMenu() {
+    btn.setAttribute('aria-expanded', 'true');
+    links.classList.add('nav-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    btn.setAttribute('aria-expanded', 'false');
+    links.classList.remove('nav-open');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  // Cerrar al clickear un link
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // Cerrar si el viewport se agranda (orientación)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeMenu();
+  });
+})();

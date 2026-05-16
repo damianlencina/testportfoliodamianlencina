@@ -708,15 +708,18 @@
 <div class="ambient-glow glow-1"></div>
 <div class="ambient-glow glow-2"></div>
 
-<nav>
+<nav id="nav">
   <div class="nav-mark">DL <span>·</span> 2026</div>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks">
     <li><a href="#trabajo">Trabajo</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="notas.html">Notas</a></li>
     <li><a href="sobre.html">Sobre</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- BARRA DE PROGRESO -->
@@ -736,9 +739,9 @@
     <!-- Columna izquierda: presentación -->
     <div class="hero-left">
       <div class="hero-pills">
-        <span class="tag-pill tag-burgundy">Diseño de aprendizaje</span>
-        <span class="tag-pill tag-navy">Realización audiovisual</span>
-        <span class="tag-pill tag-muted">e-Learning corporativo</span>
+        <button class="tag-pill tag-burgundy hero-pill-nav" data-target="#trabajo" data-msg="Casos de diseño instruccional y e-learning corporativo.">● Diseño de aprendizaje</button>
+        <button class="tag-pill tag-navy hero-pill-nav" data-target="#card-magoya" data-msg="Producción audiovisual independiente y corporativa.">Realización audiovisual</button>
+        <button class="tag-pill tag-muted hero-pill-nav" data-target="#servicios" data-msg="Servicios concretos para tu proyecto de formación.">e-Learning corporativo</button>
       </div>
 
       <h1>
@@ -907,7 +910,7 @@
       <div class="work-status active">Ver caso</div>
     </a>
 
-    <a href="caso_magoya.html" class="work-item tilt-card">
+    <a href="caso_magoya.html" class="work-item tilt-card" id="card-magoya">
       <div class="work-thumb">
         <img src="img/magoya_backstage.jpg" loading="lazy" decoding="async" width="800" height="600" alt="Magoya Producciones — backstage">
       </div>
