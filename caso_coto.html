@@ -3,13 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caso 02 — Medios de Pago · El método de punta a punta · Damián Lencina</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<title>Caso 02 — Medios de Pago · El método de punta a punta · Damián Lencina</title>
+<meta name="description" content="Cómo se hace un curso desde cero: diseño instruccional, sistema visual, video filmado en planta y evaluación. El caso más completo del portfolio.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/caso_coto.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/caso_coto.html">
+<meta property="og:title" content="Caso 02 — Medios de Pago · El método de punta a punta · Damián Lencina">
+<meta property="og:description" content="Cómo se hace un curso desde cero: diseño instruccional, sistema visual, video filmado en planta y evaluación. El caso más completo del portfolio.">
+<meta property="og:image" content="https://damianlencina.com/img/mp_slide_01_portada.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Curso COTO Medios de Pago">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Caso 02 — Medios de Pago · El método de punta a punta · Damián Lencina">
+<meta name="twitter:description" content="Cómo se hace un curso desde cero: diseño instruccional, sistema visual, video filmado en planta y evaluación. El caso más completo del portfolio.">
+<meta name="twitter:image" content="https://damianlencina.com/img/mp_slide_01_portada.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Curso Medios de Pago — COTO CICSA",
+  "description": "Cómo se hace un curso desde cero: diseño instruccional, sistema visual, video filmado en planta y evaluación. El caso más completo del portfolio.",
+  "url": "https://damianlencina.com/caso_coto.html",
+  "author": {
+    "@type": "Person",
+    "name": "Damián Lencina",
+    "url": "https://damianlencina.com/"
+  },
+  "image": "https://damianlencina.com/img/mp_slide_01_portada.jpg"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Medios de Pago condensa el método de trabajo: guion, diseño visual, interactividad y video filmado en planta. El caso que muestra cómo se hace un curso de punta a punta.">
-</head>
+  </head>
 <body class="case-page">
 
 <!-- NAV -->
@@ -20,6 +73,10 @@
     <li><a href="index.html#metodo">Método</a></li>
     <li><a href="index.html#sobre">Sobre</a></li>
     <li><a href="index.html#servicios">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
     <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
@@ -97,18 +154,18 @@
 
 <div class="case-section reveal">
   <figure class="case-image">
-    <img src="img/01_moodle_general.jpg" loading="lazy" alt="Moodle vista general">
+    <picture><source srcset="img/01_moodle_general.webp" type="image/webp"><img loading="lazy" alt="Moodle vista general" src="img/01_moodle_general.jpg"></picture>
     <figcaption class="case-image-caption">Mis Cursos · Vista del usuario final</figcaption>
   </figure>
 
   <div class="case-image-pair">
     <figure>
       <span class="tag">Backend · Ventas</span>
-      <img src="img/10_categorias_cajas.jpg" loading="lazy" alt="Backend Línea de Ventas">
+      <picture><source srcset="img/10_categorias_cajas.webp" type="image/webp"><img loading="lazy" alt="Backend Línea de Ventas" src="img/10_categorias_cajas.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">Backend · Frescos</span>
-      <img src="img/11_categorias_frescos.jpg" loading="lazy" alt="Backend Productos Frescos">
+      <picture><source srcset="img/11_categorias_frescos.webp" type="image/webp"><img loading="lazy" alt="Backend Productos Frescos" src="img/11_categorias_frescos.jpg"></picture>
     </figure>
   </div>
 </div>
@@ -151,7 +208,7 @@
   </div>
 
   <figure class="case-image">
-    <img src="img/mp_moodle_curso.jpg" loading="lazy" alt="Curso Medios de Pago en Moodle">
+    <picture><source srcset="img/mp_moodle_curso.webp" type="image/webp"><img loading="lazy" alt="Curso Medios de Pago en Moodle" src="img/mp_moodle_curso.jpg"></picture>
     <figcaption class="case-image-caption">Curso publicado · "Lo que tenés que saber" + "Poné a prueba lo aprendido"</figcaption>
   </figure>
 </div>
@@ -166,31 +223,31 @@
   <div class="case-image-pair">
     <figure>
       <span class="tag">01 · Portada</span>
-      <img src="img/mp_slide_01_portada.jpg" loading="lazy" alt="Portada del curso">
+      <picture><source srcset="img/mp_slide_01_portada.webp" type="image/webp"><img loading="lazy" alt="Portada del curso" src="img/mp_slide_01_portada.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">02 · Efectivo</span>
-      <img src="img/mp_slide_02_efectivo.jpg" loading="lazy" alt="Seguridad de billetes">
+      <picture><source srcset="img/mp_slide_02_efectivo.webp" type="image/webp"><img loading="lazy" alt="Seguridad de billetes" src="img/mp_slide_02_efectivo.jpg"></picture>
     </figure>
   </div>
   <div class="case-image-pair">
     <figure>
       <span class="tag">03 · Validez</span>
-      <img src="img/mp_slide_03_validez.jpg" loading="lazy" alt="Control de validez de tarjeta">
+      <picture><source srcset="img/mp_slide_03_validez.webp" type="image/webp"><img loading="lazy" alt="Control de validez de tarjeta" src="img/mp_slide_03_validez.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">04 · Billeteras virtuales</span>
-      <img src="img/mp_slide_04_billeteras.jpg" loading="lazy" alt="Billeteras virtuales">
+      <picture><source srcset="img/mp_slide_04_billeteras.webp" type="image/webp"><img loading="lazy" alt="Billeteras virtuales" src="img/mp_slide_04_billeteras.jpg"></picture>
     </figure>
   </div>
   <div class="case-image-pair">
     <figure>
       <span class="tag">05 · Operaciones especiales</span>
-      <img src="img/mp_slide_05_cashback.jpg" loading="lazy" alt="Operaciones Especiales con débito">
+      <picture><source srcset="img/mp_slide_05_cashback.webp" type="image/webp"><img loading="lazy" alt="Operaciones Especiales con débito" src="img/mp_slide_05_cashback.jpg"></picture>
     </figure>
     <figure>
       <span class="tag aurora">27 · Cierre</span>
-      <img src="img/mp_slide_06_final.jpg" loading="lazy" alt="Cierre del curso">
+      <picture><source srcset="img/mp_slide_06_final.webp" type="image/webp"><img loading="lazy" alt="Cierre del curso" src="img/mp_slide_06_final.jpg"></picture>
     </figure>
   </div>
 </div>
@@ -203,7 +260,7 @@
 
 <div class="case-section reveal">
   <figure class="case-image">
-    <img src="img/mp_evaluacion.jpg" loading="lazy" alt="Evaluación del curso">
+    <picture><source srcset="img/mp_evaluacion.webp" type="image/webp"><img loading="lazy" alt="Evaluación del curso" src="img/mp_evaluacion.jpg"></picture>
     <figcaption class="case-image-caption">Cuestionario final · 10 preguntas · validación de aprendizaje</figcaption>
   </figure>
 </div>
@@ -253,21 +310,21 @@
   <div class="case-image-pair">
     <figure>
       <span class="tag">Word · Guion</span>
-      <img src="img/mp_word.jpg" loading="lazy" alt="Word con guion">
+      <picture><source srcset="img/mp_word.webp" type="image/webp"><img loading="lazy" alt="Word con guion" src="img/mp_word.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">Illustrator · Diseño</span>
-      <img src="img/mp_illustrator_general.jpg" loading="lazy" alt="Illustrator">
+      <picture><source srcset="img/mp_illustrator_general.webp" type="image/webp"><img loading="lazy" alt="Illustrator" src="img/mp_illustrator_general.jpg"></picture>
     </figure>
   </div>
   <div class="case-image-pair">
     <figure>
       <span class="tag">Storyline · Interactividad</span>
-      <img src="img/mp_storyline.jpg" loading="lazy" alt="Storyline 27 escenas">
+      <picture><source srcset="img/mp_storyline.webp" type="image/webp"><img loading="lazy" alt="Storyline 27 escenas" src="img/mp_storyline.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">Premiere · Video</span>
-      <img src="img/mp_premiere.jpg" loading="lazy" alt="Premiere">
+      <picture><source srcset="img/mp_premiere.webp" type="image/webp"><img loading="lazy" alt="Premiere" src="img/mp_premiere.jpg"></picture>
     </figure>
   </div>
 </div>
@@ -283,21 +340,21 @@
   <div class="case-image-pair">
     <figure>
       <span class="tag">00:06 · Intro</span>
-      <img src="img/mp_video_01_intro.jpg" loading="lazy" alt="Frame intro">
+      <picture><source srcset="img/mp_video_01_intro.webp" type="image/webp"><img loading="lazy" alt="Frame intro" src="img/mp_video_01_intro.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">00:15 · Planta</span>
-      <img src="img/mp_video_02_planta.jpg" loading="lazy" alt="Frame planta">
+      <picture><source srcset="img/mp_video_02_planta.webp" type="image/webp"><img loading="lazy" alt="Frame planta" src="img/mp_video_02_planta.jpg"></picture>
     </figure>
   </div>
   <div class="case-image-pair">
     <figure>
       <span class="tag">00:27 · Venta</span>
-      <img src="img/mp_video_03_inicio.jpg" loading="lazy" alt="Frame inicio">
+      <picture><source srcset="img/mp_video_03_inicio.webp" type="image/webp"><img loading="lazy" alt="Frame inicio" src="img/mp_video_03_inicio.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">01:05 · Banda magnética</span>
-      <img src="img/mp_video_04_banda.jpg" loading="lazy" alt="Frame banda magnética">
+      <picture><source srcset="img/mp_video_04_banda.webp" type="image/webp"><img loading="lazy" alt="Frame banda magnética" src="img/mp_video_04_banda.jpg"></picture>
     </figure>
   </div>
 </div>
@@ -335,11 +392,11 @@
   <div class="case-image-pair">
     <figure>
       <span class="tag">BTS · Punto de venta</span>
-      <img src="img/14_coto_rodaje_caja.jpg" loading="lazy" alt="Rodaje en caja">
+      <picture><source srcset="img/14_coto_rodaje_caja.webp" type="image/webp"><img loading="lazy" alt="Rodaje en caja" src="img/14_coto_rodaje_caja.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">BTS · Pescadería</span>
-      <img src="img/13_coto_rodaje_pescaderia.jpg" loading="lazy" alt="Rodaje en pescadería">
+      <picture><source srcset="img/13_coto_rodaje_pescaderia.webp" type="image/webp"><img loading="lazy" alt="Rodaje en pescadería" src="img/13_coto_rodaje_pescaderia.jpg"></picture>
     </figure>
   </div>
 </div>

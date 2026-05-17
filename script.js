@@ -6,6 +6,46 @@
 (function() {
   'use strict';
 
+  /* ============================ Theme toggle ============================ */
+  const THEME_KEY = 'dl-theme';
+  const root = document.documentElement;
+
+  function getInitialTheme() {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === 'light' || saved === 'dark') return saved;
+    // Respetar prefers-color-scheme
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme, animated = false) {
+    if (animated) {
+      root.classList.add('theme-transitioning');
+      setTimeout(() => root.classList.remove('theme-transitioning'), 500);
+    }
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+    } else {
+      root.removeAttribute('data-theme');
+    }
+    // Actualizar theme-color del navegador
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#ffffff');
+  }
+
+  // Aplicar tema inicial (sin animación)
+  applyTheme(getInitialTheme(), false);
+
+  // Wireup del botón
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next, true);
+    });
+  }
+
   /* ============================ NAV scroll state ============================ */
   const nav = document.getElementById('nav');
   const scrollProgress = document.getElementById('scrollProgress');

@@ -3,8 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Página no encontrada · Damián Lencina</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<meta name="robots" content="noindex, nofollow">
+<title>404 — Página no encontrada · Damián Lencina</title>
+<meta name="description" content="La página que estás buscando no existe. Volvé al portfolio o explorá los casos.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/404.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/404.html">
+<meta property="og:title" content="404 — Página no encontrada · Damián Lencina">
+<meta property="og:description" content="La página que estás buscando no existe. Volvé al portfolio o explorá los casos.">
+<meta property="og:image" content="https://damianlencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="404">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="404 — Página no encontrada · Damián Lencina">
+<meta name="twitter:description" content="La página que estás buscando no existe. Volvé al portfolio o explorá los casos.">
+<meta name="twitter:image" content="https://damianlencina.com/img/og_image.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">

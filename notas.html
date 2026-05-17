@@ -3,12 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notas — Damián Lencina · Diseño de aprendizaje</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<title>Notas — Pensamiento en proceso · Damián Lencina</title>
+<meta name="description" content="Notas sobre e-learning corporativo, diseño instruccional, producción audiovisual e IA aplicada a la formación.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/notas.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/notas.html">
+<meta property="og:title" content="Notas — Pensamiento en proceso · Damián Lencina">
+<meta property="og:description" content="Notas sobre e-learning corporativo, diseño instruccional, producción audiovisual e IA aplicada a la formación.">
+<meta property="og:image" content="https://damianlencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Notas — Damián Lencina">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Notas — Pensamiento en proceso · Damián Lencina">
+<meta name="twitter:description" content="Notas sobre e-learning corporativo, diseño instruccional, producción audiovisual e IA aplicada a la formación.">
+<meta name="twitter:image" content="https://damianlencina.com/img/og_image.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Notas — Damián Lencina",
+  "description": "Notas sobre e-learning corporativo, diseño instruccional, producción audiovisual e IA aplicada a la formación.",
+  "url": "https://damianlencina.com/notas.html",
+  "author": { "@type": "Person", "name": "Damián Lencina" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Notas sobre e-learning, diseño, producción audiovisual e IA. Damián Lencina · Diseño de aprendizaje.">
   <style>
     .notas-hero {
       padding: 160px var(--side-pad) 80px;
@@ -198,6 +246,10 @@
     <li><a href="index.html#metodo">Método</a></li>
     <li><a href="sobre.html">Sobre</a></li>
     <li><a href="index.html#servicios">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
     <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">

@@ -3,13 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Caso 01 — La transformación e-learning en COTO · Damián Lencina</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<title>Caso 01 — Siete años transformando el e-learning de COTO · Damián Lencina</title>
+<meta name="description" content="De junior a responsable del área. La historia de cómo armamos desde cero el sistema de e-learning de COTO CICSA: Moodle institucional, método replicable, 19.852 personas capacitadas.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/caso_transformacion.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/caso_transformacion.html">
+<meta property="og:title" content="Caso 01 — Siete años transformando el e-learning de COTO · Damián Lencina">
+<meta property="og:description" content="De junior a responsable del área. La historia de cómo armamos desde cero el sistema de e-learning de COTO CICSA: Moodle institucional, método replicable, 19.852 personas capacitadas.">
+<meta property="og:image" content="https://damianlencina.com/img/despues_storyline_portada.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Caso COTO transformación e-learning">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Caso 01 — Siete años transformando el e-learning de COTO · Damián Lencina">
+<meta name="twitter:description" content="De junior a responsable del área. La historia de cómo armamos desde cero el sistema de e-learning de COTO CICSA: Moodle institucional, método replicable, 19.852 personas capacitadas.">
+<meta name="twitter:image" content="https://damianlencina.com/img/despues_storyline_portada.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Transformación e-learning COTO CICSA",
+  "description": "De junior a responsable del área. La historia de cómo armamos desde cero el sistema de e-learning de COTO CICSA: Moodle institucional, método replicable, 19.852 personas capacitadas.",
+  "url": "https://damianlencina.com/caso_transformacion.html",
+  "author": {
+    "@type": "Person",
+    "name": "Damián Lencina",
+    "url": "https://damianlencina.com/"
+  },
+  "image": "https://damianlencina.com/img/despues_storyline_portada.jpg"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="De junior a responsable del área. Siete años transformando el e-learning de COTO CICSA: de piezas sueltas sin sistema a una plataforma que alcanza a casi veinte mil colaboradores.">
-</head>
+  </head>
 <body class="case-page">
 
 <!-- NAV -->
@@ -20,6 +73,10 @@
     <li><a href="index.html#metodo">Método</a></li>
     <li><a href="index.html#sobre">Sobre</a></li>
     <li><a href="index.html#servicios">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
     <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
@@ -101,11 +158,11 @@
   <div class="case-image-pair">
     <figure>
       <span class="tag">Antes · Plataforma</span>
-      <img src="img/antes_moodle_viejo.jpg" loading="lazy" alt="Plataforma anterior — Moodle sin identidad">
+      <picture><source srcset="img/antes_moodle_viejo.webp" type="image/webp"><img loading="lazy" alt="Plataforma anterior — Moodle sin identidad" src="img/antes_moodle_viejo.jpg"></picture>
     </figure>
     <figure>
       <span class="tag">Antes · Curso</span>
-      <img src="img/antes_avatar.jpg" loading="lazy" alt="Curso anterior — avatar genérico">
+      <picture><source srcset="img/antes_avatar.webp" type="image/webp"><img loading="lazy" alt="Curso anterior — avatar genérico" src="img/antes_avatar.jpg"></picture>
     </figure>
   </div>
 </div>
@@ -162,11 +219,11 @@
   <div class="case-image-pair">
     <figure>
       <span class="tag">Antes</span>
-      <img src="img/antes_avatar.jpg" loading="lazy" alt="Diseño anterior — sin sistema">
+      <picture><source srcset="img/antes_avatar.webp" type="image/webp"><img loading="lazy" alt="Diseño anterior — sin sistema" src="img/antes_avatar.jpg"></picture>
     </figure>
     <figure>
       <span class="tag aurora">Ahora</span>
-      <img src="img/despues_storyline_portada.jpg" loading="lazy" alt="Nuevo estándar — Medios de Pago">
+      <picture><source srcset="img/despues_storyline_portada.webp" type="image/webp"><img loading="lazy" alt="Nuevo estándar — Medios de Pago" src="img/despues_storyline_portada.jpg"></picture>
     </figure>
   </div>
 </div>
@@ -188,7 +245,7 @@
 
 <div class="case-section reveal">
   <figure class="case-image">
-    <img src="img/despues_moodle_envios_nuevo.jpg" loading="lazy" alt="Nueva plataforma Moodle institucional">
+    <picture><source srcset="img/despues_moodle_envios_nuevo.webp" type="image/webp"><img loading="lazy" alt="Nueva plataforma Moodle institucional" src="img/despues_moodle_envios_nuevo.jpg"></picture>
     <figcaption class="case-image-caption">Moodle COTO · plataforma institucional</figcaption>
   </figure>
 </div>

@@ -3,12 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre mí — Damián Lencina · Diseño de aprendizaje</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<title>Sobre mí — Damián Lencina</title>
+<meta name="description" content="Comunicador social y realizador audiovisual. Responsable de e-Learning en COTO CICSA. +7 años diseñando experiencias formativas. Buenos Aires, Argentina.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/sobre.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/sobre.html">
+<meta property="og:title" content="Sobre mí — Damián Lencina">
+<meta property="og:description" content="Comunicador social y realizador audiovisual. Responsable de e-Learning en COTO CICSA. +7 años diseñando experiencias formativas. Buenos Aires, Argentina.">
+<meta property="og:image" content="https://damianlencina.com/img/retrato.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Damián Lencina · retrato">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sobre mí — Damián Lencina">
+<meta name="twitter:description" content="Comunicador social y realizador audiovisual. Responsable de e-Learning en COTO CICSA. +7 años diseñando experiencias formativas. Buenos Aires, Argentina.">
+<meta name="twitter:image" content="https://damianlencina.com/img/retrato.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Sobre Damián Lencina",
+  "description": "Comunicador social y realizador audiovisual. Responsable de e-Learning en COTO CICSA. +7 años diseñando experiencias formativas. Buenos Aires, Argentina.",
+  "url": "https://damianlencina.com/sobre.html",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Damián Lencina",
+    "jobTitle": "Responsable de e-Learning",
+    "worksFor": { "@type": "Organization", "name": "COTO CICSA" }
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Damián Lencina · Comunicador social y realizador audiovisual. Responsable de e-Learning en COTO CICSA. +7 años diseñando experiencias formativas.">
   <style>
     /* Sobre — hero */
     .sobre-hero {
@@ -170,6 +223,10 @@
     <li><a href="index.html#metodo">Método</a></li>
     <li><a href="sobre.html">Sobre</a></li>
     <li><a href="index.html#servicios">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
     <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
@@ -197,7 +254,7 @@
 <section class="about-section" style="padding-top: 40px;">
   <div class="about-grid reveal">
     <div class="about-portrait">
-      <img src="img/retrato.jpg" loading="eager" alt="Damián Lencina">
+      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="eager" alt="Damián Lencina" src="img/retrato.jpg"></picture>
     </div>
     <div class="about-content">
       <div class="about-text">

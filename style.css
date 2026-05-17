@@ -70,6 +70,9 @@ ul, ol { list-style: none; }
   --shadow-l: 0 12px 40px rgba(10,10,10,0.08);
   --shadow-aurora: 0 8px 32px rgba(99,102,241,0.12);
 
+  /* Nav bg para transparencia con blur */
+  --nav-bg: rgba(255,255,255,0.72);
+
   --type-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 
   --t-micro:   11px;
@@ -88,6 +91,57 @@ ul, ol { list-style: none; }
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
+/* === DARK THEME === */
+:root[data-theme="dark"] {
+  --bg:            #0a0a0a;
+  --bg-soft:       #0e0e10;
+  --bg-tint:       #131316;
+  --bg-card:       #131316;
+  --bg-dark:       #050507;
+  --bg-dark-soft:  #0a0a0a;
+
+  --ink:           #f5f5f7;
+  --ink-soft:      #e5e5e7;
+  --ink-mid:       #a1a1a6;
+  --ink-dim:       #86868b;
+  --ink-faint:     #6e6e73;
+  --ink-line:      #38383d;
+  --ink-line-soft: #1d1d20;
+  --ink-invert:    #0a0a0a;
+
+  --shadow-s: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-m: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-l: 0 12px 40px rgba(0,0,0,0.5);
+
+  --nav-bg: rgba(10,10,10,0.72);
+}
+
+/* Botones primary en dark — fondo blanco con texto dark queda bien, pero el ghost necesita ajuste */
+:root[data-theme="dark"] .btn-ghost {
+  color: var(--ink);
+  border-color: var(--ink-line);
+}
+:root[data-theme="dark"] .btn-ghost:hover {
+  border-color: var(--ink);
+  background: rgba(255,255,255,0.04);
+}
+/* nav-cta en dark — el fondo blanco invertido queda un toque agresivo, lo suavizo */
+:root[data-theme="dark"] .nav-cta {
+  background: var(--ink);
+  color: var(--bg);
+}
+:root[data-theme="dark"] .nav-cta:hover {
+  background: var(--ink-soft);
+}
+
+/* Transición global suave al cambiar de tema (sólo cuando NO es la primera carga) */
+:root.theme-transitioning,
+:root.theme-transitioning *,
+:root.theme-transitioning *::before,
+:root.theme-transitioning *::after {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease !important;
+}
+
 ::selection { background: var(--ink); color: var(--bg); }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -104,7 +158,7 @@ nav#nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255,255,255,0.72);
+  background: var(--nav-bg);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid transparent;
@@ -153,6 +207,36 @@ nav#nav.scrolled { border-bottom-color: var(--ink-line-soft); }
   transition: transform 0.2s var(--ease-out), background 0.2s;
 }
 .nav-cta:hover { background: var(--ink-soft); color: var(--bg); transform: scale(0.98); }
+
+/* === Theme toggle === */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-tint);
+  border: 1px solid var(--ink-line-soft);
+  color: var(--ink-mid);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s var(--ease-out);
+  margin-right: 4px;
+}
+.theme-toggle:hover {
+  background: var(--ink-line-soft);
+  color: var(--ink);
+  transform: scale(1.05);
+}
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+  transition: opacity 0.25s, transform 0.4s var(--ease-out);
+}
+.theme-toggle .icon-moon { display: block; }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 .nav-hamburger {
   display: none;
   flex-direction: column;

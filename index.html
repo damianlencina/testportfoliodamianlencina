@@ -3,19 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Damián Lencina — Diseño de aprendizaje · v2.0/Z</title>
-<meta name="description" content="Damián Lencina · Diseño de aprendizaje y realización audiovisual. +7 años en e-learning corporativo. Buenos Aires, Argentina.">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+<meta name="theme-color" content="#ffffff">
+
+<title>Damián Lencina — Diseño de aprendizaje y realización audiovisual</title>
+<meta name="description" content="Diseño experiencias formativas para empresas con la atención de un realizador audiovisual. Responsable de e-Learning en COTO CICSA. +7 años, 19.852 personas capacitadas.">
+<meta name="author" content="Damián Lencina">
+<meta name="keywords" content="diseño instruccional, e-learning corporativo, articulate storyline, moodle, producción audiovisual, capacitación, Buenos Aires, Argentina">
+
+<link rel="canonical" href="https://damianlencina.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/">
+<meta property="og:title" content="Damián Lencina — Diseño de aprendizaje y realización audiovisual">
+<meta property="og:description" content="Diseño experiencias formativas para empresas con la atención de un realizador audiovisual. +7 años en e-learning corporativo.">
+<meta property="og:image" content="https://damianlencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Damián Lencina — Diseño de aprendizaje">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Damián Lencina — Diseño de aprendizaje">
+<meta name="twitter:description" content="Diseño experiencias formativas para empresas con mirada audiovisual.">
+<meta name="twitter:image" content="https://damianlencina.com/img/og_image.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Damián Lencina",
+  "jobTitle": "Responsable de e-Learning · Diseñador instruccional · Realizador audiovisual",
+  "url": "https://damianlencina.com/",
+  "image": "https://damianlencina.com/img/retrato.jpg",
+  "sameAs": [
+    "https://www.linkedin.com/in/damian-ezequiel-lencina/",
+    "https://www.instagram.com/magoyacine"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "COTO CICSA"
+  },
+  "alumniOf": {
+    "@type": "EducationalOrganization",
+    "name": "Universidad Nacional de Moreno"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "email": "dami.lencina21@gmail.com",
+  "knowsAbout": [
+    "Diseño instruccional",
+    "E-learning corporativo",
+    "Articulate Storyline",
+    "Moodle LMS",
+    "Producción audiovisual",
+    "Adobe Premiere Pro",
+    "After Effects"
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-
-<meta property="og:title" content="Damián Lencina — Diseño de aprendizaje · v2.0/Z">
-<meta property="og:description" content="Diseño experiencias formativas con mirada de realizador audiovisual. +7 años en e-learning corporativo.">
-<meta property="og:image" content="img/og_image.jpg">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
 
 </head>
 <body>
@@ -28,6 +99,10 @@
     <li><a href="#metodo">Método</a></li>
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#servicios">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
     <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
   </ul>
   <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
@@ -80,7 +155,7 @@
       <!-- Video card a la derecha -->
       <aside class="hero-video">
         <button class="hero-video-card" id="avatarPlayer" aria-label="Reproducir video de presentación">
-          <img src="img/retrato_avatar.jpg" alt="Damián Lencina" loading="eager" class="hero-video-img">
+          <picture><source srcset="img/retrato_avatar.webp" type="image/webp"><img alt="Damián Lencina" loading="eager" class="hero-video-img" src="img/retrato_avatar.jpg"></picture>
           <span class="hero-video-overlay" aria-hidden="true"></span>
           <span class="hero-video-play" aria-hidden="true">
             <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
@@ -180,7 +255,7 @@
 
       <a href="caso_coto.html" class="work-item">
         <div class="work-thumb">
-          <img src="img/mp_slide_01_portada.jpg" loading="lazy" alt="Curso Medios de Pago — portada">
+          <picture><source srcset="img/mp_slide_01_portada.webp" type="image/webp"><img loading="lazy" alt="Curso Medios de Pago — portada" src="img/mp_slide_01_portada.jpg"></picture>
         </div>
         <div class="work-body">
           <div class="work-byline">Caso 02 · COTO · Medios de Pago</div>
@@ -287,7 +362,7 @@
 
   <div class="about-grid reveal">
     <div class="about-portrait">
-      <img src="img/retrato.jpg" loading="lazy" alt="Damián Lencina">
+      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="lazy" alt="Damián Lencina" src="img/retrato.jpg"></picture>
     </div>
     <div class="about-content">
       <div class="about-text">
