@@ -61,9 +61,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="style" href="style.css">
+<link rel="stylesheet" href="style.css">
   </head>
 <body class="case-page">
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
 
 <!-- NAV -->
 <nav id="nav">
@@ -87,7 +90,7 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- HERO -->
-<section class="case-hero">
+<section id="main" class="case-hero">
   <a href="index.html#trabajo" class="case-back">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Volver al portfolio
@@ -296,7 +299,7 @@
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose">✕</button>
-  <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt=""></div>
+  <div class="lightbox-img-wrap"><img loading="lazy" id="lightboxImg" src="" alt=""></div>
 </div>
 
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>

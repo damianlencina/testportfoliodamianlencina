@@ -47,7 +47,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="style" href="style.css">
+<link rel="stylesheet" href="style.css">
   <style>
     .nf {
       min-height: 100vh;
@@ -159,13 +160,15 @@
   </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
 
 <!-- NAV mínima -->
 <nav id="nav">
   <a href="index.html" class="nav-mark" style="color: var(--ink-invert);">DL <span style="color: rgba(255,255,255,0.5);">·</span> 404</a>
 </nav>
 
-<section class="nf">
+<section id="main" class="nf">
   <div class="nf-inner">
     <div class="nf-code">404</div>
     <div class="nf-tag">Página no encontrada</div>

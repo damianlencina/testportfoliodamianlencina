@@ -144,6 +144,56 @@ ul, ol { list-style: none; }
 
 ::selection { background: var(--ink); color: var(--bg); }
 
+/* === Skip link (accesibilidad) === */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: var(--radius-s);
+  font-family: var(--type-mono);
+  font-size: var(--t-small);
+  font-weight: 500;
+  z-index: 1000;
+  transform: translateY(-200%);
+  transition: transform 0.2s var(--ease-out);
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* === Focus visible mejorado para accesibilidad por teclado === */
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.btn:focus-visible,
+.theme-toggle:focus-visible,
+.nav-cta:focus-visible {
+  outline-offset: 4px;
+}
+
+/* === Respeto a usuarios con prefer-reduced-motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--ink-line); border-radius: 999px; }

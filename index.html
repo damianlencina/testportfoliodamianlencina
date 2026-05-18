@@ -86,10 +86,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="style.css">
 <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
 
 <!-- NAV -->
 <nav id="nav">
@@ -114,7 +117,7 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- HERO -->
-<section class="hero">
+<section id="main" class="hero">
   <div class="hero-inner">
 
     <!-- Status bar -->
@@ -155,7 +158,7 @@
       <!-- Video card a la derecha -->
       <aside class="hero-video">
         <button class="hero-video-card" id="avatarPlayer" aria-label="Reproducir video de presentación">
-          <picture><source srcset="img/retrato_avatar.webp" type="image/webp"><img alt="Damián Lencina" loading="eager" class="hero-video-img" src="img/retrato_avatar.jpg"></picture>
+          <picture><source srcset="img/retrato_avatar.webp" type="image/webp"><img alt="Damián Lencina" loading="eager" fetchpriority="high" class="hero-video-img" src="img/retrato_avatar.jpg"></picture>
           <span class="hero-video-overlay" aria-hidden="true"></span>
           <span class="hero-video-play" aria-hidden="true">
             <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
@@ -542,7 +545,7 @@
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose">✕</button>
-  <div class="lightbox-img-wrap"><img id="lightboxImg" src="" alt=""></div>
+  <div class="lightbox-img-wrap"><img loading="lazy" id="lightboxImg" src="" alt=""></div>
 </div>
 
 <script src="script.js"></script>

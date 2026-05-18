@@ -61,7 +61,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="style" href="style.css">
+<link rel="stylesheet" href="style.css">
   <style>
     /* Sobre — hero */
     .sobre-hero {
@@ -214,6 +215,8 @@
   </style>
 </head>
 <body class="case-page">
+<a href="#main" class="skip-link">Saltar al contenido principal</a>
+
 
 <!-- NAV -->
 <nav id="nav">
@@ -237,7 +240,7 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- HERO -->
-<section class="sobre-hero">
+<section id="main" class="sobre-hero">
   <a href="index.html" class="case-back">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Volver al portfolio
@@ -254,7 +257,7 @@
 <section class="about-section" style="padding-top: 40px;">
   <div class="about-grid reveal">
     <div class="about-portrait">
-      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="eager" alt="Damián Lencina" src="img/retrato.jpg"></picture>
+      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="eager" fetchpriority="high" alt="Damián Lencina" src="img/retrato.jpg"></picture>
     </div>
     <div class="about-content">
       <div class="about-text">
