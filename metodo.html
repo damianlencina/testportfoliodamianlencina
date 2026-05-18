@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<title>Método — Cómo trabajo · Damián Lencina</title>
+<meta name="description" content="Cuatro etapas, una forma de trabajar. El método que uso para diseñar e-learning corporativo: diagnóstico, diseño, producción e implementación. Tiempos, entregables y cómo es trabajar conmigo.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/metodo.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/metodo.html">
+<meta property="og:title" content="Método — Cómo trabajo · Damián Lencina">
+<meta property="og:description" content="Cuatro etapas, una forma de trabajar. Cómo es trabajar conmigo: diagnóstico, diseño, producción e implementación.">
+<meta property="og:image" content="https://damianlencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Método — Damián Lencina">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Método — Cómo trabajo · Damián Lencina">
+<meta name="twitter:description" content="Cuatro etapas, una forma de trabajar. Cómo es trabajar conmigo.">
+<meta name="twitter:image" content="https://damianlencina.com/img/og_image.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Método de diseño instruccional",
+  "description": "Proceso de cuatro etapas para diseñar y producir cursos e-learning corporativos: diagnóstico, diseño, producción e implementación.",
+  "provider": {
+    "@type": "Person",
+    "name": "Damián Lencina",
+    "url": "https://damianlencina.com/"
+  },
+  "areaServed": "Argentina"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+  /* === Hero del método === */
+  .metodo-hero {
+    padding: 160px var(--side-pad) 80px;
+    max-width: var(--content-width);
+    margin: 0 auto;
+    position: relative;
+  }
+  .metodo-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h1);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 18ch;
+  }
+  .metodo-hero h1 .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .metodo-hero p.lead {
+    font-size: var(--t-lead);
+    line-height: 1.5;
+    color: var(--ink-mid);
+    max-width: 60ch;
+    margin-bottom: 48px;
+  }
+  .metodo-hero p.lead strong { color: var(--ink); font-weight: 600; }
+
+  /* Overview de las 4 etapas */
+  .metodo-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    overflow: hidden;
+    border: 1px solid var(--ink-line-soft);
+    margin-top: 48px;
+  }
+  .metodo-overview-item {
+    background: var(--bg);
+    padding: 28px 24px;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .metodo-overview-item:hover { background: var(--bg-tint); }
+  .metodo-overview-num {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .metodo-overview-num::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--aurora-grad);
+  }
+  .metodo-overview-title {
+    font-size: var(--t-h4);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .metodo-overview-time {
+    font-family: var(--type-mono);
+    font-size: var(--t-micro);
+    color: var(--ink-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* === Etapa detallada === */
+  .etapa {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 96px var(--side-pad);
+    border-top: 1px solid var(--ink-line-soft);
+  }
+  .etapa:first-of-type { border-top: 0; padding-top: 80px; }
+  .etapa-head {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+    align-items: baseline;
+  }
+  .etapa-num-block {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+  }
+  .etapa-num-block .big {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(28px, 2.8vw, 40px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: transparent;
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin: 8px 0;
+  }
+  .etapa h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h2);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .etapa h2 .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .etapa-intro {
+    font-size: var(--t-body-l);
+    line-height: 1.6;
+    color: var(--ink-mid);
+    max-width: 60ch;
+  }
+  .etapa-intro strong { color: var(--ink); font-weight: 600; }
+
+  /* Grid de detalles dentro de la etapa */
+  .etapa-detail {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+  }
+  .etapa-detail-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 1024px) {
+    .etapa-head { grid-template-columns: 1fr; gap: 16px; }
+    .etapa-detail { grid-template-columns: 1fr; gap: 32px; }
+    .etapa-detail-content { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .etapa-block {
+    background: var(--bg-tint);
+    border: 1px solid var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    padding: 28px;
+  }
+  .etapa-block-label {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .etapa-block-label::before {
+    content: '';
+    width: 14px; height: 1px;
+    background: var(--ink-line);
+  }
+  .etapa-block ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .etapa-block li {
+    font-size: var(--t-body);
+    line-height: 1.55;
+    color: var(--ink-mid);
+    padding-left: 18px;
+    position: relative;
+  }
+  .etapa-block li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10px;
+    width: 8px; height: 1px;
+    background: var(--ink-dim);
+  }
+  .etapa-block li strong { color: var(--ink); font-weight: 600; }
+  .etapa-block p {
+    font-size: var(--t-body);
+    line-height: 1.6;
+    color: var(--ink-mid);
+  }
+  .etapa-block p + p { margin-top: 12px; }
+
+  /* === Timeline visual === */
+  .timeline-section {
+    background: var(--bg-tint);
+    padding: var(--gap-3xl) var(--side-pad);
+    border-top: 1px solid var(--ink-line-soft);
+    border-bottom: 1px solid var(--ink-line-soft);
+  }
+  .timeline-wrap {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+  .timeline-track {
+    margin-top: 56px;
+    position: relative;
+  }
+  .timeline-bar {
+    height: 4px;
+    background: var(--bg);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--ink-line-soft);
+  }
+  .timeline-bar-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--aurora-grad);
+    transform-origin: left;
+  }
+  .timeline-phases {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    margin-top: 24px;
+    gap: 0;
+  }
+  .timeline-phase {
+    padding: 0 12px 0 0;
+    border-left: 2px solid var(--ink-line);
+    padding-left: 14px;
+  }
+  .timeline-phase:first-child { border-left-color: var(--aurora-1); }
+  .timeline-phase-num {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .timeline-phase-title {
+    font-size: var(--t-body);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .timeline-phase-time {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-mid);
+  }
+  @media (max-width: 720px) {
+    .timeline-phases { grid-template-columns: 1fr; gap: 16px; }
+    .timeline-phase { border-left: 2px solid var(--ink-line); padding-left: 16px; }
+    .timeline-bar { display: none; }
+  }
+
+  /* === Qué pasa si... === */
+  .escenarios {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: var(--gap-3xl) var(--side-pad);
+  }
+  .escenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .escenario {
+    background: var(--bg);
+    border: 1px solid var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    padding: 28px;
+    transition: border-color 0.3s, transform 0.3s var(--ease-out);
+  }
+  .escenario:hover {
+    border-color: var(--ink-line);
+    transform: translateY(-4px);
+  }
+  .escenario-q {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+  .escenario-title {
+    font-size: var(--t-h4);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+  .escenario-answer {
+    font-size: var(--t-body);
+    line-height: 1.6;
+    color: var(--ink-mid);
+  }
+  .escenario-answer strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 1024px) {
+    .escenarios-grid { grid-template-columns: 1fr; }
+  }
+
+  /* === FAQ === */
+  .faq-section {
+    background: var(--bg-tint);
+    padding: var(--gap-3xl) var(--side-pad);
+    border-top: 1px solid var(--ink-line-soft);
+  }
+  .faq-wrap {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+  }
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+    border-top: 1px solid var(--ink-line-soft);
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--ink-line-soft);
+  }
+  .faq-question {
+    padding: 24px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    font-size: var(--t-body-l);
+    font-weight: 600;
+    color: var(--ink);
+    list-style: none;
+    user-select: none;
+    transition: color 0.2s;
+  }
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question:hover { color: var(--ink-soft); }
+  .faq-toggle {
+    font-family: var(--type-mono);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink-dim);
+    transition: transform 0.3s var(--ease-out), color 0.2s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  details[open] .faq-toggle {
+    transform: rotate(45deg);
+    color: var(--ink);
+  }
+  .faq-answer {
+    padding: 0 0 24px 0;
+    font-size: var(--t-body);
+    line-height: 1.65;
+    color: var(--ink-mid);
+    max-width: 64ch;
+  }
+  .faq-answer p { margin-bottom: 12px; }
+  .faq-answer p:last-child { margin-bottom: 0; }
+  .faq-answer strong { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body class="case-page">
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-mark">DL <span>·</span> Método</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#trabajo">Trabajo</a></li>
+    <li><a href="metodo.html">Método</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
+    <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- HERO -->
+<section class="metodo-hero">
+  <a href="index.html" class="case-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Volver al portfolio
+  </a>
+
+  <div class="case-tag">Método · Cómo trabajo</div>
+
+  <h1>Cuatro etapas, una forma de <span class="grad">trabajar</span>.</h1>
+
+  <p class="lead">
+    No improviso. Cada curso que produje en los últimos siete años pasó por <strong>el mismo flujo de cuatro etapas</strong>: diagnóstico, diseño, producción e implementación. Es lo que hace que la calidad sea repetible — y lo que vas a ver acá en detalle.
+  </p>
+
+  <div class="metodo-overview">
+    <div class="metodo-overview-item">
+      <div class="metodo-overview-num">01 · Diagnóstico</div>
+      <div class="metodo-overview-title">Entender</div>
+      <div class="metodo-overview-time">1 semana</div>
+    </div>
+    <div class="metodo-overview-item">
+      <div class="metodo-overview-num">02 · Diseño</div>
+      <div class="metodo-overview-title">Estructurar</div>
+      <div class="metodo-overview-time">2 — 3 semanas</div>
+    </div>
+    <div class="metodo-overview-item">
+      <div class="metodo-overview-num">03 · Producción</div>
+      <div class="metodo-overview-title">Construir</div>
+      <div class="metodo-overview-time">3 — 5 semanas</div>
+    </div>
+    <div class="metodo-overview-item">
+      <div class="metodo-overview-num">04 · Implementación</div>
+      <div class="metodo-overview-title">Publicar</div>
+      <div class="metodo-overview-time">1 semana</div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 01 -->
+<section class="etapa">
+  <div class="etapa-head">
+    <div class="etapa-num-block">
+      Etapa 01
+      <span class="big">Diagnóstico</span>
+      ~ 1 semana
+    </div>
+    <div>
+      <h2>Entender qué hay que enseñar y a <span class="grad">quién</span>.</h2>
+      <p class="etapa-intro">
+        La etapa que más se subestima — y la que más decisiones evita después. <strong>Nadie firma un guion sin entender al público.</strong> Acá hablamos con los referentes del contenido, mapeamos los objetivos pedagógicos reales y definimos cómo se va a evaluar el aprendizaje.
+      </p>
+    </div>
+  </div>
+
+  <div class="etapa-detail">
+    <div></div>
+    <div class="etapa-detail-content">
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué hago</div>
+        <ul>
+          <li><strong>Entrevistas con el área dueña</strong> del contenido (1 o 2 sesiones de 60 min)</li>
+          <li>Análisis del público destinatario: edad, perfil, contexto operativo</li>
+          <li>Definición de objetivos pedagógicos medibles</li>
+          <li>Revisión de materiales previos si los hay (cursos viejos, manuales, normativas)</li>
+          <li>Propuesta de estructura general del curso</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué entrego</div>
+        <ul>
+          <li><strong>Documento de diagnóstico</strong> con objetivos, alcance y público</li>
+          <li>Mapa de unidades temáticas propuestas</li>
+          <li>Cronograma del proyecto con hitos claros</li>
+          <li>Decisión sobre formatos a producir (curso interactivo, video, infografía, etc.)</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué necesito de tu lado</div>
+        <ul>
+          <li>1-2 referentes del área disponibles para entrevistas</li>
+          <li>Acceso a materiales existentes (si los hay)</li>
+          <li>Claridad sobre cuántas personas van a tomar el curso y en qué contexto (sucursal, oficina, móvil)</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Por qué importa</div>
+        <p>Sin esta etapa lo que sigue se construye en falso. Conocí cursos hermosos visualmente que no servían porque nadie había preguntado <strong>qué tenía que aprender el operador real</strong> en su jornada concreta. El diagnóstico es la única forma de que lo demás tenga sentido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 02 -->
+<section class="etapa">
+  <div class="etapa-head">
+    <div class="etapa-num-block">
+      Etapa 02
+      <span class="big">Diseño</span>
+      ~ 2 a 3 semanas
+    </div>
+    <div>
+      <h2>Guion y sistema <span class="grad">visual</span>.</h2>
+      <p class="etapa-intro">
+        El curso se decide acá, no en producción. Armamos el <strong>guion instruccional completo</strong> (qué dice cada pantalla, qué se muestra, qué tiene que hacer el usuario) y el storyboard visual con identidad propia. Todo se aprueba antes de tocar Storyline.
+      </p>
+    </div>
+  </div>
+
+  <div class="etapa-detail">
+    <div></div>
+    <div class="etapa-detail-content">
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué hago</div>
+        <ul>
+          <li><strong>Guion instruccional</strong> en Word: contenido por unidad y diapositiva</li>
+          <li>Storyboard visual en Illustrator: cada pantalla bocetada</li>
+          <li>Sistema visual: paleta, tipografía, ilustraciones, infografías</li>
+          <li>Definición de momentos interactivos y evaluativos</li>
+          <li>Revisiones iterativas hasta aprobar el guion completo</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué entrego</div>
+        <ul>
+          <li><strong>Guion instruccional</strong> validado (típicamente 8-15 páginas)</li>
+          <li>Storyboard visual completo con todas las escenas</li>
+          <li>Manual de marca del curso (mini-guía visual)</li>
+          <li>Plan de producción audiovisual si aplica</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué necesito de tu lado</div>
+        <ul>
+          <li>Revisión y feedback en cada hito (te aviso con anticipación)</li>
+          <li>Aprobación formal del guion antes de producción</li>
+          <li>Si hay video: confirmar locación, fechas y personas a filmar</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Por qué importa</div>
+        <p>Modificar un guion cuesta un día. Modificar un curso ya armado cuesta una semana. <strong>El 80% de las decisiones críticas se toman en esta etapa</strong> — por eso me tomo el tiempo necesario para que quede bien antes de avanzar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 03 -->
+<section class="etapa">
+  <div class="etapa-head">
+    <div class="etapa-num-block">
+      Etapa 03
+      <span class="big">Producción</span>
+      ~ 3 a 5 semanas
+    </div>
+    <div>
+      <h2>Video, ilustración, <span class="grad">interactividad</span>.</h2>
+      <p class="etapa-intro">
+        La etapa más visible y la que más se asocia al e-learning. Construimos todo lo que el usuario va a ver: diapositivas interactivas en Storyline, video filmado o animado, infografías a medida. <strong>Si hay rodaje, lo dirijo yo en planta.</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="etapa-detail">
+    <div></div>
+    <div class="etapa-detail-content">
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué hago</div>
+        <ul>
+          <li>Armado en <strong>Articulate Storyline 360</strong>: capas, interactividad, navegación</li>
+          <li>Producción audiovisual: rodaje, edición en Premiere, motion en After Effects</li>
+          <li>Ilustración y diseño de elementos visuales en Illustrator</li>
+          <li>Locución y diseño sonoro si corresponde</li>
+          <li>Pre-tests internos con el equipo antes de entregar</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué entrego</div>
+        <ul>
+          <li><strong>Curso interactivo</strong> exportable como SCORM o HTML5</li>
+          <li>Videos en formato MP4 (1080p, optimizados)</li>
+          <li>Material gráfico fuente editable</li>
+          <li>Versión preliminar para revisión + versión final</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué necesito de tu lado</div>
+        <ul>
+          <li>Acceso a locaciones (planta, oficinas) si hay rodaje</li>
+          <li>1-2 personas disponibles para grabar (les ayudo con el guion)</li>
+          <li>Revisiones puntuales en checkpoints definidos (no continuas)</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Por qué importa</div>
+        <p>Es la etapa más larga porque <strong>la calidad audiovisual no se acelera sin perderla</strong>. Edito y dirijo yo mismo cada video — no tercerizo. Eso garantiza coherencia con todo el curso y un costo accesible que ninguna productora puede igualar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 04 -->
+<section class="etapa">
+  <div class="etapa-head">
+    <div class="etapa-num-block">
+      Etapa 04
+      <span class="big">Implementación</span>
+      ~ 1 semana
+    </div>
+    <div>
+      <h2>SCORM publicado y métricas <span class="grad">vivas</span>.</h2>
+      <p class="etapa-intro">
+        El curso no termina cuando se exporta. <strong>Lo publico en tu plataforma</strong>, configuro evaluaciones y reportes, hago pruebas con usuarios reales y dejo todo documentado para que tu equipo pueda mantenerlo. Después de la puesta en marcha hay un período de seguimiento.
+      </p>
+    </div>
+  </div>
+
+  <div class="etapa-detail">
+    <div></div>
+    <div class="etapa-detail-content">
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué hago</div>
+        <ul>
+          <li>Publicación en Moodle (u otra plataforma LMS compatible con SCORM)</li>
+          <li>Configuración de evaluaciones, calificaciones y certificados</li>
+          <li>Configuración de reportes de avance para tu equipo</li>
+          <li>Pruebas piloto con usuarios reales (1-2 sesiones)</li>
+          <li>Ajustes finales según feedback del piloto</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué entrego</div>
+        <ul>
+          <li><strong>Curso publicado y operativo</strong> en tu plataforma</li>
+          <li>Documentación técnica para mantenimiento</li>
+          <li>Reporte de piloto con métricas y observaciones</li>
+          <li>30 días de soporte post-implementación incluidos</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Qué necesito de tu lado</div>
+        <ul>
+          <li>Acceso administrador a la plataforma LMS</li>
+          <li>5-10 usuarios voluntarios para piloto</li>
+          <li>Definir quién será el referente interno post-lanzamiento</li>
+        </ul>
+      </div>
+      <div class="etapa-block">
+        <div class="etapa-block-label">Por qué importa</div>
+        <p>Un curso que nadie sabe usar es un curso muerto. <strong>Esta etapa garantiza que el curso funcione</strong> en condiciones reales: el operador entra, lo toma, lo aprueba, y tu equipo puede ver el resultado. Sin esto, lo anterior queda en una carpeta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE VISUAL -->
+<section class="timeline-section">
+  <div class="timeline-wrap">
+    <div class="section-tag" style="margin-bottom: 16px;">El proyecto completo</div>
+    <h2 class="section-h">De arranque a curso <span class="grad">publicado</span>.</h2>
+    <p class="section-lead">Un proyecto promedio toma entre <strong>7 y 10 semanas</strong>, dependiendo del alcance y la disponibilidad del equipo del cliente. Las primeras dos etapas son las más participativas — las dos últimas, más autónomas de mi parte.</p>
+
+    <div class="timeline-track">
+      <div class="timeline-bar">
+        <div class="timeline-bar-fill"></div>
+      </div>
+      <div class="timeline-phases">
+        <div class="timeline-phase">
+          <div class="timeline-phase-num">01</div>
+          <div class="timeline-phase-title">Diagnóstico</div>
+          <div class="timeline-phase-time">Semana 1</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-phase-num">02</div>
+          <div class="timeline-phase-title">Diseño</div>
+          <div class="timeline-phase-time">Semanas 2 — 4</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-phase-num">03</div>
+          <div class="timeline-phase-title">Producción</div>
+          <div class="timeline-phase-time">Semanas 5 — 9</div>
+        </div>
+        <div class="timeline-phase">
+          <div class="timeline-phase-num">04</div>
+          <div class="timeline-phase-title">Implementación</div>
+          <div class="timeline-phase-time">Semana 10</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ PASA SI -->
+<section class="escenarios">
+  <div class="section-tag" style="margin-bottom: 16px;">Situaciones</div>
+  <h2 class="section-h">¿Y si <span class="grad">pasa esto</span>?</h2>
+  <p class="section-lead">Los proyectos reales nunca son lineales. Estas son las situaciones que aparecen casi siempre — y cómo las manejo.</p>
+
+  <div class="escenarios-grid">
+    <div class="escenario">
+      <div class="escenario-q">¿Qué pasa si...</div>
+      <div class="escenario-title">Cambian el contenido a mitad del proyecto?</div>
+      <p class="escenario-answer">
+        Pasa más seguido de lo que parece. <strong>Hasta el final de la etapa 02 (diseño) los cambios son baratos</strong>: rehago el guion. De ahí en adelante evalúo impacto y ajustamos plazos o alcance. Lo conversamos siempre antes de tocar nada.
+      </p>
+    </div>
+    <div class="escenario">
+      <div class="escenario-q">¿Qué pasa si...</div>
+      <div class="escenario-title">Necesitan algo urgente, antes de un lanzamiento?</div>
+      <p class="escenario-answer">
+        Lo hablamos. Un MVP de 4-5 semanas es posible si <strong>el alcance se reduce de antemano</strong> (menos unidades, video más simple, evaluación más corta). Pero no comprimo a costa de calidad — prefiero decir que no.
+      </p>
+    </div>
+    <div class="escenario">
+      <div class="escenario-q">¿Qué pasa si...</div>
+      <div class="escenario-title">El equipo interno quiere participar de la producción?</div>
+      <p class="escenario-answer">
+        Buenísimo. <strong>Puedo formar a tu equipo durante el proyecto</strong> para que pueda mantener el sistema después. Lo hicimos en COTO — pasamos de 1 persona a 4 trabajando con el mismo método.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-wrap">
+    <div class="section-tag" style="margin-bottom: 16px;">Preguntas frecuentes</div>
+    <h2 class="section-h">Lo que <span class="grad">siempre</span> me preguntan.</h2>
+
+    <div class="faq-items">
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Trabajás con empresas chicas o sólo grandes?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Las dos. Lo que hago se adapta al alcance: una pyme puede necesitar un solo curso bien hecho, una corporación puede necesitar un sistema completo con docenas. <strong>Lo importante no es el tamaño sino que haya un compromiso real con la formación</strong>, no sólo querer "tener algo en el LMS".</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Puedo participar en alguna etapa específica si ya tengo equipo?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sí. Tomo proyectos completos pero también colaboraciones puntuales: ej. sólo el video del curso, sólo el diseño visual, sólo la implementación SCORM. Lo conversamos según lo que necesites.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Qué pasa después de los 30 días de soporte post-lanzamiento?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Lo definimos juntos. Puede ser un acuerdo de mantenimiento mensual (horas a demanda), un proyecto nuevo, o simplemente quedar disponible para consultas puntuales. <strong>No te ato a nada por contrato.</strong></p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Cuánto tarda un proyecto promedio?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Entre <strong>7 y 10 semanas</strong> para un curso completo (con video, interactividad y publicación). Si es algo más acotado puede ser desde 3-4 semanas. Si es un sistema completo con varios cursos, hablamos de meses.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Qué LMS soportás además de Moodle?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Cualquier LMS compatible con SCORM 1.2 o 2004 — que en la práctica es prácticamente cualquiera. He trabajado principalmente con Moodle, pero el output SCORM funciona en Cornerstone, Docebo, TalentLMS, Litmos, etc.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Hacés contenido en otros idiomas?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Mi trabajo principal es en <strong>español</strong> (rioplatense o neutro, según el público). Para otros idiomas trabajo con traductores y locutores nativos. Inglés sí lo manejo directamente.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Footer CTA -->
+<section class="footer-cta" id="contacto">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-tag">¿Empezamos?</div>
+      <h2>Te puedo aplicar este método a tu próximo <span class="grad">proyecto</span>.</h2>
+      <p class="footer-cta-sub">Si llegaste hasta acá ya sabés cómo trabajo. Lo siguiente es contarme qué necesitás y armamos algo concreto.</p>
+      <div class="contact-actions">
+        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
+          Escribime
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="servicios.html" class="btn btn-dark-ghost">Ver servicios</a>
+      </div>
+    </div>
+
+    <div class="footer-fin">
+      <div class="footer-fin-text">End of file</div>
+      <div class="footer-fin-meta">© <span class="footer-year">2026</span> · DL · v2.0/Z</div>
+    </div>
+  </div>
+</section>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

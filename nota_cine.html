@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<title>Lo que el cine me enseñó sobre el e-learning · Damián Lencina</title>
+<meta name="description" content="Hay una pregunta que me hago antes de empezar cualquier curso: ¿qué historia quiero contar? Esa diferencia cambia todo lo que viene después.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/nota_cine.html">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/nota_cine.html">
+<meta property="og:title" content="Lo que el cine me enseñó sobre el e-learning">
+<meta property="og:description" content="La pregunta que cambia todo: no qué contenidos transmitir, sino qué historia contar.">
+<meta property="og:image" content="https://damianlencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lo que el cine me enseñó sobre el e-learning">
+<meta name="twitter:description" content="La pregunta que cambia todo.">
+<meta name="twitter:image" content="https://damianlencina.com/img/og_image.jpg">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Lo que el cine me enseñó sobre el e-learning",
+  "description": "La pregunta que cambia todo: no qué contenidos transmitir, sino qué historia contar.",
+  "url": "https://damianlencina.com/nota_cine.html",
+  "author": {
+    "@type": "Person",
+    "name": "Damián Lencina",
+    "url": "https://damianlencina.com/"
+  },
+  "datePublished": "2026-04-20",
+  "image": "https://damianlencina.com/img/og_image.jpg"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+  /* === Estilos compartidos de nota (copiados de nota_video) === */
+  .nota-page { background: var(--bg); color: var(--ink); }
+  .nota-hero {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+    padding: 160px var(--side-pad) 64px;
+  }
+  .nota-meta-top {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 32px; font-family: var(--type-mono); font-size: var(--t-tag);
+    color: var(--ink-dim);
+  }
+  .nota-meta-top .tag {
+    padding: 4px 10px; background: var(--bg-tint); color: var(--ink);
+    border-radius: var(--radius-s); letter-spacing: 0.02em; font-weight: 500;
+  }
+  .nota-h1 {
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: clamp(36px, 5vw, 64px); line-height: 1.05; letter-spacing: -0.035em;
+    color: var(--ink); margin-bottom: 32px; max-width: 22ch;
+  }
+  .nota-h1 .grad { background: var(--aurora-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .nota-lead {
+    font-size: var(--t-lead); line-height: 1.5; color: var(--ink-mid);
+    max-width: 64ch; margin-bottom: 0;
+  }
+  .nota-lead strong { color: var(--ink); font-weight: 600; }
+
+  .nota-author-strip {
+    max-width: var(--content-narrow); margin: 0 auto;
+    padding: 32px var(--side-pad); display: flex; align-items: center; gap: 16px;
+    border-top: 1px solid var(--ink-line-soft); border-bottom: 1px solid var(--ink-line-soft);
+  }
+  .nota-author-img {
+    width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+    flex-shrink: 0; border: 1px solid var(--ink-line);
+  }
+  .nota-author-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+  .nota-author-info { display: flex; flex-direction: column; gap: 2px; }
+  .nota-author-name { font-size: var(--t-body); font-weight: 600; color: var(--ink); }
+  .nota-author-role { font-family: var(--type-mono); font-size: var(--t-tag); color: var(--ink-mid); }
+
+  .nota-body {
+    max-width: var(--content-narrow); margin: 0 auto;
+    padding: 64px var(--side-pad) 96px;
+  }
+  .nota-body h2 {
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    font-size: var(--t-h3); line-height: 1.2; letter-spacing: -0.025em;
+    color: var(--ink); margin: 56px 0 20px; max-width: 28ch;
+  }
+  .nota-body h2 .grad { background: var(--aurora-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .nota-body h2:first-of-type { margin-top: 0; }
+  .nota-body p {
+    font-size: var(--t-body-l); line-height: 1.75; color: var(--ink-soft);
+    margin-bottom: 20px; max-width: 70ch;
+  }
+  .nota-body p strong { color: var(--ink); font-weight: 600; }
+  .nota-body p em { color: var(--ink); font-style: italic; }
+  .nota-body ul, .nota-body ol { margin: 0 0 24px 0; padding-left: 0; max-width: 70ch; }
+  .nota-body ul li, .nota-body ol li {
+    font-size: var(--t-body-l); line-height: 1.7; color: var(--ink-soft);
+    margin-bottom: 10px; padding-left: 24px; position: relative;
+  }
+  .nota-body ul li::before {
+    content: ''; position: absolute; left: 0; top: 14px;
+    width: 10px; height: 1px; background: var(--ink-dim);
+  }
+
+  .nota-pullquote {
+    margin: 48px 0; padding: 32px 32px 32px 40px;
+    background: var(--bg-tint); border-left: 3px solid var(--aurora-2);
+    border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  }
+  .nota-pullquote p {
+    font-size: var(--t-h4); font-weight: 500; line-height: 1.4;
+    color: var(--ink); letter-spacing: -0.015em; margin: 0; font-style: italic;
+  }
+  .nota-pullquote p strong { font-style: normal; }
+
+  .nota-section-tag {
+    font-family: var(--type-mono); font-size: var(--t-tag); color: var(--ink-dim);
+    margin-top: 56px; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 12px; letter-spacing: 0.04em;
+  }
+  .nota-section-tag::before { content: ''; width: 24px; height: 1px; background: var(--ink-line); }
+  .nota-section-tag + h2 { margin-top: 0; }
+
+  .nota-nav {
+    max-width: var(--content-width); margin: 0 auto;
+    padding: 64px var(--side-pad); border-top: 1px solid var(--ink-line-soft);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .nota-nav-item {
+    padding: 32px; border: 1px solid var(--ink-line-soft); border-radius: var(--radius-l);
+    transition: border-color 0.3s, transform 0.3s var(--ease-out); display: block;
+  }
+  .nota-nav-item:hover { border-color: var(--ink-line); transform: translateY(-2px); }
+  .nota-nav-direction { font-family: var(--type-mono); font-size: var(--t-tag); color: var(--ink-dim); margin-bottom: 12px; }
+  .nota-nav-title { font-size: var(--t-h4); font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1.3; }
+  .nota-nav-item--next { text-align: right; }
+  @media (max-width: 720px) {
+    .nota-nav { grid-template-columns: 1fr; }
+    .nota-nav-item--next { text-align: left; }
+  }
+</style>
+</head>
+<body class="nota-page">
+
+<nav id="nav">
+  <a href="index.html" class="nav-mark">DL <span>·</span> Notas</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#trabajo">Trabajo</a></li>
+    <li><a href="metodo.html">Método</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
+    <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<article>
+
+<header class="nota-hero">
+  <a href="notas.html" class="case-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Todas las notas
+  </a>
+
+  <div class="nota-meta-top">
+    <span class="tag">Diseño</span>
+    <span>Abril 2026</span>
+    <span>·</span>
+    <span>3 min de lectura</span>
+  </div>
+
+  <h1 class="nota-h1">Lo que el cine me enseñó sobre el <span class="grad">e-learning</span>.</h1>
+
+  <p class="nota-lead">
+    Hay una pregunta que me hago antes de empezar cualquier curso: <strong>¿qué historia quiero contar?</strong> No qué contenidos quiero transmitir. Qué historia. Esa diferencia cambia todo lo que viene después.
+  </p>
+</header>
+
+<div class="nota-author-strip">
+  <div class="nota-author-img">
+    <picture><source srcset="img/retrato_avatar.webp" type="image/webp"><img src="img/retrato_avatar.jpg" alt="Damián Lencina" loading="lazy"></picture>
+  </div>
+  <div class="nota-author-info">
+    <span class="nota-author-name">Damián Lencina</span>
+    <span class="nota-author-role">Diseño de aprendizaje · COTO CICSA</span>
+  </div>
+</div>
+
+<section class="nota-body">
+
+<p>Empecé en cine antes que en e-learning. En 2016, con dos amigos de la facultad, armamos <strong>Magoya</strong>, una productora cinéfila que arrancó como un trabajo práctico de la universidad y duró años. Hicimos críticas, cubrimos festivales, produjimos cortos. Pasamos horas discutiendo qué hacía que una película funcionara y otra no.</p>
+
+<p>Cuando entré a trabajar en formación corporativa, en 2019, me di cuenta de algo que me ahorró tres años de pruebas y errores: <strong>el cine ya había resuelto los problemas que el e-learning todavía estaba aprendiendo a plantear</strong>.</p>
+
+<div class="nota-section-tag">Lección 01</div>
+<h2>Primero el <span class="grad">deseo</span>, después la información.</h2>
+
+<p>Una película no te explica los hechos al principio. Te muestra a alguien que quiere algo. Después, todo lo que pasa adquiere sentido en función de ese deseo. Si el deseo del protagonista no está claro en los primeros diez minutos, la película no funciona — por más bien filmada que esté.</p>
+
+<p>Los cursos corporativos suelen funcionar al revés: arrancan con "este curso te va a enseñar X, Y y Z, organizado en tres unidades de cuarenta minutos cada una". Es la presentación del manual, no del relato. <strong>Nadie quiere nada todavía</strong>. Y por eso nadie sigue.</p>
+
+<p>Cuando rediseñé los cursos en COTO, lo primero que cambiamos fue la apertura. En lugar de listar contenidos, empezamos planteando <em>una situación que el operador iba a reconocer</em>: "Es martes a la mañana, hay cola en la caja, una clienta llega con una tarjeta de débito desconocida". A partir de ahí, todo lo que el curso enseña tiene un propósito: <strong>resolver eso que la persona ya quiso resolver</strong>.</p>
+
+<div class="nota-pullquote">
+  <p>El contenido no genera atención. <strong>El deseo</strong> genera atención. El contenido viene después, a satisfacerlo.</p>
+</div>
+
+<div class="nota-section-tag">Lección 02</div>
+<h2>Mostrar, no <span class="grad">explicar</span>.</h2>
+
+<p>El consejo más viejo del cine: <em>show, don't tell</em>. Es viejo porque funciona. Y porque la mayoría sigue sin aplicarlo.</p>
+
+<p>Cuando un personaje dice "tengo miedo", el espectador piensa "le creeré si lo veo". Cuando muestra miedo — manos que tiemblan, mirada que esquiva — el espectador <strong>lo siente</strong>. La diferencia no es estilística, es cognitiva: el cerebro procesa lo visual mucho más rápido que las palabras, y lo guarda en otra parte.</p>
+
+<p>En e-learning, la versión equivalente del "tengo miedo" es el bullet point. "<em>Aspectos a considerar al manipular alimentos: higiene, temperatura, fechas de vencimiento</em>". Está toda la información, sí. Pero nadie la siente. La forma de mostrar lo mismo es <strong>filmar una situación real</strong>, dejar que el espectador vea lo que pasa cuando alguien no se lava las manos, o cuando la cadena de frío se rompe. La información es la misma. El resultado, completamente distinto.</p>
+
+<p>Una de las cosas que más cuesta convencer al área dueña del contenido es esto: que un curso no es <em>más completo</em> por tener más texto. Es más completo cuando lo que se ve y lo que se siente está al servicio de lo que hay que aprender. <strong>Menos bullets, más planos</strong>.</p>
+
+<div class="nota-section-tag">Lección 03</div>
+<h2>El montaje es donde se hace la <span class="grad">película</span>.</h2>
+
+<p>Los directores lo dicen siempre: el verdadero director es el montajista. La misma escena puede ser una tragedia o una comedia dependiendo de qué planos uses, en qué orden, cuánto los dejes durar. <strong>El ritmo es el sentido.</strong></p>
+
+<p>En e-learning eso se traduce en <strong>las decisiones de pacing</strong>: cuánto dura cada diapositiva, cuándo hay una pausa, cuándo aparece una pregunta, cuándo viene un video. Es la diferencia entre un curso que se siente fluido y uno que se siente eterno — aún cuando ambos duren exactamente lo mismo.</p>
+
+<p>Lo aprendí editando los videos de Magoya con horas de prueba y error en Premiere. Lo apliqué después en Storyline: cada escena del curso tiene una duración pensada, cada transición tiene un por qué, cada interactividad aparece exactamente cuando el espectador necesita un cambio de estímulo. <strong>Si el ritmo no está pensado, el ritmo va a ser el de quien hizo el curso aburrido</strong> — y eso no es bueno.</p>
+
+<div class="nota-section-tag">Lección 04</div>
+<h2>El conflicto es la <span class="grad">enseñanza</span>.</h2>
+
+<p>En narrativa no hay historia sin conflicto. En el cine es obvio. En el e-learning casi nadie lo usa. Los cursos suelen presentar las cosas como si fueran lineales: <em>esto es lo que hay que hacer, en este orden, sin obstáculos</em>. La realidad nunca es así, y los operadores lo saben.</p>
+
+<p>Un curso que muestra un conflicto real — <em>qué hacer cuando el sistema no acepta la operación</em>, <em>cómo responder a un cliente molesto</em> — es un curso que el operador va a recordar. Porque el conflicto activa la atención. <strong>El conflicto es donde se prueba lo aprendido</strong>, y el cerebro lo sabe.</p>
+
+<p>El error es presentar el conflicto al final, como una "evaluación" desconectada. Tiene que estar adentro del relato, como parte de lo que se enseña. La evaluación es la consecuencia narrativa, no un trámite separado.</p>
+
+<div class="nota-pullquote">
+  <p>Cuando un curso tiene un conflicto real adentro, las evaluaciones dejan de ser un trámite. <strong>Son el cierre del relato.</strong></p>
+</div>
+
+<h2>El cine sigue <span class="grad">enseñando</span>.</h2>
+
+<p>Magoya fue mi taller de pruebas. Lo que aprendí ahí — sobre tensión, sobre montaje, sobre cómo manejar la atención de un espectador durante una hora y media — lo uso todos los días en los cursos que produzco. No porque haga "cursos cinematográficos" (no los hago), sino porque <strong>el oficio de contar funciona igual en cualquier formato</strong>.</p>
+
+<p>Si trabajás en e-learning y nunca pensaste tu curso como una película, probá. No tiene que ser literal. Solo planteate las mismas preguntas que se plantea un guionista: <em>qué quiere el protagonista, qué se le opone, qué cambia al final</em>. Después llenás los huecos con contenido. <strong>El curso va a quedar irreconocible</strong>.</p>
+
+</section>
+
+</article>
+
+<div class="nota-nav">
+  <a href="nota_video.html" class="nota-nav-item">
+    <div class="nota-nav-direction">← Nota anterior</div>
+    <div class="nota-nav-title">Por qué el video corporativo suele ser un desastre</div>
+  </a>
+  <a href="nota_evaluacion.html" class="nota-nav-item nota-nav-item--next">
+    <div class="nota-nav-direction">Próxima nota →</div>
+    <div class="nota-nav-title">Cómo diseñar una evaluación que no sea un trámite</div>
+  </a>
+</div>
+
+<section class="footer-cta" id="contacto">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-tag">¿Te resonó?</div>
+      <h2>Si querés diseñar cursos que se sientan <span class="grad">cinematográficos</span>, hablemos.</h2>
+      <p class="footer-cta-sub">Llevo siete años aplicando la mirada del cine al e-learning corporativo. Si querés que conversemos sobre un proyecto, mandame mail.</p>
+      <div class="contact-actions">
+        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
+          Escribime
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="caso_magoya.html" class="btn btn-dark-ghost">Ver Magoya</a>
+      </div>
+    </div>
+
+    <div class="footer-fin">
+      <div class="footer-fin-text">End of file</div>
+      <div class="footer-fin-meta">© <span class="footer-year">2026</span> · DL · v2.0/Z</div>
+    </div>
+  </div>
+</section>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

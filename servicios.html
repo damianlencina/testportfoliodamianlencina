@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<title>Servicios — Damián Lencina</title>
+<meta name="description" content="Tres servicios concretos: diseño y producción de e-learning corporativo, video corporativo con mirada de autor, y armado de sistema de formación desde cero. Ideales según tu situación.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/servicios.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/servicios.html">
+<meta property="og:title" content="Servicios — Damián Lencina">
+<meta property="og:description" content="Tres servicios concretos para empresas que quieren ir más allá de las diapositivas.">
+<meta property="og:image" content="https://damianlencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Servicios — Damián Lencina">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Servicios — Damián Lencina">
+<meta name="twitter:description" content="Tres servicios concretos para empresas que quieren ir más allá de las diapositivas.">
+<meta name="twitter:image" content="https://damianlencina.com/img/og_image.jpg">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Damián Lencina — Diseño de aprendizaje",
+  "description": "Servicios de diseño instruccional, e-learning corporativo y producción audiovisual.",
+  "url": "https://damianlencina.com/servicios.html",
+  "provider": {
+    "@type": "Person",
+    "name": "Damián Lencina",
+    "url": "https://damianlencina.com/"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Argentina"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+  /* === Hero === */
+  .srv-hero {
+    padding: 160px var(--side-pad) 80px;
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+  .srv-hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h1);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 18ch;
+  }
+  .srv-hero h1 .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .srv-hero p.lead {
+    font-size: var(--t-lead);
+    line-height: 1.5;
+    color: var(--ink-mid);
+    max-width: 60ch;
+    margin-bottom: 0;
+  }
+  .srv-hero p.lead strong { color: var(--ink); font-weight: 600; }
+
+  /* === Situaciones - hero secundario === */
+  .situaciones {
+    background: var(--bg-tint);
+    padding: var(--gap-3xl) var(--side-pad);
+    border-top: 1px solid var(--ink-line-soft);
+    border-bottom: 1px solid var(--ink-line-soft);
+  }
+  .situaciones-wrap {
+    max-width: var(--content-width);
+    margin: 0 auto;
+  }
+  .situaciones-intro {
+    font-size: var(--t-h3);
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    max-width: 24ch;
+    margin-bottom: 56px;
+  }
+  .situaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .situacion {
+    background: var(--bg);
+    border: 1px solid var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    padding: 32px 28px;
+    transition: border-color 0.3s, transform 0.3s var(--ease-out);
+  }
+  .situacion:hover {
+    border-color: var(--ink-line);
+    transform: translateY(-4px);
+  }
+  .situacion-num {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .situacion-num::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--aurora-grad);
+  }
+  .situacion-q {
+    font-size: var(--t-h4);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+  .situacion-q .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .situacion-link {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-mid);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s var(--ease-out), color 0.2s;
+    text-decoration: none;
+  }
+  .situacion:hover .situacion-link {
+    color: var(--ink);
+    gap: 12px;
+  }
+  @media (max-width: 1024px) {
+    .situaciones-grid { grid-template-columns: 1fr; }
+  }
+
+  /* === Bloque servicio detallado === */
+  .servicio-detail {
+    padding: var(--gap-3xl) var(--side-pad);
+    max-width: var(--content-width);
+    margin: 0 auto;
+    border-top: 1px solid var(--ink-line-soft);
+    scroll-margin-top: 80px;
+  }
+  .servicio-detail:first-of-type { border-top: 0; }
+
+  .servicio-header {
+    display: grid;
+    grid-template-columns: 120px 1fr 220px;
+    gap: 40px;
+    margin-bottom: 56px;
+    align-items: start;
+  }
+  .servicio-num-big {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(56px, 5vw, 88px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: transparent;
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .servicio-title-block .tag {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mid);
+    margin-bottom: 16px;
+    padding: 4px 10px;
+    background: var(--bg-tint);
+    border-radius: var(--radius-s);
+    display: inline-block;
+  }
+  .servicio-title-block h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h2);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    max-width: 20ch;
+  }
+  .servicio-title-block h2 .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .servicio-price-block {
+    text-align: right;
+    padding-top: 8px;
+  }
+  .servicio-price-label {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+  .servicio-price {
+    font-size: var(--t-h4);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .servicio-price-sub {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-mid);
+    margin-top: 4px;
+  }
+  @media (max-width: 1024px) {
+    .servicio-header { grid-template-columns: 1fr; gap: 16px; }
+    .servicio-price-block { text-align: left; }
+  }
+
+  /* === Situación → Solución === */
+  .servicio-sit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    overflow: hidden;
+    border: 1px solid var(--ink-line-soft);
+    margin-bottom: 56px;
+  }
+  .servicio-sit-block {
+    background: var(--bg);
+    padding: 32px;
+  }
+  .servicio-sit-block.solucion {
+    background: var(--bg-dark);
+    color: var(--ink-invert);
+    position: relative;
+    overflow: hidden;
+  }
+  .servicio-sit-block.solucion::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -20%;
+    width: 70%; height: 80%;
+    background: radial-gradient(ellipse, rgba(139,92,246,0.3) 0%, transparent 70%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .servicio-sit-block.solucion > * { position: relative; z-index: 1; }
+  .servicio-sit-label {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .servicio-sit-block.solucion .servicio-sit-label {
+    color: rgba(255,255,255,0.6);
+  }
+  .servicio-sit-label::before {
+    content: '';
+    width: 14px; height: 1px;
+    background: currentColor;
+    opacity: 0.4;
+  }
+  .servicio-sit-block p {
+    font-size: var(--t-body-l);
+    line-height: 1.6;
+    color: var(--ink-mid);
+  }
+  .servicio-sit-block.solucion p { color: rgba(255,255,255,0.85); }
+  .servicio-sit-block strong { color: var(--ink); font-weight: 600; }
+  .servicio-sit-block.solucion strong { color: var(--ink-invert); }
+  @media (max-width: 720px) {
+    .servicio-sit { grid-template-columns: 1fr; }
+  }
+
+  /* === Qué incluye / qué no === */
+  .servicio-incluye {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .servicio-incluye-block {
+    background: var(--bg-tint);
+    border: 1px solid var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    padding: 28px;
+  }
+  .servicio-incluye-block ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .servicio-incluye-block li {
+    font-size: var(--t-body);
+    line-height: 1.55;
+    color: var(--ink-mid);
+    padding-left: 24px;
+    position: relative;
+  }
+  .servicio-incluye-block.si li::before {
+    content: '✓';
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--aurora-2);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .servicio-incluye-block.no li::before {
+    content: '−';
+    position: absolute;
+    left: 4px; top: 0;
+    color: var(--ink-dim);
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .servicio-incluye-block li strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 720px) {
+    .servicio-incluye { grid-template-columns: 1fr; }
+  }
+
+  /* === Caso relacionado === */
+  .servicio-caso {
+    background: var(--bg-tint);
+    border: 1px solid var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    padding: 32px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .servicio-caso:hover {
+    border-color: var(--ink-line);
+    background: var(--bg);
+  }
+  .servicio-caso-text { flex: 1; min-width: 240px; }
+  .servicio-caso-label {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  .servicio-caso-title {
+    font-size: var(--t-h4);
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+  .servicio-caso-link {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: gap 0.2s var(--ease-out);
+  }
+  .servicio-caso:hover .servicio-caso-link { gap: 12px; }
+
+  /* === Nicho === */
+  .servicio-nicho {
+    padding: 16px 20px;
+    background: var(--aurora-grad-soft);
+    border-left: 3px solid var(--aurora-2);
+    border-radius: var(--radius-s);
+    margin-bottom: 32px;
+    font-size: var(--t-body);
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .servicio-nicho strong { font-weight: 600; }
+  :root[data-theme="dark"] .servicio-nicho {
+    background: rgba(139, 92, 246, 0.10);
+    color: var(--ink);
+  }
+
+  /* === CTA de servicio === */
+  .servicio-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* === FAQ general (reutilizo estilos del método embebido) === */
+  .faq-section {
+    background: var(--bg-tint);
+    padding: var(--gap-3xl) var(--side-pad);
+    border-top: 1px solid var(--ink-line-soft);
+  }
+  .faq-wrap {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+  }
+  .faq-items {
+    display: flex;
+    flex-direction: column;
+    margin-top: 48px;
+    border-top: 1px solid var(--ink-line-soft);
+  }
+  .faq-item { border-bottom: 1px solid var(--ink-line-soft); }
+  .faq-question {
+    padding: 24px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    font-size: var(--t-body-l);
+    font-weight: 600;
+    color: var(--ink);
+    list-style: none;
+    user-select: none;
+  }
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-toggle {
+    font-family: var(--type-mono);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink-dim);
+    transition: transform 0.3s var(--ease-out), color 0.2s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  details[open] .faq-toggle {
+    transform: rotate(45deg);
+    color: var(--ink);
+  }
+  .faq-answer {
+    padding: 0 0 24px 0;
+    font-size: var(--t-body);
+    line-height: 1.65;
+    color: var(--ink-mid);
+    max-width: 64ch;
+  }
+  .faq-answer p { margin-bottom: 12px; }
+  .faq-answer p:last-child { margin-bottom: 0; }
+  .faq-answer strong { color: var(--ink); font-weight: 600; }
+
+  /* === No sé cuál me conviene === */
+  .no-se {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: var(--gap-3xl) var(--side-pad);
+  }
+  .no-se-card {
+    background: var(--bg-dark);
+    color: var(--ink-invert);
+    border-radius: var(--radius-l);
+    padding: 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .no-se-card::before {
+    content: '';
+    position: absolute;
+    top: -30%; left: 50%;
+    transform: translateX(-50%);
+    width: 100%; height: 80%;
+    background: radial-gradient(ellipse,
+      rgba(99,102,241,0.25) 0%,
+      rgba(139,92,246,0.15) 40%,
+      transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+  }
+  .no-se-card > * { position: relative; z-index: 1; }
+  .no-se-tag {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+  }
+  .no-se-card h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h2);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: var(--ink-invert);
+    margin-bottom: 24px;
+    max-width: 22ch;
+  }
+  .no-se-card h2 .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .no-se-card p {
+    font-size: var(--t-body-l);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 32px;
+    max-width: 60ch;
+  }
+  .no-se-card p strong { color: var(--ink-invert); font-weight: 600; }
+  @media (max-width: 720px) {
+    .no-se-card { padding: 40px 28px; }
+  }
+</style>
+</head>
+<body class="case-page">
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-mark">DL <span>·</span> Servicios</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#trabajo">Trabajo</a></li>
+    <li><a href="metodo.html">Método</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
+    <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- HERO -->
+<section class="srv-hero">
+  <a href="index.html" class="case-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Volver al portfolio
+  </a>
+
+  <div class="case-tag">Servicios · Lo que puedo hacer por vos</div>
+
+  <h1>Del aprendizaje a la <span class="grad">solución</span>.</h1>
+
+  <p class="lead">
+    Tres servicios concretos pensados para empresas que quieren ir <strong>más allá de las diapositivas</strong>. No vengo con una sola herramienta — vengo con la mirada completa: diseño, producción y estrategia.
+  </p>
+</section>
+
+<!-- SITUACIONES -->
+<section class="situaciones">
+  <div class="situaciones-wrap">
+    <div class="situaciones-intro">
+      ¿Estás en alguna de <span class="grad" style="background: var(--aurora-grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;">estas situaciones</span>?
+    </div>
+
+    <div class="situaciones-grid">
+      <a href="#servicio-01" class="situacion">
+        <div class="situacion-num">Situación 01</div>
+        <div class="situacion-q">"Tengo que <span class="grad">capacitar gente</span> y los cursos actuales no funcionan."</div>
+        <span class="situacion-link">Ir a Servicio 01 →</span>
+      </a>
+
+      <a href="#servicio-02" class="situacion">
+        <div class="situacion-num">Situación 02</div>
+        <div class="situacion-q">"Necesito <span class="grad">video corporativo</span> que no se vea genérico."</div>
+        <span class="situacion-link">Ir a Servicio 02 →</span>
+      </a>
+
+      <a href="#servicio-03" class="situacion">
+        <div class="situacion-num">Situación 03</div>
+        <div class="situacion-q">"Tengo que <span class="grad">armar todo</span> y no sé por dónde empezar."</div>
+        <span class="situacion-link">Ir a Servicio 03 →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIO 01 -->
+<section id="servicio-01" class="servicio-detail">
+  <div class="servicio-header">
+    <div class="servicio-num-big">01</div>
+    <div class="servicio-title-block">
+      <span class="tag">E-Learning corporativo</span>
+      <h2>Diseño y producción de cursos que <span class="grad">funcionan</span>.</h2>
+    </div>
+    <div class="servicio-price-block">
+      <div class="servicio-price-label">Desde</div>
+      <div class="servicio-price">USD 2.500 — 8.000</div>
+      <div class="servicio-price-sub">según alcance y duración</div>
+    </div>
+  </div>
+
+  <div class="servicio-sit">
+    <div class="servicio-sit-block">
+      <div class="servicio-sit-label">La situación</div>
+      <p>Tu empresa necesita capacitar gente — operarios nuevos, equipos comerciales, áreas técnicas — y lo que tienen hoy son <strong>PDFs interminables o presentaciones que nadie termina de ver</strong>. La gente "hace" el curso pero no aprende. Las evaluaciones son trámite. Los referentes técnicos están cansados de explicar lo mismo.</p>
+    </div>
+    <div class="servicio-sit-block solucion">
+      <div class="servicio-sit-label">La solución</div>
+      <p>Diseño y produzco un curso completo: del <strong>guion instruccional al SCORM publicado en tu plataforma</strong>. Diseño, interactividad, video y evaluación integrados en un solo flujo. Con identidad visual propia, dinámicas que funcionan para tu público real, y producción audiovisual filmada — no stock.</p>
+    </div>
+  </div>
+
+  <div class="servicio-incluye">
+    <div class="servicio-incluye-block si">
+      <div class="servicio-sit-label">Qué incluye</div>
+      <ul>
+        <li><strong>Diagnóstico</strong> con referentes del área (1-2 sesiones)</li>
+        <li>Guion instruccional completo y aprobado</li>
+        <li>Sistema visual propio del curso</li>
+        <li>Producción en <strong>Articulate Storyline 360</strong></li>
+        <li>Video corporativo filmado (1-3 minutos)</li>
+        <li>Evaluación con métricas de aprendizaje</li>
+        <li>Publicación SCORM en tu plataforma</li>
+        <li>30 días de soporte post-implementación</li>
+      </ul>
+    </div>
+    <div class="servicio-incluye-block no">
+      <div class="servicio-sit-label">Qué NO incluye</div>
+      <ul>
+        <li>Licencias de software (Articulate, Adobe)</li>
+        <li>Locuciones profesionales en otros idiomas</li>
+        <li>Actores externos para video (uso personal de tu equipo)</li>
+        <li>Implementación de plataforma LMS desde cero</li>
+        <li>Mantenimiento mensual post-30 días</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="caso_coto.html" class="servicio-caso">
+    <div class="servicio-caso-text">
+      <div class="servicio-caso-label">Caso relacionado · Caso 02</div>
+      <div class="servicio-caso-title">Medios de Pago — COTO CICSA · 5.553 operadores capacitados</div>
+    </div>
+    <span class="servicio-caso-link">Ver caso →</span>
+  </a>
+
+  <div class="servicio-nicho">
+    <strong>Ideal para:</strong> Empresas medianas o grandes con áreas operativas grandes (50+ personas a capacitar), Recursos Humanos buscando profesionalizar la formación, o equipos técnicos que tienen que documentar know-how.
+  </div>
+
+  <div class="servicio-cta">
+    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 01 — E-Learning" class="btn btn-primary">
+      Pedir cotización
+      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="metodo.html" class="btn btn-ghost">Ver cómo trabajo</a>
+  </div>
+</section>
+
+<!-- SERVICIO 02 -->
+<section id="servicio-02" class="servicio-detail">
+  <div class="servicio-header">
+    <div class="servicio-num-big">02</div>
+    <div class="servicio-title-block">
+      <span class="tag">Producción audiovisual</span>
+      <h2>Video corporativo con <span class="grad">mirada de autor</span>.</h2>
+    </div>
+    <div class="servicio-price-block">
+      <div class="servicio-price-label">Desde</div>
+      <div class="servicio-price">USD 1.200 — 4.500</div>
+      <div class="servicio-price-sub">por pieza, según complejidad</div>
+    </div>
+  </div>
+
+  <div class="servicio-sit">
+    <div class="servicio-sit-block">
+      <div class="servicio-sit-label">La situación</div>
+      <p>Necesitás video pero <strong>no querés que parezca un comercial genérico</strong>. Las productoras grandes te cobran como agencia full y entregan piezas frías. Los freelancers de video puro no entienden tu negocio. El equipo interno hace lo que puede pero queda amateur.</p>
+    </div>
+    <div class="servicio-sit-block solucion">
+      <div class="servicio-sit-label">La solución</div>
+      <p>Soy <strong>realizador audiovisual con experiencia corporativa real</strong>. Idea, guion, dirección, cámara y edición — todo de la misma persona. Filmo en tu sucursal o planta. La pieza queda con identidad de autor, no de stock. Y a un costo que ninguna productora puede igualar.</p>
+    </div>
+  </div>
+
+  <div class="servicio-incluye">
+    <div class="servicio-incluye-block si">
+      <div class="servicio-sit-label">Qué incluye</div>
+      <ul>
+        <li>Reunión inicial para entender objetivo</li>
+        <li>Guion + storyboard aprobados antes de rodaje</li>
+        <li>Rodaje en locación (1 día típicamente)</li>
+        <li>Edición en <strong>Premiere Pro</strong></li>
+        <li>Motion graphics y placas en After Effects</li>
+        <li>Locución profesional o uso de tu equipo</li>
+        <li>2 rondas de revisión incluidas</li>
+        <li>Entrega en MP4 1080p, formatos para redes y LMS</li>
+      </ul>
+    </div>
+    <div class="servicio-incluye-block no">
+      <div class="servicio-sit-label">Qué NO incluye</div>
+      <ul>
+        <li>Equipo técnico de iluminación profesional (uso setup propio)</li>
+        <li>Drone (sí puedo coordinar con piloto externo)</li>
+        <li>Actores profesionales (sí podemos sumarlos como extra)</li>
+        <li>Música licenciada premium (uso bancos sin royalties)</li>
+        <li>Versiones en idiomas que no sean español/inglés</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="caso_coto.html#video" class="servicio-caso">
+    <div class="servicio-caso-text">
+      <div class="servicio-caso-label">Caso relacionado · Caso 02</div>
+      <div class="servicio-caso-title">Operaciones Especiales — 3:14 min filmado en sucursal con operadores reales</div>
+    </div>
+    <span class="servicio-caso-link">Ver caso →</span>
+  </a>
+
+  <div class="servicio-nicho">
+    <strong>Ideal para:</strong> Organizaciones que necesitan video profesional sin pagar el costo de una productora completa. Áreas internas de comunicación, marketing B2B, capacitación, RR.HH. También para emprendimientos que necesitan video corporativo bien hecho con presupuesto realista.
+  </div>
+
+  <div class="servicio-cta">
+    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 02 — Video corporativo" class="btn btn-primary">
+      Pedir cotización
+      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="caso_magoya.html" class="btn btn-ghost">Ver Magoya (audiovisual)</a>
+  </div>
+</section>
+
+<!-- SERVICIO 03 -->
+<section id="servicio-03" class="servicio-detail">
+  <div class="servicio-header">
+    <div class="servicio-num-big">03</div>
+    <div class="servicio-title-block">
+      <span class="tag">Estrategia · Implementación</span>
+      <h2>Armar el sistema <span class="grad">desde cero</span>.</h2>
+    </div>
+    <div class="servicio-price-block">
+      <div class="servicio-price-label">Desde</div>
+      <div class="servicio-price">A consultar</div>
+      <div class="servicio-price-sub">proyecto largo, 3+ meses</div>
+    </div>
+  </div>
+
+  <div class="servicio-sit">
+    <div class="servicio-sit-block">
+      <div class="servicio-sit-label">La situación</div>
+      <p>No tenés plataforma. O tenés una vieja que <strong>nadie usa</strong>. O tenés cursos sueltos que cada área hizo por su cuenta y no hay estándar. Querés empezar a capacitar de forma digital pero sentís que cualquier cosa que hagas hoy va a ser improvisada.</p>
+    </div>
+    <div class="servicio-sit-block solucion">
+      <div class="servicio-sit-label">La solución</div>
+      <p>Diseño e implemento <strong>el sistema completo de formación digital</strong>, no sólo un curso. Auditoría de lo existente, implementación de Moodle, arquitectura de cursos, definición del método, formación al equipo interno. Te dejo capacidad instalada, no dependencia.</p>
+    </div>
+  </div>
+
+  <div class="servicio-incluye">
+    <div class="servicio-incluye-block si">
+      <div class="servicio-sit-label">Qué incluye</div>
+      <ul>
+        <li>Auditoría de formación actual</li>
+        <li>Implementación y configuración de <strong>Moodle LMS</strong></li>
+        <li>Diseño de arquitectura de categorías y cursos</li>
+        <li>Manual de estándares de producción</li>
+        <li>2-3 cursos piloto para sentar precedente</li>
+        <li>Capacitación al equipo interno (en vivo)</li>
+        <li>Documentación operativa completa</li>
+        <li>3 meses de acompañamiento</li>
+      </ul>
+    </div>
+    <div class="servicio-incluye-block no">
+      <div class="servicio-sit-label">Qué NO incluye</div>
+      <ul>
+        <li>Hosting de Moodle (lo gestiona tu IT o te recomiendo proveedor)</li>
+        <li>Migración de contenidos legacy (se cotiza aparte)</li>
+        <li>Integraciones complejas con SAP, Workday, etc.</li>
+        <li>Cursos a producción más allá de los 2-3 piloto</li>
+        <li>Soporte permanente post-3 meses (puede pactarse aparte)</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="caso_transformacion.html" class="servicio-caso">
+    <div class="servicio-caso-text">
+      <div class="servicio-caso-label">Caso relacionado · Caso 01</div>
+      <div class="servicio-caso-title">Transformación e-learning COTO — De cero a 19.852 personas capacitadas</div>
+    </div>
+    <span class="servicio-caso-link">Ver caso →</span>
+  </a>
+
+  <div class="servicio-nicho">
+    <strong>Ideal para:</strong> Pymes que crecen y necesitan profesionalizar la formación. Áreas de RR.HH. que recibieron el mandato de "armar capacitación digital" sin saber por dónde empezar. Empresas en cambio cultural que necesitan un partner integral, no un proveedor de cursos sueltos.
+  </div>
+
+  <div class="servicio-cta">
+    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 03 — Implementación" class="btn btn-primary">
+      Conversemos
+      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="caso_transformacion.html" class="btn btn-ghost">Ver caso similar</a>
+  </div>
+</section>
+
+<!-- NO SÉ CUÁL ME CONVIENE -->
+<section class="no-se">
+  <div class="no-se-card">
+    <div class="no-se-tag">¿Dudás cuál?</div>
+    <h2>No tenés que <span class="grad">decidir solo</span>.</h2>
+    <p>
+      Si ninguna de las tres situaciones es exactamente la tuya — o si te pasan dos al mismo tiempo — <strong>conversemos sin compromiso</strong>. Una llamada de 30 minutos alcanza para entender qué necesitás y, si tiene sentido, armamos algo a medida. Si no, te oriento igual.
+    </p>
+    <div class="servicio-cta">
+      <a href="mailto:dami.lencina21@gmail.com?subject=Charla 30 min" class="btn btn-light">
+        Agendar una llamada
+        <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">Conectarme en LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-wrap">
+    <div class="section-tag" style="margin-bottom: 16px;">Preguntas frecuentes</div>
+    <h2 class="section-h">Antes de <span class="grad">escribirme</span>.</h2>
+
+    <div class="faq-items">
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Trabajás por horas o por proyecto?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Por proyecto, con precio cerrado. Eso significa que <strong>no te cobro extra si una etapa tarda más de lo previsto</strong> (mientras el alcance no cambie). Si necesitás algo menos formal, también ofrezco bancos de horas para colaboraciones puntuales.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Facturás como monotributista o empresa?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Como monotributista en Argentina. Factura A o C según el cliente. Para clientes del exterior facturo en USD con transferencia internacional o servicios tipo Payoneer.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          Los precios que muestran ¿son finales o varían?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Son <strong>rangos orientativos</strong>. Cada proyecto recibe una cotización propia después del primer contacto. El precio final depende de: alcance (cuántos cursos, qué duración), complejidad de producción (cantidad de video, animación), plazos (rush tiene recargo), y nivel de involucramiento del equipo del cliente.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Aceptás pagos en cuotas?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sí. Para proyectos cortos pido 50% al iniciar y 50% al entregar. Para proyectos largos (3+ meses) acordamos pagos por hitos: ej. 30% al inicio, 30% al aprobar diseño, 30% al entregar producción, 10% al cerrar implementación.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Trabajás con empresas fuera de Argentina?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Sí. He trabajado con equipos remotos de varios países hispanohablantes. Para rodajes presenciales el alcance es Argentina (Buenos Aires y CABA principalmente). Para todo lo que es diseño, producción digital, e-learning y video que se pueda filmar a distancia con guía mía: <strong>cualquier país hispanohablante</strong>.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          ¿Cómo es el proceso de cotización?
+          <span class="faq-toggle">+</span>
+        </summary>
+        <div class="faq-answer">
+          <p>Tres pasos: (1) Me escribís con una descripción inicial. (2) Tenemos una llamada de 30 minutos para entender el proyecto. (3) Te paso una propuesta escrita en 48-72 hs con alcance, plazos, entregables y precio cerrado. <strong>No hay costo por la cotización ni compromiso de seguir adelante.</strong></p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Footer CTA -->
+<section class="footer-cta" id="contacto">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-tag">¿Empezamos?</div>
+      <h2>El primer paso es una <span class="grad">conversación</span>.</h2>
+      <p class="footer-cta-sub">Contame qué necesitás. En 48 hs tenés una propuesta concreta sobre la mesa.</p>
+      <div class="contact-actions">
+        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
+          Escribime
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="footer-fin">
+      <div class="footer-fin-text">End of file</div>
+      <div class="footer-fin-meta">© <span class="footer-year">2026</span> · DL · v2.0/Z</div>
+    </div>
+  </div>
+</section>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

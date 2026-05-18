@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('dl-theme');
+    if(!t){ t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    if(t==='dark'){ document.documentElement.setAttribute('data-theme','dark'); }
+  }catch(e){}
+})();
+</script>
+  <meta name="theme-color" content="#ffffff">
+<title>Por qué el video corporativo suele ser un desastre · Damián Lencina</title>
+<meta name="description" content="La mayoría de los videos de capacitación son aburridos por las mismas tres razones. Después de producir decenas de videos en planta, aprendí exactamente qué los hace funcionar o fallar.">
+<meta name="author" content="Damián Lencina">
+
+<link rel="canonical" href="https://damianlencina.com/nota_video.html">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Damián Lencina · Portfolio">
+<meta property="og:url" content="https://damianlencina.com/nota_video.html">
+<meta property="og:title" content="Por qué el video corporativo suele ser un desastre">
+<meta property="og:description" content="Tres razones por las que la mayoría de videos de capacitación no funcionan, y qué hacer al respecto.">
+<meta property="og:image" content="https://damianlencina.com/img/og_image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Por qué el video corporativo suele ser un desastre">
+<meta name="twitter:description" content="Tres razones por las que no funcionan y cómo evitarlas.">
+<meta name="twitter:image" content="https://damianlencina.com/img/og_image.jpg">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Por qué el video corporativo suele ser un desastre",
+  "description": "La mayoría de los videos de capacitación son aburridos por las mismas tres razones.",
+  "url": "https://damianlencina.com/nota_video.html",
+  "author": {
+    "@type": "Person",
+    "name": "Damián Lencina",
+    "url": "https://damianlencina.com/"
+  },
+  "datePublished": "2026-05-15",
+  "image": "https://damianlencina.com/img/og_image.jpg"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+  /* === Layout de nota === */
+  .nota-page {
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .nota-hero {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+    padding: 160px var(--side-pad) 64px;
+  }
+  .nota-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+  }
+  .nota-meta-top .tag {
+    padding: 4px 10px;
+    background: var(--bg-tint);
+    color: var(--ink);
+    border-radius: var(--radius-s);
+    letter-spacing: 0.02em;
+    font-weight: 500;
+  }
+  .nota-h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 22ch;
+  }
+  .nota-h1 .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .nota-lead {
+    font-size: var(--t-lead);
+    line-height: 1.5;
+    color: var(--ink-mid);
+    max-width: 64ch;
+    margin-bottom: 0;
+  }
+  .nota-lead strong { color: var(--ink); font-weight: 600; }
+
+  .nota-author-strip {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+    padding: 32px var(--side-pad);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid var(--ink-line-soft);
+    border-bottom: 1px solid var(--ink-line-soft);
+  }
+  .nota-author-img {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid var(--ink-line);
+  }
+  .nota-author-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+  }
+  .nota-author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .nota-author-name {
+    font-size: var(--t-body);
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .nota-author-role {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-mid);
+  }
+
+  /* === Cuerpo del artículo === */
+  .nota-body {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+    padding: 64px var(--side-pad) 96px;
+  }
+  .nota-body h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h3);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 56px 0 20px;
+    max-width: 28ch;
+  }
+  .nota-body h2 .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .nota-body h2:first-of-type { margin-top: 0; }
+  .nota-body h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h4);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 40px 0 16px;
+  }
+  .nota-body p {
+    font-size: var(--t-body-l);
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+    max-width: 70ch;
+  }
+  .nota-body p strong { color: var(--ink); font-weight: 600; }
+  .nota-body p em { color: var(--ink); font-style: italic; }
+  .nota-body ul, .nota-body ol {
+    margin: 0 0 24px 0;
+    padding-left: 0;
+    max-width: 70ch;
+  }
+  .nota-body ul li, .nota-body ol li {
+    font-size: var(--t-body-l);
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    padding-left: 24px;
+    position: relative;
+  }
+  .nota-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 14px;
+    width: 10px; height: 1px;
+    background: var(--ink-dim);
+  }
+  .nota-body ol { counter-reset: nota-counter; }
+  .nota-body ol li {
+    counter-increment: nota-counter;
+  }
+  .nota-body ol li::before {
+    content: counter(nota-counter) ".";
+    position: absolute;
+    left: 0;
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    top: 4px;
+  }
+
+  .nota-pullquote {
+    margin: 48px 0;
+    padding: 32px 32px 32px 40px;
+    background: var(--bg-tint);
+    border-left: 3px solid var(--aurora-2);
+    border-radius: 0 var(--radius-m) var(--radius-m) 0;
+    position: relative;
+  }
+  .nota-pullquote p {
+    font-size: var(--t-h4);
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    margin: 0;
+    font-style: italic;
+  }
+  .nota-pullquote p strong { font-style: normal; }
+
+  .nota-section-tag {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-top: 56px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 0.04em;
+  }
+  .nota-section-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--ink-line);
+  }
+  .nota-section-tag + h2 { margin-top: 0; }
+
+  /* === Navegación entre notas === */
+  .nota-nav {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 64px var(--side-pad);
+    border-top: 1px solid var(--ink-line-soft);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .nota-nav-item {
+    padding: 32px;
+    border: 1px solid var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    transition: border-color 0.3s, transform 0.3s var(--ease-out);
+    display: block;
+  }
+  .nota-nav-item:hover {
+    border-color: var(--ink-line);
+    transform: translateY(-2px);
+  }
+  .nota-nav-direction {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 12px;
+  }
+  .nota-nav-title {
+    font-size: var(--t-h4);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .nota-nav-item--next { text-align: right; }
+  @media (max-width: 720px) {
+    .nota-nav { grid-template-columns: 1fr; }
+    .nota-nav-item--next { text-align: left; }
+  }
+
+  .nota-back-strip {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+    padding: 32px var(--side-pad);
+    border-top: 1px solid var(--ink-line-soft);
+    text-align: center;
+  }
+  .nota-back-strip a {
+    font-family: var(--type-mono);
+    font-size: var(--t-small);
+    color: var(--ink-mid);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s, gap 0.2s var(--ease-out);
+  }
+  .nota-back-strip a:hover {
+    color: var(--ink);
+    gap: 12px;
+  }
+</style>
+</head>
+<body class="nota-page">
+
+<nav id="nav">
+  <a href="index.html" class="nav-mark">DL <span>·</span> Notas</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html#trabajo">Trabajo</a></li>
+    <li><a href="metodo.html">Método</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button></li>
+    <li><a href="index.html#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<article>
+
+<header class="nota-hero">
+  <a href="notas.html" class="case-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Todas las notas
+  </a>
+
+  <div class="nota-meta-top">
+    <span class="tag">E-Learning</span>
+    <span>Mayo 2026</span>
+    <span>·</span>
+    <span>4 min de lectura</span>
+  </div>
+
+  <h1 class="nota-h1">Por qué el video corporativo suele ser un <span class="grad">desastre</span>.</h1>
+
+  <p class="nota-lead">
+    La mayoría de los videos de capacitación son aburridos por las mismas tres razones. No es presupuesto, no es tecnología. Es <strong>criterio narrativo</strong> — o la falta de él. Después de producir decenas de videos en planta, aprendí exactamente qué los hace funcionar o fallar.
+  </p>
+</header>
+
+<div class="nota-author-strip">
+  <div class="nota-author-img">
+    <picture><source srcset="img/retrato_avatar.webp" type="image/webp"><img src="img/retrato_avatar.jpg" alt="Damián Lencina" loading="lazy"></picture>
+  </div>
+  <div class="nota-author-info">
+    <span class="nota-author-name">Damián Lencina</span>
+    <span class="nota-author-role">Diseño de aprendizaje · COTO CICSA</span>
+  </div>
+</div>
+
+<section class="nota-body">
+
+<p>Mirá cualquier video de capacitación corporativo y vas a encontrar uno de estos tres patrones: <strong>una persona leyendo un guion</strong>, un narrador en off sobre stock footage <strong>genérico</strong>, o una infografía animada que <strong>explica cosas obvias</strong>. Todos cumplen una función. Ninguno enseña nada.</p>
+
+<p>Llevo siete años produciendo video corporativo para e-learning. En ese tiempo aprendí que cuando un video no funciona, casi siempre falla por las mismas tres cosas. Y ninguna se arregla con más presupuesto.</p>
+
+<div class="nota-section-tag">Error 01</div>
+<h2>Confundir información con <span class="grad">relato</span>.</h2>
+
+<p>La primera trampa es la más común: pensar que un video es "lo mismo que el manual, pero con voz". Si tu video lista los pasos de un proceso uno atrás del otro, no es un video. Es <strong>un manual en movimiento</strong>. Y los manuales en movimiento son aún más aburridos que los manuales en papel, porque al menos los manuales los podés saltear.</p>
+
+<p>Un video que funciona tiene una pregunta central. No "qué hay que hacer" sino "<em>qué pasa si lo hago mal</em>" o "<em>por qué esto importa</em>". La pregunta es el motor — sin pregunta, no hay tensión narrativa, y sin tensión, el cerebro del que mira se desconecta a los 40 segundos.</p>
+
+<p>Cuando dirigí <strong>Operaciones Especiales</strong> para el curso de Medios de Pago en COTO, el guion original era una lista: "Paso 1, verificar la tarjeta. Paso 2, validar el monto. Paso 3, procesar el cobro." Lo reescribí entero como una situación: <em>una clienta llega con una tarjeta de débito, pide cashback, el operador duda</em>. La información es la misma. Lo que cambió es que ahora hay algo que querer saber.</p>
+
+<div class="nota-pullquote">
+  <p>Si el video se puede convertir en bullets sin perder nada, <strong>el video no era necesario</strong>.</p>
+</div>
+
+<div class="nota-section-tag">Error 02</div>
+<h2>Filmar a alguien que <span class="grad">no quiere</span> estar frente a la cámara.</h2>
+
+<p>Este es el más doloroso porque suele venir de buenas intenciones. "Vamos a poner al gerente del área, así legitima el contenido." "Pongamos a un capacitador, que sabe del tema." Y ahí aparece, en cuadro, una persona que está claramente esperando que termine la grabación.</p>
+
+<p>El espectador <strong>se da cuenta inmediatamente</strong>. No con la cabeza, con el cuerpo. Hay algo en el lenguaje no verbal de quien está incómodo frente a una cámara que destruye la credibilidad del mensaje, sin importar cuán bien escrito esté el guion. Después de un cuadro así, ya no importa lo que diga.</p>
+
+<p>La solución no siempre es contratar actores. A veces es <strong>elegir a la persona correcta</strong> dentro del equipo: alguien que ya hace presentaciones internas, que se siente cómodo hablando, que tiene una relación natural con la cámara. Otras veces es replantear el formato: <em>en lugar de filmar a una persona explicando, filmar una acción y poner narración en off</em>. Las decisiones de casting son tan importantes como el guion.</p>
+
+<p>En los videos que filmamos en planta, casi nunca usamos a los referentes técnicos en cuadro. Los entrevisto para entender el contenido, pero el video lo protagonizan operadores reales <strong>haciendo el trabajo real</strong>. Eso comunica más que cualquier explicación.</p>
+
+<div class="nota-section-tag">Error 03</div>
+<h2>No tener una <span class="grad">pregunta central</span>.</h2>
+
+<p>Este es el más sutil y el más decisivo. Antes de empezar a escribir un guion, hay una pregunta que tengo que poder responder: <strong>¿qué quiero que sienta el espectador al terminar de verlo?</strong></p>
+
+<p>No "qué quiero que aprenda". Sentir. Porque el aprendizaje real pasa por el cuerpo antes que por la cabeza.</p>
+
+<p>Puede ser: <em>quiero que sienta que esto importa</em>. <em>Quiero que sienta que es más fácil de lo que pensaba</em>. <em>Quiero que sienta que está bien preguntar cuando no entiende</em>. <em>Quiero que sienta urgencia</em>. Cada uno de esos objetivos cambia las decisiones de guion, de música, de planos, de duración.</p>
+
+<p>La mayoría de los videos corporativos no tienen respuesta a esa pregunta. Se hacen porque "hay que tener un video de inducción" y se ponen los contenidos que el área pidió. El resultado es un video que cumple con la <em>checklist</em> pero no produce ninguna emoción específica. Y un video sin emoción específica es indistinguible del ruido de fondo.</p>
+
+<div class="nota-section-tag">Cómo evitarlo</div>
+<h2>Tres preguntas <span class="grad">antes</span> de empezar.</h2>
+
+<p>Antes de escribir un guion, me obligo a contestar estas tres preguntas. Si alguna no tiene respuesta clara, no arranco.</p>
+
+<ol>
+  <li><strong>¿Qué tensión narrativa va a sostener el video?</strong> Si no hay nada que querer saber, no hay video.</li>
+  <li><strong>¿Quién va a estar en cuadro y por qué?</strong> Si la respuesta es "porque le tocaba", buscar otra persona o otro formato.</li>
+  <li><strong>¿Qué quiero que el espectador sienta al terminar?</strong> Si no hay una emoción clara, el video no va a generar ninguna.</li>
+</ol>
+
+<p>Las tres preguntas no son técnicas. Son <strong>de criterio</strong>. Y son las que más cuesta plantear en una reunión con el área dueña del contenido, porque obligan a salir del "qué hay que decir" y entrar al "qué hay que provocar". Pero son las que separan un video que funciona de uno que no.</p>
+
+<div class="nota-pullquote">
+  <p>Un buen video no transmite información, <strong>provoca una experiencia</strong>. La información es la excusa para que esa experiencia ocurra.</p>
+</div>
+
+<h2>El que filma y el que <span class="grad">enseña</span>.</h2>
+
+<p>Lo que más me interesa del cruce entre realización audiovisual y diseño instruccional es que <strong>ambas disciplinas están hechas para lo mismo</strong>: lograr que el otro entienda algo que antes no entendía. La diferencia es que el cine lleva más de cien años trabajando en eso, y el e-learning corporativo, en muchos casos, todavía no llegó.</p>
+
+<p>Cuando llegué al área en 2019, los videos que existían eran exactamente eso: información en formato video. Sin tensión, sin pregunta, sin emoción. Lo que cambiamos no fue el presupuesto ni el equipo técnico. Cambiamos las tres preguntas que nos hacemos antes de arrancar. <strong>Eso solo basta para producir videos que la gente termina de ver.</strong></p>
+
+</section>
+
+</article>
+
+<!-- NAV entre notas -->
+<div class="nota-nav">
+  <a href="notas.html" class="nota-nav-item">
+    <div class="nota-nav-direction">← Volver al índice</div>
+    <div class="nota-nav-title">Todas las notas</div>
+  </a>
+  <a href="nota_cine.html" class="nota-nav-item nota-nav-item--next">
+    <div class="nota-nav-direction">Próxima nota →</div>
+    <div class="nota-nav-title">Lo que el cine me enseñó sobre el e-learning</div>
+  </a>
+</div>
+
+<!-- Footer CTA -->
+<section class="footer-cta" id="contacto">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-cta-tag">¿Te resonó?</div>
+      <h2>Si necesitás video corporativo que <span class="grad">funcione</span>, hablemos.</h2>
+      <p class="footer-cta-sub">Trabajo con empresas que entienden que un buen video no es lujo, es resultado. Si querés que conversemos sobre un proyecto, mandame mail.</p>
+      <div class="contact-actions">
+        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
+          Escribime
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="servicios.html" class="btn btn-dark-ghost">Ver servicios</a>
+      </div>
+    </div>
+
+    <div class="footer-fin">
+      <div class="footer-fin-text">End of file</div>
+      <div class="footer-fin-meta">© <span class="footer-year">2026</span> · DL · v2.0/Z</div>
+    </div>
+  </div>
+</section>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
