@@ -249,4 +249,67 @@
     el.textContent = new Date().getFullYear();
   });
 
+  /* ============================ Magnetic hover en CTAs ============================ */
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    const magneticBtns = document.querySelectorAll('.btn-primary, .btn-light, .btn-magnetic');
+    magneticBtns.forEach(b => b.classList.add('btn-magnetic'));
+    const STRENGTH = 0.30;   // qué tanto sigue el cursor (0–1)
+    const RADIUS   = 80;     // px desde el centro donde empieza a atraer
+
+    magneticBtns.forEach(btn => {
+      let rect = null;
+      const onEnter = () => { rect = btn.getBoundingClientRect(); };
+      const onMove = (e) => {
+        if (!rect) rect = btn.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.hypot(dx, dy);
+        const factor = Math.max(0, 1 - dist / (rect.width + RADIUS));
+        btn.style.setProperty('--mx', (dx * STRENGTH * factor) + 'px');
+        btn.style.setProperty('--my', (dy * STRENGTH * factor) + 'px');
+      };
+      const onLeave = () => {
+        btn.style.setProperty('--mx', '0px');
+        btn.style.setProperty('--my', '0px');
+        rect = null;
+      };
+      btn.addEventListener('mouseenter', onEnter);
+      btn.addEventListener('mousemove', onMove);
+      btn.addEventListener('mouseleave', onLeave);
+    });
+  }
+
+  /* ============================ Parallax sutil en imágenes de caso ============================ */
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    const parallaxImgs = document.querySelectorAll('.case-image img, .case-image-pair img, .featured-case-body img');
+    if (parallaxImgs.length) {
+      const active = new Set();
+      const onScroll = () => {
+        active.forEach(img => {
+          const r = img.getBoundingClientRect();
+          const vh = window.innerHeight;
+          // Progreso de -1 (entrando por abajo) a 1 (saliendo por arriba)
+          const progress = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+          const shift = Math.max(-20, Math.min(20, -progress * 18));
+          img.style.transform = `translate3d(0, ${shift}px, 0) scale(1.06)`;
+        });
+      };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) active.add(e.target);
+          else active.delete(e.target);
+        });
+        onScroll();
+      });
+      parallaxImgs.forEach(img => {
+        img.style.willChange = 'transform';
+        io.observe(img);
+      });
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+  }
+
 })();
