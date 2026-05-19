@@ -63,6 +63,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="preload" as="style" href="style.css">
 <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="img/retrato.webp" type="image/webp" fetchpriority="high">
   <style>
     /* Sobre — hero */
     .sobre-hero {
@@ -230,8 +231,8 @@
   </ul>
   <div class="nav-end">
     <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     </button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -244,7 +245,7 @@
 <!-- HERO -->
 <section id="main" class="sobre-hero">
   <a href="index.html" class="case-back">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Volver al portfolio
   </a>
 
@@ -259,7 +260,7 @@
 <section class="about-section" style="padding-top: 40px;">
   <div class="about-grid reveal">
     <div class="about-portrait">
-      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="eager" fetchpriority="high" alt="Damián Lencina" src="img/retrato.jpg"></picture>
+      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="eager" fetchpriority="high" alt="Damián Lencina" src="img/retrato.jpg" width="593" height="741"></picture>
     </div>
     <div class="about-content">
       <div class="about-text">
@@ -387,7 +388,7 @@
       <div class="contact-actions">
         <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
           Escribime
-          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">LinkedIn</a>
       </div>

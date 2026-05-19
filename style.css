@@ -798,14 +798,29 @@ section { padding: var(--gap-3xl) var(--side-pad); position: relative; }
   border-radius: var(--radius-m);
   overflow: hidden;
   border: 1px solid var(--ink-line-soft);
+  position: relative;
 }
+.featured-case-stats::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--aurora-grad-soft);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-out);
+}
+.featured-case:hover .featured-case-stats::after { opacity: 1; }
 .stat-box {
   background: var(--bg-tint);
   padding: 24px 20px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s var(--ease-out);
 }
+.featured-case:hover .stat-box { background: var(--bg-card); }
 .stat-label {
   font-family: var(--type-mono);
   font-size: var(--t-tag);
@@ -922,6 +937,120 @@ section { padding: var(--gap-3xl) var(--side-pad); position: relative; }
   transition: gap 0.2s var(--ease-out);
 }
 .work-item:hover .work-link { gap: 8px; }
+
+/* === Caso Coto — mockup de curso e-learning === */
+.work-thumb--coto {
+  background: #07080f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.work-thumb--coto::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(ellipse at 30% 40%, rgba(99,102,241,0.30) 0%, transparent 55%),
+              radial-gradient(ellipse at 80% 70%, rgba(6,182,212,0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+.coto-thumb-inner {
+  position: relative;
+  z-index: 2;
+  width: calc(100% - 40px);
+  padding: 0 4px;
+}
+/* Ventana de aplicación / slide */
+.coto-thumb-window {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.coto-thumb-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.coto-thumb-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+}
+.coto-thumb-dot:nth-child(1) { background: rgba(255,90,90,0.7); }
+.coto-thumb-dot:nth-child(2) { background: rgba(255,190,50,0.6); }
+.coto-thumb-dot:nth-child(3) { background: rgba(70,210,90,0.6); }
+.coto-thumb-bar-label {
+  font-family: var(--type-mono);
+  font-size: 9px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.04em;
+  margin-left: auto;
+}
+.coto-thumb-slide {
+  padding: 16px 16px 12px;
+}
+.coto-thumb-tag {
+  font-family: var(--type-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(99,102,241,0.9);
+  margin-bottom: 8px;
+}
+.coto-thumb-title {
+  font-size: clamp(15px, 1.8vw, 20px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 12px;
+}
+/* Pasos del método */
+.coto-thumb-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.coto-thumb-step {
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  padding: 5px 4px;
+  text-align: center;
+  font-family: var(--type-mono);
+  font-size: 8px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.2s;
+}
+.coto-thumb-step.active {
+  background: rgba(99,102,241,0.18);
+  border-color: rgba(99,102,241,0.40);
+  color: rgba(180,182,255,0.9);
+}
+/* Barra de progreso */
+.coto-thumb-progress-wrap {
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.coto-thumb-progress-bar {
+  height: 100%;
+  width: 25%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border-radius: 99px;
+  transition: width 0.6s var(--ease-out);
+}
+.work-item:hover .coto-thumb-progress-bar { width: 50%; }
+.work-item:hover .coto-thumb-step:nth-child(1) { background: rgba(99,102,241,0.10); border-color: rgba(99,102,241,0.20); color: rgba(180,182,255,0.6); }
+.work-item:hover .coto-thumb-step:nth-child(2) { background: rgba(99,102,241,0.18); border-color: rgba(99,102,241,0.40); color: rgba(180,182,255,0.9); }
+
 /* === Caso IA — card diseñada con grid pattern + cursor === */
 .work-item--ia .work-thumb {
   background: #0a0a14;

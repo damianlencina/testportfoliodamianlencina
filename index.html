@@ -88,6 +88,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="preload" as="style" href="style.css">
 <link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="img/retrato_avatar.webp" type="image/webp" fetchpriority="high">
 
 </head>
 <body>
@@ -106,8 +107,8 @@
   </ul>
   <div class="nav-end">
     <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     </button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -151,7 +152,7 @@
         <div class="hero-actions">
           <a href="#trabajo" class="btn btn-primary">
             Ver el trabajo
-            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#contacto" class="btn btn-ghost">Contactar</a>
         </div>
@@ -160,10 +161,10 @@
       <!-- Video card a la derecha -->
       <aside class="hero-video">
         <button class="hero-video-card" id="avatarPlayer" aria-label="Reproducir video de presentación">
-          <picture><source srcset="img/retrato_avatar.webp" type="image/webp"><img alt="Damián Lencina" loading="eager" fetchpriority="high" class="hero-video-img" src="img/retrato_avatar.jpg"></picture>
+          <picture><source srcset="img/retrato_avatar.webp" type="image/webp"><img alt="Damián Lencina" loading="eager" fetchpriority="high" class="hero-video-img" src="img/retrato_avatar.jpg" width="500" height="500"></picture>
           <span class="hero-video-overlay" aria-hidden="true"></span>
           <span class="hero-video-play" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
           </span>
           <span class="hero-video-meta">
             <span class="hero-video-tag">▶ Presentación · 90 seg</span>
@@ -220,7 +221,7 @@
   <div class="work-wrap">
 
     <!-- Featured case -->
-    <a href="caso_transformacion.html" class="featured-case reveal">
+    <a href="caso_transformacion.html" class="featured-case reveal" aria-label="Ver caso COTO — 7 años transformando el e-learning">
       <div class="featured-case-header">
         <span class="featured-case-num">01 / Featured</span>
         <span class="featured-case-tag">COTO CICSA · 2019 → Hoy</span>
@@ -231,7 +232,7 @@
           <p>De junior a responsable del área. <strong>Cuando llegué a COTO no había sistema</strong>: cada curso era una pieza aparte, sin identidad visual, sin estrategia. Hoy hay una plataforma Moodle institucional, un método replicable y una arquitectura que alcanza a casi veinte mil colaboradores.</p>
           <span class="featured-case-link">
             Ver caso completo
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </div>
         <div class="featured-case-stats">
@@ -258,9 +259,31 @@
     <!-- Grid 3 cards -->
     <div class="work-grid reveal-stagger">
 
-      <a href="caso_coto.html" class="work-item">
-        <div class="work-thumb">
-          <picture><source srcset="img/mp_slide_01_portada.webp" type="image/webp"><img loading="lazy" alt="Curso Medios de Pago — portada" src="img/mp_slide_01_portada.jpg"></picture>
+      <a href="caso_coto.html" class="work-item" aria-label="Ver caso COTO — Medios de Pago">
+        <div class="work-thumb work-thumb--coto">
+          <div class="coto-thumb-inner">
+            <div class="coto-thumb-window">
+              <div class="coto-thumb-titlebar">
+                <span class="coto-thumb-dot"></span>
+                <span class="coto-thumb-dot"></span>
+                <span class="coto-thumb-dot"></span>
+                <span class="coto-thumb-bar-label">storyline · medios_de_pago.story</span>
+              </div>
+              <div class="coto-thumb-slide">
+                <div class="coto-thumb-tag">Caso 02 · COTO · e-learning</div>
+                <div class="coto-thumb-title">Medios de<br>Pago</div>
+                <div class="coto-thumb-steps">
+                  <div class="coto-thumb-step active">01<br>Diseño</div>
+                  <div class="coto-thumb-step">02<br>Visual</div>
+                  <div class="coto-thumb-step">03<br>Video</div>
+                  <div class="coto-thumb-step">04<br>Eval.</div>
+                </div>
+                <div class="coto-thumb-progress-wrap">
+                  <div class="coto-thumb-progress-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="work-body">
           <div class="work-byline">Caso 02 · COTO · Medios de Pago</div>
@@ -268,12 +291,12 @@
           <p class="work-desc">El método de cuatro etapas en un caso completo: diseño instruccional, sistema visual, video filmado en planta y evaluación final.</p>
           <span class="work-link">
             Ver caso
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </div>
       </a>
 
-      <a href="caso_magoya.html" class="work-item">
+      <a href="caso_magoya.html" class="work-item" aria-label="Ver caso Magoya Cine — multimedio editorial">
         <div class="work-thumb work-thumb--magoya">
           <div class="magoya-thumb-inner">
             <div class="magoya-thumb-grain"></div>
@@ -296,12 +319,12 @@
           <p class="work-desc">Sitio editorial, canal de YouTube e Instagram. Críticas, festivales y producción audiovisual propia.</p>
           <span class="work-link">
             Ver caso
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </div>
       </a>
 
-      <a href="caso_ia.html" class="work-item work-item--ia">
+      <a href="caso_ia.html" class="work-item work-item--ia" aria-label="Ver caso Aprender a crear con IA">
         <div class="work-thumb">
           <div class="ia-thumb-grid"></div>
           <div class="ia-thumb-inner">
@@ -316,7 +339,7 @@
           <p class="work-desc">El antes era un mensaje de texto. El después es este portfolio. El proceso de construirlo es la demostración.</p>
           <span class="work-link">
             Ver caso
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </span>
         </div>
       </a>
@@ -367,7 +390,7 @@
 
   <div class="about-grid reveal">
     <div class="about-portrait">
-      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="lazy" alt="Damián Lencina" src="img/retrato.jpg"></picture>
+      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="lazy" alt="Damián Lencina" src="img/retrato.jpg" width="593" height="741"></picture>
     </div>
     <div class="about-content">
       <div class="about-text">
@@ -476,7 +499,7 @@
     <div class="servicios-nota-actions">
       <a href="#contacto" class="btn btn-primary">
         Hablemos
-        <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="Damian_Lencina_Resumen.pdf" download class="btn btn-secondary">↓ Descargar resumen</a>
     </div>
@@ -493,7 +516,7 @@
       <div class="contact-actions">
         <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
           Escribime por mail
-          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">LinkedIn</a>
       </div>

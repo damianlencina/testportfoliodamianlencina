@@ -559,6 +559,382 @@
   @media (max-width: 720px) {
     .no-se-card { padding: 40px 28px; }
   }
+
+  /* ============================================================
+     PROPOSAL BUILDER
+     ============================================================ */
+  .propuesta-section {
+    padding: var(--gap-3xl) var(--side-pad);
+    background: var(--bg-tint);
+    position: relative;
+    overflow: hidden;
+  }
+  .propuesta-section::before {
+    content: '';
+    position: absolute;
+    top: -20%; left: 50%;
+    width: 800px; height: 600px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(99,102,241,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .propuesta-wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .propuesta-intro {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .propuesta-tag {
+    display: inline-block;
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mid);
+    padding: 6px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--ink-line-soft);
+    border-radius: 99px;
+    margin-bottom: 20px;
+  }
+  .propuesta-intro h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h2);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .propuesta-intro h2 .grad {
+    background: var(--aurora-grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .propuesta-intro p {
+    font-size: var(--t-body-l);
+    color: var(--ink-mid);
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+
+  .builder {
+    background: var(--bg-card);
+    border: 1px solid var(--ink-line-soft);
+    border-radius: var(--radius-l);
+    padding: 40px;
+    box-shadow: var(--shadow-l);
+    position: relative;
+    overflow: hidden;
+  }
+  .builder::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--aurora-grad);
+  }
+
+  .builder-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .builder-step-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    padding: 6px 12px;
+    border-radius: 99px;
+    background: var(--bg-tint);
+    transition: all 0.3s var(--ease-out);
+  }
+  .builder-step-indicator.active {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .builder-step-indicator.done {
+    background: var(--bg-tint);
+    color: var(--ink);
+  }
+  .builder-step-indicator.done .builder-dot {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .builder-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--ink-mid);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    transition: all 0.3s var(--ease-out);
+  }
+  .builder-step-indicator.active .builder-dot {
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .builder-sep {
+    width: 16px; height: 1px;
+    background: var(--ink-line);
+  }
+
+  .builder-screen { animation: builderIn 0.4s var(--ease-out); }
+  .builder-screen[hidden] { display: none; }
+  @keyframes builderIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .builder-screen h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h3);
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .builder-question {
+    margin-bottom: 28px;
+  }
+  .builder-question:last-of-type { margin-bottom: 0; }
+  .builder-question-label {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+
+  .builder-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .builder-options.full { grid-template-columns: 1fr; }
+  .builder-options.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .builder-option {
+    display: block;
+    background: var(--bg);
+    border: 1.5px solid var(--ink-line-soft);
+    border-radius: var(--radius-m);
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s var(--ease-out);
+    position: relative;
+  }
+  .builder-option:hover {
+    border-color: var(--ink-line);
+    transform: translateY(-2px);
+  }
+  .builder-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .builder-option.selected,
+  .builder-option:has(input:checked) {
+    border-color: var(--aurora-1);
+    background: rgba(99,102,241,0.05);
+  }
+  .builder-option.selected::after,
+  .builder-option:has(input:checked)::after {
+    content: '✓';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--aurora-1);
+    color: white;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  .builder-option-num {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .builder-option-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-body-l);
+    color: var(--ink);
+    margin-bottom: 4px;
+    letter-spacing: -0.015em;
+  }
+  .builder-option-desc {
+    font-size: var(--t-small);
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+  .builder-options.cols-4 .builder-option {
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .builder-options.cols-4 .builder-option-title {
+    font-size: var(--t-body);
+    margin-bottom: 2px;
+  }
+  .builder-options.cols-4 .builder-option-desc {
+    font-size: var(--t-tag);
+  }
+
+  .builder-input,
+  .builder-textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1.5px solid var(--ink-line-soft);
+    border-radius: var(--radius-m);
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-body);
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .builder-input:focus,
+  .builder-textarea:focus {
+    outline: none;
+    border-color: var(--aurora-1);
+  }
+  .builder-textarea {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+    font-family: inherit;
+  }
+
+  .builder-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ink-line-soft);
+  }
+  .builder-back {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-small);
+    color: var(--ink-mid);
+    padding: 10px 0;
+    background: none;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .builder-back:hover { color: var(--ink); }
+  .builder-next,
+  .builder-submit {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 14px 26px;
+    border-radius: 99px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-body);
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+    border: 0;
+  }
+  .builder-next:hover,
+  .builder-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-m);
+  }
+  .builder-next[disabled],
+  .builder-submit[disabled] {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  .builder-submit {
+    background: var(--aurora-grad);
+    box-shadow: var(--shadow-aurora);
+  }
+  .builder-submit:hover {
+    box-shadow: 0 18px 56px rgba(99,102,241,0.40);
+  }
+  .builder-submit svg { width: 18px; height: 18px; }
+
+  /* Resumen */
+  .builder-resumen {
+    background: var(--bg);
+    border: 1px solid var(--ink-line-soft);
+    border-radius: var(--radius-m);
+    padding: 24px 28px;
+    margin-bottom: 8px;
+    font-family: var(--type-mono);
+    font-size: var(--t-small);
+    line-height: 1.75;
+    color: var(--ink);
+    white-space: pre-line;
+    max-height: 280px;
+    overflow-y: auto;
+  }
+  .builder-resumen-label {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: var(--ink-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+  .builder-edit {
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-small);
+    color: var(--aurora-1);
+    background: none;
+    cursor: pointer;
+    padding: 8px 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 720px) {
+    .builder { padding: 28px 20px; }
+    .builder-options,
+    .builder-options.cols-4 { grid-template-columns: 1fr; }
+    .builder-progress { gap: 4px; }
+    .builder-step-indicator { padding: 5px 10px; font-size: 11px; }
+    .propuesta-intro h2 { font-size: clamp(28px, 6vw, 40px); }
+  }
+
+  /* CTA en servicio-detail: "Armar propuesta" reemplaza mailto */
+  .servicio-cta .btn-builder {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .servicio-cta .btn-builder:hover {
+    background: var(--aurora-grad);
+    box-shadow: var(--shadow-aurora);
+  }
 </style>
 </head>
 <body class="case-page">
@@ -577,8 +953,8 @@
   </ul>
   <div class="nav-end">
     <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro" type="button">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     </button>
     <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -591,7 +967,7 @@
 <!-- HERO -->
 <section id="main" class="srv-hero">
   <a href="index.html" class="case-back">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     Volver al portfolio
   </a>
 
@@ -698,9 +1074,9 @@
   </div>
 
   <div class="servicio-cta">
-    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 01 — E-Learning" class="btn btn-primary">
-      Pedir cotización
-      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <a href="#propuesta" class="btn btn-primary btn-builder" data-preselect="01">
+      Armar propuesta
+      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <a href="metodo.html" class="btn btn-ghost">Ver cómo trabajo</a>
   </div>
@@ -771,9 +1147,9 @@
   </div>
 
   <div class="servicio-cta">
-    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 02 — Video corporativo" class="btn btn-primary">
-      Pedir cotización
-      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <a href="#propuesta" class="btn btn-primary btn-builder" data-preselect="02">
+      Armar propuesta
+      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <a href="caso_magoya.html" class="btn btn-ghost">Ver Magoya (audiovisual)</a>
   </div>
@@ -844,15 +1220,173 @@
   </div>
 
   <div class="servicio-cta">
-    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 03 — Implementación" class="btn btn-primary">
-      Conversemos
-      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <a href="#propuesta" class="btn btn-primary btn-builder" data-preselect="03">
+      Armar propuesta
+      <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <a href="caso_transformacion.html" class="btn btn-ghost">Ver caso similar</a>
   </div>
 </section>
 
 <!-- NO SÉ CUÁL ME CONVIENE -->
+<!-- PROPOSAL BUILDER -->
+<section id="propuesta" class="propuesta-section">
+  <div class="propuesta-wrap">
+    <div class="propuesta-intro">
+      <div class="propuesta-tag">Armá tu propuesta</div>
+      <h2>Armemos algo a tu <span class="grad">medida</span>.</h2>
+      <p>Tres pasos rápidos. Al final te genero un mensaje listo para enviarme por WhatsApp con todo el contexto.</p>
+    </div>
+
+    <form class="builder" id="builderForm" novalidate>
+      <div class="builder-progress" id="builderProgress">
+        <div class="builder-step-indicator active" data-step="1"><span class="builder-dot">1</span> Servicio</div>
+        <div class="builder-sep"></div>
+        <div class="builder-step-indicator" data-step="2"><span class="builder-dot">2</span> Contexto</div>
+        <div class="builder-sep"></div>
+        <div class="builder-step-indicator" data-step="3"><span class="builder-dot">3</span> Contacto</div>
+      </div>
+
+      <!-- STEP 1 — SERVICIO -->
+      <div class="builder-screen" data-screen="1">
+        <h3>¿Qué te interesa?</h3>
+        <div class="builder-options">
+          <label class="builder-option">
+            <input type="radio" name="servicio" value="01 · E-Learning corporativo">
+            <div class="builder-option-num">01</div>
+            <div class="builder-option-title">E-Learning corporativo</div>
+            <div class="builder-option-desc">Diseño y producción de cursos completos para tu empresa.</div>
+          </label>
+          <label class="builder-option">
+            <input type="radio" name="servicio" value="02 · Video corporativo">
+            <div class="builder-option-num">02</div>
+            <div class="builder-option-title">Video corporativo</div>
+            <div class="builder-option-desc">Producción audiovisual con mirada de autor, no de stock.</div>
+          </label>
+          <label class="builder-option">
+            <input type="radio" name="servicio" value="03 · Sistema de formación completo">
+            <div class="builder-option-num">03</div>
+            <div class="builder-option-title">Sistema completo</div>
+            <div class="builder-option-desc">Armar todo desde cero: LMS, identidad, método, primeros cursos.</div>
+          </label>
+          <label class="builder-option">
+            <input type="radio" name="servicio" value="No estoy seguro — charla previa">
+            <div class="builder-option-num">?</div>
+            <div class="builder-option-title">No estoy seguro</div>
+            <div class="builder-option-desc">Conversemos primero y vemos qué tiene sentido.</div>
+          </label>
+        </div>
+        <div class="builder-actions">
+          <button type="button" class="builder-next" data-next="2" disabled>Siguiente →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — CONTEXTO -->
+      <div class="builder-screen" data-screen="2" hidden>
+        <h3>Contame el contexto.</h3>
+
+        <div class="builder-question">
+          <div class="builder-question-label">¿Tipo de organización?</div>
+          <div class="builder-options cols-4">
+            <label class="builder-option">
+              <input type="radio" name="org" value="Startup">
+              <div class="builder-option-title">Startup</div>
+              <div class="builder-option-desc">&lt; 50 personas</div>
+            </label>
+            <label class="builder-option">
+              <input type="radio" name="org" value="Pyme">
+              <div class="builder-option-title">Pyme</div>
+              <div class="builder-option-desc">50 – 250</div>
+            </label>
+            <label class="builder-option">
+              <input type="radio" name="org" value="Corporativo">
+              <div class="builder-option-title">Corporativo</div>
+              <div class="builder-option-desc">250 +</div>
+            </label>
+            <label class="builder-option">
+              <input type="radio" name="org" value="Otro / Independiente">
+              <div class="builder-option-title">Otro</div>
+              <div class="builder-option-desc">Indep. / ONG</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="builder-question">
+          <div class="builder-question-label">¿Cuándo lo necesitás?</div>
+          <div class="builder-options cols-4">
+            <label class="builder-option">
+              <input type="radio" name="plazo" value="Lo antes posible">
+              <div class="builder-option-title">Urgente</div>
+              <div class="builder-option-desc">Esta semana</div>
+            </label>
+            <label class="builder-option">
+              <input type="radio" name="plazo" value="En 1 mes">
+              <div class="builder-option-title">Pronto</div>
+              <div class="builder-option-desc">~ 1 mes</div>
+            </label>
+            <label class="builder-option">
+              <input type="radio" name="plazo" value="En 2-3 meses">
+              <div class="builder-option-title">Planificado</div>
+              <div class="builder-option-desc">2 – 3 meses</div>
+            </label>
+            <label class="builder-option">
+              <input type="radio" name="plazo" value="Sin urgencia — explorando">
+              <div class="builder-option-title">Sin urgencia</div>
+              <div class="builder-option-desc">Explorando</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="builder-actions">
+          <button type="button" class="builder-back" data-back="1">← Volver</button>
+          <button type="button" class="builder-next" data-next="3" disabled>Siguiente →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — CONTACTO -->
+      <div class="builder-screen" data-screen="3" hidden>
+        <h3>¿Cómo te encuentro?</h3>
+
+        <div class="builder-question">
+          <div class="builder-question-label">Tu nombre *</div>
+          <input type="text" class="builder-input" name="nombre" placeholder="Ej. Lucía Pérez" autocomplete="name">
+        </div>
+
+        <div class="builder-question">
+          <div class="builder-question-label">Empresa o proyecto</div>
+          <input type="text" class="builder-input" name="empresa" placeholder="Ej. COTO, Mercado Libre, freelance..." autocomplete="organization">
+        </div>
+
+        <div class="builder-question">
+          <div class="builder-question-label">¿Algo más que quieras contarme? <span style="opacity:.6;font-weight:400">(opcional)</span></div>
+          <textarea class="builder-textarea" name="mensaje" placeholder="Detalles del proyecto, dudas, contexto..."></textarea>
+        </div>
+
+        <div class="builder-actions">
+          <button type="button" class="builder-back" data-back="2">← Volver</button>
+          <button type="button" class="builder-next" data-next="resumen" disabled>Generar propuesta →</button>
+        </div>
+      </div>
+
+      <!-- RESUMEN -->
+      <div class="builder-screen" data-screen="resumen" hidden>
+        <h3>Listo, esto te envío:</h3>
+        <div class="builder-resumen-label">Mensaje pre-armado</div>
+        <pre class="builder-resumen" id="builderResumen"></pre>
+        <button type="button" class="builder-edit" data-back="1">← Editar respuestas</button>
+
+        <div class="builder-actions">
+          <span style="font-family:var(--type-mono);font-size:var(--t-tag);color:var(--ink-dim);">Se abre WhatsApp con el mensaje listo. No envío nada hasta que vos toques "Enviar" allá.</span>
+          <a href="#" class="builder-submit" id="builderSubmit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.3c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5s-.7-1.6-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.7-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3.2.8.9-3.1-.2-.3c-.9-1.4-1.4-3-1.4-4.7 0-4.6 3.8-8.3 8.4-8.3s8.3 3.7 8.3 8.3-3.6 8.8-8.4 8.8z"/></svg>
+            Enviar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
 <section class="no-se">
   <div class="no-se-card">
     <div class="no-se-tag">¿Dudás cuál?</div>
@@ -861,9 +1395,9 @@
       Si ninguna de las tres situaciones es exactamente la tuya — o si te pasan dos al mismo tiempo — <strong>conversemos sin compromiso</strong>. Una llamada de 30 minutos alcanza para entender qué necesitás y, si tiene sentido, armamos algo a medida. Si no, te oriento igual.
     </p>
     <div class="servicio-cta">
-      <a href="mailto:dami.lencina21@gmail.com?subject=Charla 30 min" class="btn btn-light">
-        Agendar una llamada
-        <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <a href="#propuesta" class="btn btn-light btn-builder" data-preselect="charla">
+        Armar propuesta
+        <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">Conectarme en LinkedIn</a>
     </div>
@@ -948,11 +1482,11 @@
       <h2>El primer paso es una <span class="grad">conversación</span>.</h2>
       <p class="footer-cta-sub">Contame qué necesitás. En 48 hs tenés una propuesta concreta sobre la mesa.</p>
       <div class="contact-actions">
-        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
-          Escribime
-          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <a href="#propuesta" class="btn btn-light btn-builder" data-preselect="charla">
+          Armar mi propuesta
+          <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">LinkedIn</a>
+        <a href="https://wa.me/5491139127411" target="_blank" rel="noopener" class="btn btn-dark-ghost">WhatsApp directo</a>
       </div>
     </div>
 
@@ -965,6 +1499,140 @@
 
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
 
+<script>
+(function() {
+  'use strict';
+  const WA_NUMBER = '5491139127411';
+  const form = document.getElementById('builderForm');
+  if (!form) return;
+  const screens = form.querySelectorAll('.builder-screen');
+  const indicators = form.querySelectorAll('.builder-step-indicator');
+  const submitBtn = document.getElementById('builderSubmit');
+  const resumenEl = document.getElementById('builderResumen');
+  const order = ['1', '2', '3', 'resumen'];
+
+  function showScreen(target) {
+    screens.forEach(s => {
+      s.hidden = s.dataset.screen !== target;
+    });
+    // Actualizar indicadores
+    indicators.forEach(ind => {
+      const step = ind.dataset.step;
+      ind.classList.remove('active', 'done');
+      if (target === 'resumen') {
+        ind.classList.add('done');
+      } else if (step === target) {
+        ind.classList.add('active');
+      } else if (order.indexOf(step) < order.indexOf(target)) {
+        ind.classList.add('done');
+      }
+    });
+    // Scroll into view sutil
+    if (target !== '1') {
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function updateNextState(screenEl) {
+    const next = screenEl.querySelector('.builder-next');
+    if (!next) return;
+    let valid = true;
+    const screen = screenEl.dataset.screen;
+    if (screen === '1') {
+      valid = !!form.querySelector('input[name="servicio"]:checked');
+    } else if (screen === '2') {
+      valid = !!form.querySelector('input[name="org"]:checked')
+            && !!form.querySelector('input[name="plazo"]:checked');
+    } else if (screen === '3') {
+      const nombre = form.querySelector('input[name="nombre"]').value.trim();
+      valid = nombre.length > 1;
+    }
+    next.disabled = !valid;
+  }
+
+  // Wire radios + inputs para habilitar el next
+  form.addEventListener('change', e => {
+    const screenEl = e.target.closest('.builder-screen');
+    if (screenEl) updateNextState(screenEl);
+  });
+  form.addEventListener('input', e => {
+    const screenEl = e.target.closest('.builder-screen');
+    if (screenEl) updateNextState(screenEl);
+  });
+
+  // Navegación
+  form.addEventListener('click', e => {
+    const next = e.target.closest('.builder-next');
+    const back = e.target.closest('.builder-back, .builder-edit');
+    if (next) {
+      e.preventDefault();
+      const target = next.dataset.next;
+      if (target === 'resumen') buildResumen();
+      showScreen(target);
+    } else if (back) {
+      e.preventDefault();
+      showScreen(back.dataset.back);
+    }
+  });
+
+  function val(name) {
+    const el = form.querySelector(`[name="${name}"]`);
+    if (!el) return '';
+    if (el.type === 'radio') {
+      const checked = form.querySelector(`[name="${name}"]:checked`);
+      return checked ? checked.value : '';
+    }
+    return el.value.trim();
+  }
+
+  function buildResumen() {
+    const servicio = val('servicio');
+    const org      = val('org');
+    const plazo    = val('plazo');
+    const nombre   = val('nombre');
+    const empresa  = val('empresa');
+    const mensaje  = val('mensaje');
+
+    let texto = `Hola Damián, soy ${nombre}`;
+    if (empresa) texto += ` (${empresa})`;
+    texto += `.\n\n`;
+    texto += `🎯 Me interesa: ${servicio}\n`;
+    texto += `🏢 Tipo de organización: ${org}\n`;
+    texto += `⏱  Plazo: ${plazo}\n`;
+    if (mensaje) {
+      texto += `\n💬 ${mensaje}\n`;
+    }
+    texto += `\nMe armé esta propuesta desde damianlencina.com — espero tu respuesta.`;
+
+    resumenEl.textContent = texto;
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(texto)}`;
+    submitBtn.href = url;
+  }
+
+  // Pre-selección desde botones "Armar propuesta"
+  document.querySelectorAll('.btn-builder').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const map = {
+        '01': '01 · E-Learning corporativo',
+        '02': '02 · Video corporativo',
+        '03': '03 · Sistema de formación completo',
+        'charla': 'No estoy seguro — charla previa'
+      };
+      const preset = map[btn.dataset.preselect];
+      if (!preset) return;
+      const radio = form.querySelector(`input[name="servicio"][value="${preset}"]`);
+      if (radio) {
+        radio.checked = true;
+        updateNextState(form.querySelector('[data-screen="1"]'));
+        showScreen('1');
+      }
+    });
+  });
+
+  // Estado inicial
+  updateNextState(form.querySelector('[data-screen="1"]'));
+})();
+</script>
 <script src="script.js"></script>
 </body>
 </html>
