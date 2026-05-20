@@ -255,8 +255,8 @@
       </div>
     </a>
 
-    <!-- Grid 3 cards -->
-    <div class="work-grid reveal-stagger">
+    <!-- Grid 3 cards (carrusel horizontal en mobile) -->
+    <div class="work-grid work-grid--carousel reveal-stagger">
 
       <a href="caso_coto.html" class="work-item">
         <div class="work-thumb">
@@ -323,81 +323,60 @@
 
     </div>
 
+    <div class="work-carousel-hint" aria-hidden="true">← Deslizá para ver los casos →</div>
+
   </div>
 </section>
 
-<!-- MÉTODO -->
-<section class="method-section" id="metodo">
+<!-- MÉTODO (compacto · teaser) -->
+<section class="method-section method-section--compact" id="metodo">
   <div class="section-header reveal">
     <div class="section-tag">02 · El método</div>
-    <h2 class="section-h">Cada curso, una <span class="grad">experiencia</span>. Cada video, una pequeña película.</h2>
+    <h2 class="section-h">Cuatro etapas, una <span class="grad">mirada</span>.</h2>
     <p class="section-lead">La doble mirada — la del que enseña y la del que cuenta — se traduce en cuatro etapas claras de trabajo.</p>
   </div>
 
-  <div class="method-grid reveal-stagger">
-    <div class="method-item">
-      <div class="method-num">01 · Diagnóstico</div>
-      <div class="method-title">Entender qué hay que enseñar y a quién.</div>
-      <p class="method-desc">Entrevistas con el área dueña del contenido, mapeo de objetivos pedagógicos y análisis del público destinatario.</p>
+  <div class="method-flow reveal-stagger">
+    <div class="method-step">
+      <span class="method-step-num">01</span>
+      <span class="method-step-label">Diagnóstico</span>
     </div>
-    <div class="method-item">
-      <div class="method-num">02 · Diseño</div>
-      <div class="method-title">Guion instruccional y sistema visual.</div>
-      <p class="method-desc">Storyboard, estructura del curso, decisiones tipográficas y cromáticas, prototipos navegables.</p>
+    <span class="method-flow-arrow" aria-hidden="true">→</span>
+    <div class="method-step">
+      <span class="method-step-num">02</span>
+      <span class="method-step-label">Diseño</span>
     </div>
-    <div class="method-item">
-      <div class="method-num">03 · Producción</div>
-      <div class="method-title">Video, ilustración, interactividad.</div>
-      <p class="method-desc">Rodaje en locación, edición en Premiere, animación en After Effects, ensamble final en Storyline.</p>
+    <span class="method-flow-arrow" aria-hidden="true">→</span>
+    <div class="method-step">
+      <span class="method-step-num">03</span>
+      <span class="method-step-label">Producción</span>
     </div>
-    <div class="method-item">
-      <div class="method-num">04 · Implementación</div>
-      <div class="method-title">SCORM publicado y métricas vivas.</div>
-      <p class="method-desc">Publicación en Moodle, monitoreo de avances, iteración sobre resultados de aprendizaje.</p>
+    <span class="method-flow-arrow" aria-hidden="true">→</span>
+    <div class="method-step">
+      <span class="method-step-num">04</span>
+      <span class="method-step-label">Implementación</span>
     </div>
+  </div>
+
+  <div class="method-link reveal">
+    <a href="metodo.html" class="link-arrow">Ver método completo, con detalle por etapa →</a>
   </div>
 </section>
 
-<!-- SOBRE -->
-<section class="about-section" id="sobre">
+<!-- SOBRE (compacto · teaser) -->
+<section class="about-section about-section--compact" id="sobre">
   <div class="section-header reveal">
     <div class="section-tag">03 · Sobre mí</div>
     <h2 class="section-h">Entre el aula y la <span class="grad">cámara</span>.</h2>
   </div>
 
-  <div class="about-grid reveal">
-    <div class="about-portrait">
-      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="lazy" alt="Damián Lencina" src="img/retrato.jpg"></picture>
+  <div class="about-compact reveal">
+    <div class="about-portrait-sm">
+      <picture><source srcset="img/retrato.webp" type="image/webp"><img loading="lazy" alt="Damián Lencina" width="240" height="240" src="img/retrato.jpg"></picture>
     </div>
-    <div class="about-content">
-      <div class="about-text">
-        <p>Soy <strong>Damián Lencina</strong>, comunicador social y realizador audiovisual. Llegué al e-learning desde la comunicación —no desde la pedagogía— y creo que eso cambia cómo pienso cada pieza: primero qué historia quiero contar, después cómo estructurarla para que funcione como aprendizaje.</p>
-        <p>Hoy soy responsable del área de Formación e-Learning en <strong>COTO CICSA</strong>, donde lidero un equipo de cuatro personas. Construimos juntos el sistema desde casi cero: la plataforma, el método, el estándar visual, la producción audiovisual. Todo.</p>
-        <p>En paralelo mantengo <strong>Magoya Producciones</strong>, un proyecto cinéfilo que arrancó en 2016 con amigos y que me recuerda por qué me importa contar bien las cosas.</p>
-      </div>
-
-      <div class="about-meta">
-        <div class="about-meta-item">
-          <div class="label">Formación</div>
-          <div class="value">Lic. Comunicación Social</div>
-          <div class="sub">UNM · Universidad Nacional de Moreno</div>
-        </div>
-        <div class="about-meta-item">
-          <div class="label">Rol actual</div>
-          <div class="value">Responsable e-Learning</div>
-          <div class="sub">COTO CICSA · 2019—Hoy</div>
-        </div>
-        <div class="about-meta-item">
-          <div class="label">Equipo</div>
-          <div class="value">04 personas</div>
-          <div class="sub">Diseñadores y comunicadores</div>
-        </div>
-        <div class="about-meta-item">
-          <div class="label">Base</div>
-          <div class="value">Buenos Aires</div>
-          <div class="sub">Disponible para colaboraciones</div>
-        </div>
-      </div>
+    <div class="about-compact-body">
+      <p>Soy <strong>Damián Lencina</strong>, comunicador y realizador audiovisual. Responsable de Formación e-Learning en <strong>COTO CICSA</strong>, donde lidero un equipo de 4 personas que armó el sistema desde casi cero. En paralelo mantengo <strong>Magoya Producciones</strong>, un proyecto cinéfilo desde 2016.</p>
+      <a href="sobre.html" class="link-arrow">Leer historia completa, formación y equipo →</a>
     </div>
   </div>
 </section>
@@ -468,17 +447,13 @@
 
   </div>
 
-  <div class="servicios-nota reveal">
+  <div class="servicios-nota servicios-nota--compact reveal">
     <div class="servicios-nota-content">
       <div class="servicios-nota-tag">Cómo trabajo</div>
       <p>Trabajo de forma <strong>freelance</strong>, en proyectos puntuales o colaboraciones continuas. Puedo ser el único responsable del proyecto o integrarme a tu equipo existente. <strong>No tengo paquetes cerrados</strong>: cada proyecto empieza con una conversación.</p>
     </div>
     <div class="servicios-nota-actions">
-      <a href="#contacto" class="btn btn-primary">
-        Hablemos
-        <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="Damian_Lencina_Resumen.pdf" download class="btn btn-secondary">↓ Descargar resumen</a>
+      <a href="servicios.html" class="link-arrow">Ver detalle de los 3 servicios →</a>
     </div>
   </div>
 </section>

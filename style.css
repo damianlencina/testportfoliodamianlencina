@@ -2197,3 +2197,193 @@ section { padding: var(--gap-3xl) var(--side-pad); position: relative; }
 @media (max-width: 480px) {
   .contact-channels { grid-template-columns: 1fr; }
 }
+
+/* ===========================================================
+   COMPACT HOME — Hierarchy + lateral use of space
+   =========================================================== */
+
+/* Padding global más comprimido en secciones del home */
+#trabajo,
+.method-section,
+.about-section,
+.servicios-section {
+  padding-top: clamp(56px, 6vw, 88px);
+  padding-bottom: clamp(56px, 6vw, 88px);
+}
+.section-header {
+  margin-bottom: 32px;
+}
+
+/* --- Work cards horizontal carousel --- */
+.work-grid--carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--side-pad);
+  padding: 4px var(--side-pad) 18px;
+  margin-inline: calc(var(--side-pad) * -1);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-line) transparent;
+}
+.work-grid--carousel::-webkit-scrollbar { height: 6px; }
+.work-grid--carousel::-webkit-scrollbar-track {
+  background: transparent;
+}
+.work-grid--carousel::-webkit-scrollbar-thumb {
+  background: var(--ink-line-soft);
+  border-radius: 3px;
+}
+.work-grid--carousel::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-line);
+}
+.work-grid--carousel .work-item {
+  flex: 0 0 calc((100% - var(--side-pad) * 2 - 40px) / 3);
+  scroll-snap-align: start;
+  min-width: 0;
+}
+@media (max-width: 1024px) {
+  .work-grid--carousel .work-item { flex: 0 0 60%; }
+}
+@media (max-width: 720px) {
+  .work-grid--carousel .work-item { flex: 0 0 86%; }
+}
+
+.work-carousel-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-family: var(--type-mono);
+  font-size: 11px;
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+}
+@media (min-width: 1200px) {
+  .work-carousel-hint { display: none; }
+}
+
+/* --- Método compact flow --- */
+.method-section--compact .method-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  max-width: 920px;
+}
+.method-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-tint);
+  border: 1px solid var(--ink-line-soft);
+  border-radius: 999px;
+  padding: 12px 22px;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+}
+.method-step:hover {
+  border-color: var(--ink-line);
+  background: var(--bg);
+  transform: translateY(-2px);
+}
+.method-step-num {
+  font-family: var(--type-mono);
+  font-size: 12px;
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+.method-step-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.method-flow-arrow {
+  font-family: var(--type-mono);
+  font-size: 16px;
+  color: var(--ink-dim);
+  opacity: 0.5;
+}
+.method-link {
+  text-align: center;
+  margin-top: 28px;
+}
+@media (max-width: 720px) {
+  .method-section--compact .method-flow { gap: 8px; }
+  .method-step { padding: 10px 16px; }
+  .method-flow-arrow { display: none; }
+}
+
+/* --- Sobre compact --- */
+.about-section--compact .about-compact {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 36px;
+  align-items: center;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.about-portrait-sm {
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: var(--bg-tint);
+  box-shadow: var(--shadow-m);
+}
+.about-portrait-sm picture,
+.about-portrait-sm img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.about-compact-body p {
+  font-size: var(--t-body-l);
+  line-height: 1.6;
+  color: var(--ink-mid);
+  margin-bottom: 20px;
+}
+.about-compact-body strong { color: var(--ink); font-weight: 600; }
+@media (max-width: 720px) {
+  .about-section--compact .about-compact {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: left;
+  }
+  .about-portrait-sm {
+    max-width: 160px;
+    margin: 0 auto;
+  }
+}
+
+/* --- Servicios nota compact --- */
+.servicios-nota--compact {
+  padding: 24px 32px;
+}
+.servicios-nota--compact .servicios-nota-actions {
+  flex: 0 0 auto;
+}
+
+/* --- Link arrow utility (text-only CTA con flecha) --- */
+.link-arrow {
+  font-family: var(--type-mono);
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--ink-line);
+  padding-bottom: 3px;
+  transition: gap 0.2s var(--ease-out), border-color 0.2s, color 0.2s;
+  font-weight: 500;
+}
+.link-arrow:hover {
+  gap: 12px;
+  border-color: var(--ink);
+}
