@@ -919,6 +919,184 @@
     .mock-video-panel { display: none; }
     .mock-video-preview { grid-template-columns: 1fr; }
   }
+
+  /* ========= Proposal Builder ========= */
+  .propuesta-section {
+    padding: var(--gap-3xl) var(--side-pad);
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 80px;
+  }
+  .propuesta-section::before {
+    content: '';
+    position: absolute;
+    top: -30%; left: 50%;
+    transform: translateX(-50%);
+    width: 80%; height: 70%;
+    background: radial-gradient(ellipse, rgba(99,102,241,0.22) 0%, rgba(139,92,246,0.1) 40%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .propuesta-wrap {
+    max-width: var(--content-narrow);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .propuesta-header { text-align: center; margin-bottom: 40px; }
+  .propuesta-header .section-tag { color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .propuesta-header h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: var(--t-h2);
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    color: var(--ink-invert);
+    margin-bottom: 14px;
+  }
+  .propuesta-header p { font-size: var(--t-body-l); color: rgba(255,255,255,0.6); line-height: 1.5; }
+  .builder {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-l);
+    overflow: hidden;
+  }
+  .builder-screen {
+    display: none;
+    padding: 36px;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .builder-screen.active { display: flex; }
+  .builder-step-label {
+    font-family: var(--type-mono);
+    font-size: var(--t-tag);
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
+  }
+  .builder-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .builder-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-m);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    color: rgba(255,255,255,0.75);
+  }
+  .builder-option:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.07); }
+  .builder-option input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+  .builder-option:has(input:checked) { border-color: #6366f1; background: rgba(99,102,241,0.13); color: #fff; }
+  .builder-option-num { font-family: var(--type-mono); font-size: 12px; color: rgba(255,255,255,0.35); flex-shrink: 0; min-width: 18px; }
+  .builder-option:has(input:checked) .builder-option-num { color: #818cf8; }
+  .builder-option-title { font-weight: 500; font-size: 14px; line-height: 1.35; }
+  .builder-options--sm .builder-option { padding: 11px 16px; }
+  .builder-group-label {
+    font-family: var(--type-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.38);
+    margin-bottom: -4px;
+  }
+  .builder-field { display: flex; flex-direction: column; gap: 7px; }
+  .builder-field label { font-family: var(--type-mono); font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
+  .builder-field input,
+  .builder-field textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-s);
+    padding: 11px 16px;
+    color: var(--ink-invert);
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-body);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .builder-field input::placeholder,
+  .builder-field textarea::placeholder { color: rgba(255,255,255,0.28); }
+  .builder-field input:focus,
+  .builder-field textarea:focus { border-color: #6366f1; }
+  .builder-field textarea { resize: vertical; min-height: 90px; }
+  .builder-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    flex-wrap: wrap;
+  }
+  .builder-next {
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-m);
+    padding: 12px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-body);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, opacity 0.2s, transform 0.2s;
+    margin-left: auto;
+  }
+  .builder-next:hover:not(:disabled) { background: #4f46e5; transform: translateY(-1px); }
+  .builder-next:disabled { opacity: 0.35; cursor: not-allowed; }
+  .builder-back {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-family: var(--type-mono);
+    font-size: 13px;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 8px 0;
+  }
+  .builder-back:hover { color: rgba(255,255,255,0.85); }
+  .builder-resumen-text {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-s);
+    padding: 20px;
+    font-family: var(--type-mono);
+    font-size: 13px;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.82);
+    white-space: pre-wrap;
+    overflow-x: auto;
+    margin: 0;
+  }
+  .builder-submit {
+    background: #25d366;
+    color: #0a0a0a;
+    border: none;
+    border-radius: var(--radius-m);
+    padding: 12px 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: var(--t-body);
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .builder-submit:hover { background: #1da851; transform: translateY(-1px); }
+  @media (max-width: 720px) {
+    .builder-screen { padding: 22px 18px; gap: 18px; }
+    .builder-options { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body class="case-page">
@@ -1003,7 +1181,7 @@
     </div>
     <div class="servicio-price-block">
       <div class="servicio-price-label">Desde</div>
-      <div class="servicio-price">USD 2.500 — 8.000</div>
+      <div class="servicio-price">USD 1.200 — 3.500</div>
       <div class="servicio-price-sub">según alcance y duración</div>
     </div>
   </div>
@@ -1100,8 +1278,8 @@
   </div>
 
   <div class="servicio-cta">
-    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 01 — E-Learning" class="btn btn-primary">
-      Pedir cotización
+    <a href="#propuesta" data-preselect="01" class="btn btn-primary">
+      Armar propuesta
       <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <a href="metodo.html" class="btn btn-ghost">Ver cómo trabajo</a>
@@ -1118,7 +1296,7 @@
     </div>
     <div class="servicio-price-block">
       <div class="servicio-price-label">Desde</div>
-      <div class="servicio-price">USD 1.200 — 4.500</div>
+      <div class="servicio-price">USD 600 — 2.200</div>
       <div class="servicio-price-sub">por pieza, según complejidad</div>
     </div>
   </div>
@@ -1212,8 +1390,8 @@
   </div>
 
   <div class="servicio-cta">
-    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 02 — Video corporativo" class="btn btn-primary">
-      Pedir cotización
+    <a href="#propuesta" data-preselect="02" class="btn btn-primary">
+      Armar propuesta
       <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <a href="caso_magoya.html" class="btn btn-ghost">Ver Magoya (audiovisual)</a>
@@ -1344,8 +1522,8 @@
   </div>
 
   <div class="servicio-cta">
-    <a href="mailto:dami.lencina21@gmail.com?subject=Servicio 03 — Implementación" class="btn btn-primary">
-      Conversemos
+    <a href="#propuesta" data-preselect="03" class="btn btn-primary">
+      Armar propuesta
       <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
     <a href="caso_transformacion.html" class="btn btn-ghost">Ver caso similar</a>
@@ -1361,11 +1539,114 @@
       Si ninguna de las tres situaciones es exactamente la tuya — o si te pasan dos al mismo tiempo — <strong>conversemos sin compromiso</strong>. Una llamada de 30 minutos alcanza para entender qué necesitás y, si tiene sentido, armamos algo a medida. Si no, te oriento igual.
     </p>
     <div class="servicio-cta">
-      <a href="mailto:dami.lencina21@gmail.com?subject=Charla 30 min" class="btn btn-light">
-        Agendar una llamada
+      <a href="#propuesta" data-preselect="charla" class="btn btn-light">
+        Armar propuesta
         <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">Conectarme en LinkedIn</a>
+      <a href="https://wa.me/5491139127411" target="_blank" rel="noopener" class="btn btn-dark-ghost">WhatsApp directo</a>
+    </div>
+  </div>
+</section>
+
+<!-- BUILDER DE PROPUESTA -->
+<section id="propuesta" class="propuesta-section">
+  <div class="propuesta-wrap">
+    <div class="propuesta-header">
+      <div class="section-tag">Armá tu propuesta</div>
+      <h2>En 3 pasos te armo una propuesta <span class="grad">a medida</span>.</h2>
+      <p>Elegí lo que necesitás, completá algunos datos, y te la mando por WhatsApp en menos de 24 hs.</p>
+    </div>
+
+    <div class="builder" id="builder">
+
+      <!-- Paso 1 -->
+      <div class="builder-screen active" id="builderStep1">
+        <div class="builder-step-label">Paso 01 de 03 · ¿Qué necesitás?</div>
+        <div class="builder-options">
+          <label class="builder-option">
+            <input type="radio" name="servicio" value="01">
+            <span class="builder-option-num">01</span>
+            <span class="builder-option-title">E-learning corporativo — cursos interactivos para tu equipo</span>
+          </label>
+          <label class="builder-option">
+            <input type="radio" name="servicio" value="02">
+            <span class="builder-option-num">02</span>
+            <span class="builder-option-title">Video corporativo — producción audiovisual con mirada de autor</span>
+          </label>
+          <label class="builder-option">
+            <input type="radio" name="servicio" value="03">
+            <span class="builder-option-num">03</span>
+            <span class="builder-option-title">Sistema completo — plataforma LMS + método + producción</span>
+          </label>
+          <label class="builder-option">
+            <input type="radio" name="servicio" value="charla">
+            <span class="builder-option-num">·</span>
+            <span class="builder-option-title">No sé aún — quiero una charla de 30 min sin compromiso</span>
+          </label>
+        </div>
+        <div class="builder-nav">
+          <span></span>
+          <button class="builder-next" id="step1Next" disabled>Siguiente →</button>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="builder-screen" id="builderStep2">
+        <div class="builder-step-label">Paso 02 de 03 · Tu contexto</div>
+        <div class="builder-group-label">Tipo de organización</div>
+        <div class="builder-options builder-options--sm">
+          <label class="builder-option"><input type="radio" name="org" value="pyme"><span class="builder-option-title">Pyme / Startup</span></label>
+          <label class="builder-option"><input type="radio" name="org" value="empresa"><span class="builder-option-title">Empresa mediana o grande</span></label>
+          <label class="builder-option"><input type="radio" name="org" value="ngo"><span class="builder-option-title">ONG / Institución</span></label>
+          <label class="builder-option"><input type="radio" name="org" value="otro"><span class="builder-option-title">Otro</span></label>
+        </div>
+        <div class="builder-group-label">Plazo estimado</div>
+        <div class="builder-options builder-options--sm">
+          <label class="builder-option"><input type="radio" name="plazo" value="urgente"><span class="builder-option-title">Urgente (menos de 1 mes)</span></label>
+          <label class="builder-option"><input type="radio" name="plazo" value="normal"><span class="builder-option-title">Normal (1 a 3 meses)</span></label>
+          <label class="builder-option"><input type="radio" name="plazo" value="largo"><span class="builder-option-title">Sin prisa (más de 3 meses)</span></label>
+          <label class="builder-option"><input type="radio" name="plazo" value="nose"><span class="builder-option-title">No lo sé aún</span></label>
+        </div>
+        <div class="builder-nav">
+          <button class="builder-back" id="step2Back">← Anterior</button>
+          <button class="builder-next" id="step2Next" disabled>Siguiente →</button>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="builder-screen" id="builderStep3">
+        <div class="builder-step-label">Paso 03 de 03 · Tus datos</div>
+        <div class="builder-field">
+          <label for="builderNombre">Tu nombre</label>
+          <input type="text" id="builderNombre" placeholder="¿Cómo te llamás?">
+        </div>
+        <div class="builder-field">
+          <label for="builderEmpresa">Empresa u organización <span style="opacity:0.45">(opcional)</span></label>
+          <input type="text" id="builderEmpresa" placeholder="Nombre de tu organización">
+        </div>
+        <div class="builder-field">
+          <label for="builderMensaje">Contame algo sobre el proyecto <span style="opacity:0.45">(opcional)</span></label>
+          <textarea id="builderMensaje" rows="3" placeholder="Qué querés lograr, qué tenés hoy, cualquier dato que ayude..."></textarea>
+        </div>
+        <div class="builder-nav">
+          <button class="builder-back" id="step3Back">← Anterior</button>
+          <button class="builder-next" id="step3Preview">Ver resumen →</button>
+        </div>
+      </div>
+
+      <!-- Resumen -->
+      <div class="builder-screen" id="builderResumen">
+        <div class="builder-step-label">Todo listo · Revisá antes de enviar</div>
+        <pre class="builder-resumen-text" id="builderResumenText"></pre>
+        <div class="builder-nav">
+          <button class="builder-back" id="resumenBack">← Modificar</button>
+          <a href="#" class="builder-submit" id="builderSubmit" target="_blank" rel="noopener">
+            Enviar por WhatsApp
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5a11.93 11.93 0 0 0-17 16.5L2 22l2.13-1.43A11.93 11.93 0 1 0 20.5 3.5Zm-8.5 18a9.93 9.93 0 0 1-5.06-1.38l-.36-.21-2.96.78.79-2.88-.24-.37A9.93 9.93 0 1 1 12 21.5Zm5.45-7.42c-.3-.15-1.76-.87-2.03-.97s-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.65.07a8.13 8.13 0 0 1-4.07-3.56c-.31-.53.31-.5.88-1.65.1-.2.05-.37-.02-.52s-.67-1.62-.92-2.22c-.24-.58-.49-.5-.67-.51l-.57-.01c-.2 0-.52.07-.79.37s-1.05 1.02-1.05 2.5 1.07 2.89 1.22 3.09 2.11 3.22 5.12 4.51c.72.31 1.27.5 1.71.64.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.42s.25-1.29.17-1.42c-.07-.13-.27-.2-.57-.34Z"/></svg>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1448,12 +1729,15 @@
       <h2>El primer paso es una <span class="grad">conversación</span>.</h2>
       <p class="footer-cta-sub">Contame qué necesitás. En 48 hs tenés una propuesta concreta sobre la mesa.</p>
       <div class="contact-actions">
-        <a href="mailto:dami.lencina21@gmail.com" class="btn btn-light">
-          Escribime
+        <a href="#propuesta" class="btn btn-light">
+          Armar propuesta
           <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="https://www.linkedin.com/in/damian-ezequiel-lencina/" target="_blank" rel="noopener" class="btn btn-dark-ghost">LinkedIn</a>
+        <a href="https://wa.me/5491139127411?text=Hola%20Dami%C3%A1n%21%20Vi%20tus%20servicios%20y%20quiero%20hablar%20sobre%20un%20proyecto." target="_blank" rel="noopener" class="btn btn-dark-ghost">WhatsApp directo</a>
       </div>
+      <p style="margin-top:24px;font-family:var(--type-mono);font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5;">
+        También disponible a través de <a href="https://damianlencina.github.io/testfocoestudio/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.65);text-decoration:underline;text-underline-offset:3px;">Foco Estudio ↗</a> — el estudio de diseño de aprendizaje que fundé.
+      </p>
     </div>
 
     <div class="footer-fin">
@@ -1466,5 +1750,82 @@
 <button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
 
 <script src="script.js"></script>
+<script>
+(function () {
+  'use strict';
+  var WA = '5491139127411';
+  var servicioMap = {
+    '01': 'E-learning corporativo (Servicio 01)',
+    '02': 'Video corporativo (Servicio 02)',
+    '03': 'Sistema completo desde cero (Servicio 03)',
+    'charla': 'Charla inicial / asesoramiento'
+  };
+  var orgMap = { pyme: 'Pyme / Startup', empresa: 'Empresa mediana o grande', ngo: 'ONG / Institución', otro: 'Otro' };
+  var plazoMap = { urgente: 'Urgente (menos de 1 mes)', normal: 'Normal (1-3 meses)', largo: 'Sin prisa (3+ meses)', nose: 'Sin definir' };
+
+  function showScreen(id) {
+    document.querySelectorAll('.builder-screen').forEach(function (s) { s.classList.remove('active'); });
+    var t = document.getElementById(id);
+    if (t) { t.classList.add('active'); t.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+  }
+
+  var step1Next = document.getElementById('step1Next');
+  document.querySelectorAll('input[name="servicio"]').forEach(function (r) {
+    r.addEventListener('change', function () { if (step1Next) step1Next.disabled = false; });
+  });
+  if (step1Next) step1Next.addEventListener('click', function () { showScreen('builderStep2'); });
+
+  var step2Next = document.getElementById('step2Next');
+  function checkStep2() {
+    var ok = document.querySelector('input[name="org"]:checked') && document.querySelector('input[name="plazo"]:checked');
+    if (step2Next) step2Next.disabled = !ok;
+  }
+  document.querySelectorAll('input[name="org"], input[name="plazo"]').forEach(function (r) { r.addEventListener('change', checkStep2); });
+  var s2b = document.getElementById('step2Back');
+  if (s2b) s2b.addEventListener('click', function () { showScreen('builderStep1'); });
+  if (step2Next) step2Next.addEventListener('click', function () { showScreen('builderStep3'); });
+
+  var s3b = document.getElementById('step3Back');
+  var s3p = document.getElementById('step3Preview');
+  if (s3b) s3b.addEventListener('click', function () { showScreen('builderStep2'); });
+  if (s3p) s3p.addEventListener('click', function () { buildResumen(); showScreen('builderResumen'); });
+
+  var rb = document.getElementById('resumenBack');
+  if (rb) rb.addEventListener('click', function () { showScreen('builderStep3'); });
+
+  function buildResumen() {
+    var sv  = (document.querySelector('input[name="servicio"]:checked') || {}).value || '-';
+    var org = (document.querySelector('input[name="org"]:checked') || {}).value || '-';
+    var pl  = (document.querySelector('input[name="plazo"]:checked') || {}).value || '-';
+    var nombre  = ((document.getElementById('builderNombre')  || {}).value || '').trim() || '-';
+    var empresa = ((document.getElementById('builderEmpresa') || {}).value || '').trim();
+    var mensaje = ((document.getElementById('builderMensaje') || {}).value || '').trim();
+    var lines = [
+      'Hola Damián! Te escribo desde tu portfolio.',
+      '',
+      '— Qué necesito: ' + (servicioMap[sv]  || sv),
+      '— Tipo de org: '  + (orgMap[org] || org),
+      '— Plazo: '        + (plazoMap[pl] || pl),
+      '— Nombre: '       + nombre
+    ];
+    if (empresa) lines.push('— Empresa: ' + empresa);
+    if (mensaje) lines.push('— Detalle: ' + mensaje);
+    lines.push('', '¿Podemos hablar?');
+    var texto = lines.join('\n');
+    var el = document.getElementById('builderResumenText');
+    var btn = document.getElementById('builderSubmit');
+    if (el) el.textContent = texto;
+    if (btn) btn.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(texto);
+  }
+
+  document.querySelectorAll('[data-preselect]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var val = btn.dataset.preselect;
+      var radio = document.querySelector('input[name="servicio"][value="' + val + '"]');
+      if (radio) { radio.checked = true; if (step1Next) step1Next.disabled = false; }
+    });
+  });
+})();
+</script>
 </body>
 </html>
